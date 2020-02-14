@@ -82,6 +82,7 @@ public class playKeybints {
                     labelmap.setLocation(x2,y2 - 10);
                 }else if (y <= 250 && e.getKeyCode() == KeyEvent.VK_W) {
                     labelmap.setLocation(x2,y2 + 10);
+
                 }
 
 //                intersect(label, label2);
