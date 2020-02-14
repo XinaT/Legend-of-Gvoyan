@@ -1,9 +1,13 @@
 package ru.compas.draft;
 
+import ru.compas.player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import static ru.compas.draft.main.chel;
 
 public class playKeybints {
     public static void main(String[] args) {
@@ -101,7 +105,7 @@ public class playKeybints {
         int x2 = label2.getX();
         int y2 = label2.getY();
 
-        if (x1 < x2 && y1 < y2 || x1 < x2 && y1 == y2 || x1 < x2 && y1 > y2 || x1 == x2 && y1 > y2 || x1 > x2 && y1 > y2 || x1 > x2 && y1 == y2 || x1 > x2 && y1 < y2 || x1 == x2 && y1 < y2){
+        if (x1 < x2 && y1 < y2 || x1 < x2 && y1 == y2 || x1 < x2 && y1 > y2 || x1 == x2 && y1 > y2 || x1 > x2 && y1 > y2 || x1 > x2 && y1 == y2 || x1 > x2 && y1 < y2 || x1 == x2 && y1 < y2) {
             System.out.println("Hello I'm Tom!");
         } else {
             System.out.println("No intersect");
