@@ -84,9 +84,7 @@ public class Main {
 
         ArrayList<Palka> palkas = new ArrayList<>();
         for (int j = 0; j < colliderPoints.size() - 1; j++) {
-            Palka palka = new Palka();
-            palka.a = colliderPoints.get(j);
-            palka.b = colliderPoints.get(j + 1);
+            Palka palka = new Palka(colliderPoints.get(j), colliderPoints.get(j + 1));
             palkas.add(palka);
         }
 
