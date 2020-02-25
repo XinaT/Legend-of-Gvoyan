@@ -1,5 +1,7 @@
 package com.company;
 
+import ru.compas.draft.Palka;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -7,7 +9,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class Mapa {
 
     static ArrayList<Point> colliderPoints = new ArrayList<>() {{
         add(new Point(61, 25));
@@ -89,6 +91,9 @@ public class Main {
         }
 
 
+
+
+
         JLabel labelV1 = new JLabel();
         labelV1.setSize(822, 1162);
         labelV1.setVisible(true);
@@ -107,4 +112,6 @@ public class Main {
 
 
     }
+
+//    static int isIntersected(JLabel )
 }
