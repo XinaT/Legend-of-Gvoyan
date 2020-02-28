@@ -1,4 +1,4 @@
-package com.company;
+package ru.compas.draft;
 
 import ru.compas.draft.Palka;
 
@@ -13,37 +13,37 @@ public class Mapa {
 
     static ArrayList<Point> colliderPoints = new ArrayList<>() {{
         add(new Point(61, 25));
-        add(new Point(61, 145));
-        add(new Point(149, 146));
-        add(new Point(151, 205));
+        add(new Point(61, 146));
+        add(new Point(150, 146));
+        add(new Point(150, 206));
         add(new Point(170, 206));
         add(new Point(170, 314));
-        add(new Point(121, 315));
+        add(new Point(120, 314));
         add(new Point(120, 344));
-        add(new Point(111, 345));
+        add(new Point(111, 344));
         add(new Point(111, 436));
         add(new Point(180, 436));
-        add(new Point(181, 475));
+        add(new Point(180, 476));
         add(new Point(211, 476));
         add(new Point(211, 535));
         add(new Point(462, 535));
         add(new Point(462, 496));
         add(new Point(580, 496));
-        add(new Point(580, 595));
+        add(new Point(580, 596));
         add(new Point(680, 596));
-        add(new Point(681, 615));
+        add(new Point(680, 615));
         add(new Point(700, 615));
         add(new Point(700, 734));
-        add(new Point(681, 734));
+        add(new Point(680, 734));
         add(new Point(680, 894));
-        add(new Point(552, 893));
-        add(new Point(551, 875));
+        add(new Point(552, 894));
+        add(new Point(552, 875));
         add(new Point(442, 875));
-        add(new Point(441, 865));
-        add(new Point(331, 864));
-        add(new Point(331, 904));
+        add(new Point(442, 865));
+        add(new Point(331, 865));
+        add(new Point(331, 905));
         add(new Point(272, 905));
-        add(new Point(271, 865));
+        add(new Point(272, 865));
         add(new Point(212, 865));
         add(new Point(212, 805));
         add(new Point(122, 805));
@@ -51,15 +51,15 @@ public class Mapa {
         add(new Point(141, 746));
         add(new Point(141, 675));
         add(new Point(122, 675));
-        add(new Point(121, 616));
-        add(new Point(151, 615));
+        add(new Point(122, 616));
+        add(new Point(151, 616));
         add(new Point(151, 495));
         add(new Point(62, 495));
-        add(new Point(61, 455));
+        add(new Point(62, 455));
         add(new Point(22, 455));
-        add(new Point(21, 345));
-        add(new Point(4, 344));
-        add(new Point(67, 785));
+        add(new Point(21, 346));
+        add(new Point(4, 346));
+        add(new Point(67, 349));
     }};
 
 
@@ -91,13 +91,14 @@ public class Mapa {
         }
 
 
-
-
+        ForMapa formapa = new ForMapa(palkas);
+        formapa.setSize(1000,1000);
+        v1.add(formapa);
 
         JLabel labelV1 = new JLabel();
         labelV1.setSize(822, 1162);
         labelV1.setVisible(true);
-        labelV1.setIcon(new ImageIcon("Правая нижняя часть карты 2.png"));
+        labelV1.setIcon(new ImageIcon("нижняя часть карты.jpg"));
         v1.add(labelV1);
 
         v1.repaint();
@@ -109,6 +110,7 @@ public class Mapa {
             String point = scanner.nextLine().replace(" ", ",");
             System.out.println("add(new Point(" + point + "));");
         }
+
 
 
     }

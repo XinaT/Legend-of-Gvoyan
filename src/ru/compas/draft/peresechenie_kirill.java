@@ -1,4 +1,4 @@
-package com.company;
+package ru.compas.draft;
 
 import javax.swing.*;
 
@@ -7,6 +7,8 @@ class Point {
     int y;
 
     public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 }
 class Line {

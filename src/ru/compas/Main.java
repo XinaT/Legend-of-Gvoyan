@@ -10,7 +10,7 @@ public class Main {
 
         player player = new player();
         player.setSize(100,100);
-        player.setIcon(new ImageIcon("pers.png"));
+        player.setIcon(new ImageIcon("pers — копия.png"));
         player.setLocation(100,100);
         frame.add(player);
 

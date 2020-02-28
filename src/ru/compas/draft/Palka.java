@@ -1,6 +1,5 @@
 package ru.compas.draft;
 
-import java.awt.*;
 
 public class Palka {
     Point a;
