@@ -20,7 +20,6 @@ public class Server {
         frame.setSize(1000, 780);
 
         character chel = new character();
-//        chel.setBackground(Color.blue);
         chel.setOpaque(true);
         chel.setSize(100, 100);
         chel.setIcon(new ImageIcon("pers.png"));
