@@ -78,7 +78,7 @@ public class playKeybints {
                     label.setLocation(x,y + 10);
                 }else if (y > 250 && e.getKeyCode() == KeyEvent.VK_W) {
                     label.setLocation(x,y - 10);
-                }else if (x <= 250 && e.getKeyCode() == KeyEvent.VK_A) {
+                }else if (x <= 250 && e.getKeyCode() == KeyEvent.VK_A) {//
                     labelmap.setLocation(x2 + 10,y2);
                 }else if (x >= 750 && e.getKeyCode() == KeyEvent.VK_D) {
                     labelmap.setLocation(x2 - 10,y2);
