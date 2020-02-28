@@ -8,11 +8,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class main {
+    static character chel;
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setSize(1000, 1000);
         frame.setLayout(null);
-        character chel = new character();
+       chel = new character();
 //        chel.setBackground(Color.blue);
         chel.setOpaque(true);
         chel.setSize(100, 100);
