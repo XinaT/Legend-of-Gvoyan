@@ -1,7 +1,9 @@
 package ru.compas.draft;
 
+
+import ru.compas.collision.Point;
+
 import javax.swing.*;
-import java.awt.*;
 
 public class verticalnaya_palka {
     static void isIntersected(JLabel pers, Palka palka) {
