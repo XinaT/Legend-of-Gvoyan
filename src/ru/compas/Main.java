@@ -1,6 +1,7 @@
 package ru.compas;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,7 +24,18 @@ public class Main {
         map.setLocation(0,0);
         frame.add(map);
 
-        controller controller = new controller(frame,player,map);
+        JLabel map1 = new JLabel();
+        map1.setSize(frame.getWidth(),frame.getHeight());
+        map1.setIcon(new ImageIcon("libertycityL.jpg"));
+        map1.setOpaque(true);
+        map1.setLocation(0,1000);
+        frame.add(map1);
+
+        ArrayList<JLabel> maps = new ArrayList<>();
+        maps.add(map);
+        maps.add(map1);
+
+        controller controller = new controller(frame,player,maps);
 
         frame.setVisible(true);
     }
