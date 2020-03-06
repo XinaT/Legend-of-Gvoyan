@@ -12,54 +12,51 @@ import java.util.Scanner;
 public class Mapa {
 
     static ArrayList<Point> colliderPoints = new ArrayList<>() {{
-        add(new Point(61, 25));
-        add(new Point(61, 146));
-        add(new Point(150, 146));
-        add(new Point(150, 206));
-        add(new Point(170, 206));
-        add(new Point(170, 314));
-        add(new Point(120, 314));
-        add(new Point(120, 344));
-        add(new Point(111, 344));
-        add(new Point(111, 436));
-        add(new Point(180, 436));
-        add(new Point(180, 476));
-        add(new Point(211, 476));
-        add(new Point(211, 535));
-        add(new Point(462, 535));
-        add(new Point(462, 496));
-        add(new Point(580, 496));
-        add(new Point(580, 596));
-        add(new Point(680, 596));
-        add(new Point(680, 615));
-        add(new Point(700, 615));
-        add(new Point(700, 734));
-        add(new Point(680, 734));
-        add(new Point(680, 894));
-        add(new Point(552, 894));
-        add(new Point(552, 875));
-        add(new Point(442, 875));
-        add(new Point(442, 865));
-        add(new Point(331, 865));
-        add(new Point(331, 905));
-        add(new Point(272, 905));
-        add(new Point(272, 865));
-        add(new Point(212, 865));
-        add(new Point(212, 805));
-        add(new Point(122, 805));
-        add(new Point(122, 746));
-        add(new Point(141, 746));
-        add(new Point(141, 675));
-        add(new Point(122, 675));
-        add(new Point(122, 616));
-        add(new Point(151, 616));
-        add(new Point(151, 495));
-        add(new Point(62, 495));
-        add(new Point(62, 455));
-        add(new Point(22, 455));
-        add(new Point(21, 346));
-        add(new Point(4, 346));
-        add(new Point(67, 349));
+        add(new Point(549,3));
+        add(new Point(549,125));
+        add(new Point(622,125));
+        add(new Point(622,503));
+        add(new Point(440,503));
+        add(new Point(440,605));
+        add(new Point(404,605));
+        add(new Point(404,917));
+        add(new Point(659,917));
+        add(new Point(659,1054));
+        add(new Point(769,1054));
+        add(new Point(769,1261));
+        add(new Point(1683,1261));
+        add(new Point(1683,1123));
+        add(new Point(2119,1123));
+        add(new Point(2119,1467));
+        add(new Point(2484,1467));
+        add(new Point(2484,1535));
+        add(new Point(2556,1535));
+        add(new Point(2556,1948));
+        add(new Point(2483,1948));
+        add(new Point(2483,2498));
+        add(new Point(2013,2498));
+        add(new Point(2013,2429));
+        add(new Point(1609,2429));
+        add(new Point(1609,2396));
+        add(new Point(1208,2396));
+        add(new Point(1208,2533));
+        add(new Point(988,2533));
+        add(new Point(988,2395));
+        add(new Point(768,2395));
+        add(new Point(768,2189));
+        add(new Point(441,2189));
+        add(new Point(441,1984));
+        add(new Point(513,1984));
+        add(new Point(513,1742));
+        add(new Point(443,1742));
+        add(new Point(443,1536));
+        add(new Point(549,1536));
+        add(new Point(549,1124));
+        add(new Point(221,1124));
+        add(new Point(221,985));
+        add(new Point(76,985));
+        add(new Point(76,606));
+
     }};
 
 
@@ -70,14 +67,7 @@ public class Mapa {
         JFrame v1 = new JFrame();
         v1.setVisible(true);
         v1.setSize(822, 1162);
-        v1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                e.getX();
-                e.getY();
-                System.out.println(e.getX() + " " + e.getY());
-            }
-        });
+
 
         int i = 0;
         for (i = 0; i < 11; i++) {
@@ -98,9 +88,16 @@ public class Mapa {
         JLabel labelV1 = new JLabel();
         labelV1.setSize(822, 1162);
         labelV1.setVisible(true);
-        labelV1.setIcon(new ImageIcon("нижняя часть карты.jpg"));
+        labelV1.setIcon(new ImageIcon("Правая нижняя часть карты 2.png"));
         v1.add(labelV1);
-
+        v1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                e.getX();
+                e.getY();
+                System.out.println((e.getX() - labelV1.getX())  + " " + (e.getY() -labelV1.getY()));
+            }
+        });
         v1.repaint();
 
 
