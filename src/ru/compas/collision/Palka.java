@@ -7,7 +7,7 @@ public class Palka {
     boolean isVertical;
     boolean isHorizontal;
 
-    Palka(Point a, Point b) {
+    public Palka(Point a, Point b) {
         this.a = a;
         this.b = b;
 

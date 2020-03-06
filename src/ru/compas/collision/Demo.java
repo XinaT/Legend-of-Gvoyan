@@ -62,7 +62,7 @@ public class Demo {
 
                 for (int i = 0; i < palki.size(); i++) {
                     Palka palka = palki.get(i);
-                    if (CollisionUtils.isPersAndPalkaIntersected(pers, palka)) {
+                    if (CollisionUtils.isPersAndPalkaIntersected(pers, palka,new JLabel())) {
                         pers.setLocation(x, y);
                         break;
                     }

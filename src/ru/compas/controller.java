@@ -1,17 +1,20 @@
 package ru.compas;
 
 import ru.compas.character;
+import ru.compas.collision.CollisionUtils;
+import ru.compas.collision.Palka;
 import ru.compas.player;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 public class controller {
     String direction = " ";
 
 
-    controller(JFrame frame, player player,JLabel label) {
+    controller(JFrame frame, player player, JLabel label, ArrayList<Palka> palki) {
 
         frame.addKeyListener(new KeyAdapter() {
             @Override
@@ -46,6 +49,15 @@ public class controller {
                 } else if ( x >= 750 && (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D)) {
 //                    player.move("right");
                     label.setLocation(x2 - 10,y2);
+                }
+
+                for (int i = 0; i < palki.size(); i++) {
+                    Palka palka = palki.get(i);
+                    if (CollisionUtils.isPersAndPalkaIntersected(player, palka,label)) {
+                        player.setLocation(x, y);
+                        label.setLocation(x2, y2);
+                        break;
+                    }
                 }
             }
         });

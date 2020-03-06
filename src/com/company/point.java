@@ -44,9 +44,6 @@ class palka {
             point b = points.get(i + 1);
             palka palka = new palka(a, b);
 
-
-
-
         }
     }
 
