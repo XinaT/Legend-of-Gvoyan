@@ -85,7 +85,8 @@ public class Main {
 
         CollisionKarta karta = new CollisionKarta(palki);
         karta.setSize(1000,1000);
-        JLabel map = new MapLocation(karta);
+
+        MapLocation map = new MapLocation(karta);
         map.setSize(frame.getWidth(),frame.getHeight());
         map.setIcon(new ImageIcon(icon));
         map.setOpaque(true);
