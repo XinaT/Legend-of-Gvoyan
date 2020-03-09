@@ -32,4 +32,9 @@ public class character extends JLabel {
         }
 
     }
+
+    @Override
+    public void setLocation(int x, int y) {
+        super.setLocation(x, y);
+    }
 }

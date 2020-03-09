@@ -22,12 +22,7 @@ public class Main {
 
 
 
-        JLabel map = new JLabel();
-        map.setSize(frame.getWidth(),frame.getHeight());
-        map.setIcon(new ImageIcon("нижняя часть карты.jpg"));
-        map.setOpaque(true);
-        map.setLocation(0,0);
-        frame.add(map);
+
 
 
         ArrayList<Point> points = new ArrayList<>();
@@ -47,18 +42,28 @@ public class Main {
             palki.add(palka);
         }
 
-        JLabel map1 = new JLabel();
+        CollisionKarta karta = new CollisionKarta(palki);
+        karta.setSize(1000,1000);
+        MapLocation map = new MapLocation(karta);
+        map.setSize(1000,1000);
+        map.setIcon(new ImageIcon("нижняя часть карты.jpg"));
+        map.setLocation(0,0);
+        frame.add(map);
+
+
+
+        MapLocation map1 = new MapLocation(karta);
         map1.setSize(frame.getWidth(),frame.getHeight());
         map1.setIcon(new ImageIcon("libertycityL.jpg"));
         map1.setOpaque(true);
         map1.setLocation(0,1000);
         frame.add(map1);
 
-        ArrayList<JLabel> maps = new ArrayList<>();
+        ArrayList<MapLocation> maps = new ArrayList<>();
         maps.add(map);
         maps.add(map1);
 
-        controller controller = new controller(frame,player,maps, palki);
+        controller controller = new controller(frame,player,maps);
 
         frame.setVisible(true);
     }
