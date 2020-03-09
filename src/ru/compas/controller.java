@@ -14,6 +14,13 @@ import java.util.ArrayList;
 
 public class controller {
 
+    static int TOP_BORDER = 250;
+    static int LEFT_BORDER = 250;
+    static int RIGHT_BORDER = 750;
+    static int BOTTOM_BORDER = 750;
+
+
+
     controller(JFrame frame, player player, ArrayList<MapLocation> maps) {
 
         Timer up = new Timer(30, null);
@@ -23,9 +30,9 @@ public class controller {
                 boolean shouldMoveMaps = false;
                 int x = player.getX();
                 int y = player.getY();
-                if (y > 250) {
+                if (y > TOP_BORDER) {
                     player.move("forward");
-                } else if (y <= 250) {
+                } else if (y <= TOP_BORDER) {
                     shouldMoveMaps = true;
                 }
 
@@ -44,9 +51,10 @@ public class controller {
                 if (shouldMoveMaps) {
                     for (int i = 0; i < maps.size(); i++) {
                         JLabel map = maps.get(i);
-                        int x2 = map.getX();
-                        int y2 = map.getY();
-                        map.setLocation(x2, y2 + player.velocity);
+                        int MAP_X = map.getX();
+                        int MAP_Y = map.getY();
+
+                        map.setLocation(MAP_X, MAP_Y + player.velocity);
                     }
                 }
             }
@@ -58,14 +66,14 @@ public class controller {
             public void actionPerformed(ActionEvent e) {
                 int x = player.getX();
                 int y = player.getY();
-                if (x > 250) {
+                if (x > LEFT_BORDER) {
                     player.move("left");
-                } else if (x <= 250) {
+                } else if (x <= LEFT_BORDER) {
                     for (int i = 0; i < maps.size(); i++) {
                         JLabel map = maps.get(i);
-                        int x2 = map.getX();
-                        int y2 = map.getY();
-                        map.setLocation(x2 + player.velocity, y2);
+                        int MAP_X = map.getX();
+                        int MAP_Y = map.getY();
+                        map.setLocation(MAP_X + player.velocity, MAP_Y);
                     }
                 }
             }
@@ -77,14 +85,14 @@ public class controller {
             public void actionPerformed(ActionEvent e) {
                 int x = player.getX();
                 int y = player.getY();
-                if (x < 750) {
+                if (x < RIGHT_BORDER) {
                     player.move("right");
-                } else if (x >= 750) {
+                } else if (x >= RIGHT_BORDER) {
                     for (int i = 0; i < maps.size(); i++) {
                         JLabel map = maps.get(i);
-                        int x2 = map.getX();
-                        int y2 = map.getY();
-                        map.setLocation(x2 - player.velocity, y2);
+                        int MAP_X = map.getX();
+                        int MAP_Y = map.getY();
+                        map.setLocation(MAP_X - player.velocity, MAP_Y);
                     }
                 }
             }
@@ -96,14 +104,14 @@ public class controller {
             public void actionPerformed(ActionEvent e) {
                 int x = player.getX();
                 int y = player.getY();
-                if (y < 750) {
+                if (y < BOTTOM_BORDER) {
                     player.move("toward");
-                } else if (y >= 750) {
+                } else if (y >= BOTTOM_BORDER) {
                     for (int i = 0; i < maps.size(); i++) {
                         JLabel map = maps.get(i);
-                        int x2 = map.getX();
-                        int y2 = map.getY();
-                        map.setLocation(x2, y2 - player.velocity);
+                        int MAP_X = map.getX();
+                        int MAP_Y = map.getY();
+                        map.setLocation(MAP_X, MAP_Y - player.velocity);
                     }
                 }
             }
@@ -132,7 +140,7 @@ public class controller {
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
 
-                if ((e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W)){
+                if ((e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W)) {
                     up.stop();
                 } else if ((e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S)) {
                     down.stop();
