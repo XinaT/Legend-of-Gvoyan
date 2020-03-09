@@ -5,38 +5,69 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.setSize(1000,1000);
-        frame.setLayout(null);
 
-        player player = new player();
-        player.setSize(100,100);
-        player.setIcon(new ImageIcon("pers.png"));
-        player.setLocation(100,100);
+        JFrame frame = creatOkno();
+
+        player player = player();
         frame.add(player);
 
+        JLabel map = creatMap(0,0,("нижняя часть карты.jpg"),frame);
 
+        JLabel map2 = creatMap(0,1000,("images-1.jpeg"),frame);
 
-        JLabel map = new JLabel();
-        map.setSize(frame.getWidth(),frame.getHeight());
-        map.setIcon(new ImageIcon("нижняя часть карты.jpg"));
-        map.setOpaque(true);
-        map.setLocation(0,0);
-        frame.add(map);
+        JLabel map3 = creatMap(1000,1000,("images-2.jpeg"),frame);
 
-        JLabel map1 = new JLabel();
-        map1.setSize(frame.getWidth(),frame.getHeight());
-        map1.setIcon(new ImageIcon("libertycityL.jpg"));
-        map1.setOpaque(true);
-        map1.setLocation(0,1000);
-        frame.add(map1);
+        JLabel map4 = creatMap(1000,0,("images-3.jpeg"),frame);
+
+        JLabel map5 = creatMap(-1000,-1000,("images-4.jpeg"),frame);
+
+        JLabel map6 = creatMap(0,-1000,("images-5.jpeg"),frame);
+
+        JLabel map7 = creatMap(-1000,0,("images-6.jpeg"),frame);
+
+        JLabel map8 = creatMap(-1000,1000,("images-7.jpeg"),frame);
+
+        JLabel map9 = creatMap(1000,-1000,("libertycityL.jpg"),frame);
+
 
         ArrayList<JLabel> maps = new ArrayList<>();
         maps.add(map);
-        maps.add(map1);
+        maps.add(map2);
+        maps.add(map3);
+        maps.add(map4);
+        maps.add(map5);
+        maps.add(map6);
+        maps.add(map7);
+        maps.add(map8);
+        maps.add(map9);
 
         controller controller = new controller(frame,player,maps);
 
         frame.setVisible(true);
+    }
+    public static JFrame creatOkno(){
+        JFrame frame = new JFrame();
+        frame.setSize(1000, 1000);
+        frame.setLayout(null);
+        return frame;
+    }
+
+    public static player player(){
+        player player = new player();
+        player.setSize(100,100);
+        player.setIcon(new ImageIcon("pers.png"));
+        player.setLocation(100,100);
+        return player;
+    }
+
+    public static JLabel creatMap(int x,int y, String icon, JFrame frame){
+        JLabel map = new JLabel();
+        map.setSize(frame.getWidth(),frame.getHeight());
+        map.setIcon(new ImageIcon(icon));
+        map.setOpaque(true);
+        map.setLocation(x,y);
+        frame.add(map);
+        return map;
+
     }
 }
