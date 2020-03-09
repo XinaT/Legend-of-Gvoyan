@@ -25,7 +25,7 @@ public class controller {
                         JLabel map = maps.get(i);
                         int x2 = map.getX();
                         int y2 = map.getY();
-                        map.setLocation(x2, y2 + 10);
+                        map.setLocation(x2, y2 + player.velocity);
                     }
                 }
 
@@ -45,8 +45,7 @@ public class controller {
                         JLabel map = maps.get(i);
                         int x2 = map.getX();
                         int y2 = map.getY();
-                        map.setLocation(x2, y2 + 10);
-                        map.setLocation(x2 + 10, y2);
+                        map.setLocation(x2 + player.velocity, y2);
                     }
                 }
             }
@@ -65,8 +64,7 @@ public class controller {
                         JLabel map = maps.get(i);
                         int x2 = map.getX();
                         int y2 = map.getY();
-                        map.setLocation(x2, y2 + 10);
-                        map.setLocation(x2 - 10, y2);
+                        map.setLocation(x2 - player.velocity, y2);
                     }
                 }
             }
@@ -85,8 +83,7 @@ public class controller {
                         JLabel map = maps.get(i);
                         int x2 = map.getX();
                         int y2 = map.getY();
-                        map.setLocation(x2, y2 + 10);
-                        map.setLocation(x2, y2 - 10);
+                        map.setLocation(x2, y2 - player.velocity);
                     }
                 }
             }
@@ -116,7 +113,6 @@ public class controller {
                 super.keyReleased(e);
 
                 if ((e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W)){
-                      player.move("forward");
                     up.stop();
                 } else if ((e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S)){
                     down.stop();
