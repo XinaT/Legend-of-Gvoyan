@@ -12,7 +12,7 @@ public class character extends JLabel {
     String abilities;
     ArrayList<player> battleUnits;
 
-    int velocity = 10;
+    int velocity = 20;
 
 
     public  void move(String direction) {
@@ -31,5 +31,10 @@ public class character extends JLabel {
             this.setLocation(x,y + velocity);
         }
 
+    }
+
+    @Override
+    public void setLocation(int x, int y) {
+        super.setLocation(x, y);
     }
 }

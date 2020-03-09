@@ -4,12 +4,14 @@ import javax.swing.*;
 
 public class CollisionUtils {
 
-    public static boolean isPersAndPalkaIntersected(JLabel pers, Palka palka_AB) {
+    public static boolean isPersAndPalkaIntersected(JLabel pers, Palka palka_AB, JLabel label) {
 
-        Point M = new Point(pers.getX(), pers.getY());
-        Point N = new Point(pers.getX() + pers.getWidth(), pers.getY());
-        Point K = new Point(pers.getX() + pers.getWidth(), pers.getY() + pers.getHeight());
-        Point L = new Point(pers.getX(), pers.getY() + pers.getHeight());
+        int x = pers.getX() - label.getX();
+        int y = pers.getY() - label.getY();
+        Point M = new Point(x, y );
+        Point N = new Point(x + pers.getWidth(), y);
+        Point K = new Point(x + pers.getWidth(), y + pers.getHeight());
+        Point L = new Point(x, y + pers.getHeight());
 
         Palka palka_MN = new Palka(M, N);
         Palka palka_NK = new Palka(N, K);

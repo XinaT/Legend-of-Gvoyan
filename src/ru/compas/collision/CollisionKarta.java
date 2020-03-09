@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class CollisionKarta extends JLabel {
 
-    ArrayList<Palka> palki;
+    public ArrayList<Palka> palki;
 
-    CollisionKarta(ArrayList<Palka> palki) {
+    public CollisionKarta(ArrayList<Palka> palki) {
         this.palki = palki;
     }
 

@@ -1,5 +1,10 @@
 package ru.compas;
 
+import ru.compas.collision.CollisionKarta;
+import ru.compas.collision.CollisionUtils;
+import ru.compas.collision.Palka;
+import ru.compas.collision.Point;
+
 import javax.swing.*;
 import java.util.ArrayList;
 
@@ -10,26 +15,26 @@ public class Main {
 
         player player = player(frame);
 
-        JLabel map = creatMap(0,0,("нижняя часть карты.jpg"),frame);
+        MapLocation map = creatMap(0,0,("нижняя часть карты.jpg"),frame);
 
-        JLabel map2 = creatMap(0,1000,("images-1.jpeg"),frame);
+        MapLocation map2 = creatMap(0,1000,("images-1.jpeg"),frame);
 
-        JLabel map3 = creatMap(1000,1000,("images-2.jpeg"),frame);
+        MapLocation map3 = creatMap(1000,1000,("images-2.jpeg"),frame);
 
-        JLabel map4 = creatMap(1000,0,("images-3.jpeg"),frame);
+        MapLocation map4 = creatMap(1000,0,("images-3.jpeg"),frame);
 
-        JLabel map5 = creatMap(-1000,-1000,("images-4.jpeg"),frame);
+        MapLocation map5 = creatMap(-1000,-1000,("images-4.jpeg"),frame);
 
-        JLabel map6 = creatMap(0,-1000,("images-5.jpeg"),frame);
+        MapLocation map6 = creatMap(0,-1000,("images-5.jpeg"),frame);
 
-        JLabel map7 = creatMap(-1000,0,("images-6.jpeg"),frame);
+        MapLocation map7 = creatMap(-1000,0,("images-6.jpeg"),frame);
 
-        JLabel map8 = creatMap(-1000,1000,("images-7.jpeg"),frame);
+        MapLocation map8 = creatMap(-1000,1000,("images-7.jpeg"),frame);
 
-        JLabel map9 = creatMap(1000,-1000,("libertycityL.jpg"),frame);
+        MapLocation map9 = creatMap(1000,-1000,("libertycityL.jpg"),frame);
 
 
-        ArrayList<JLabel> maps = new ArrayList<>();
+        ArrayList<MapLocation> maps = new ArrayList<>();
         maps.add(map);
         maps.add(map2);
         maps.add(map3);
@@ -60,8 +65,27 @@ public class Main {
         return player;
     }
 
-    public static JLabel creatMap(int x,int y, String icon, JFrame frame){
-        JLabel map = new JLabel();
+    public static MapLocation creatMap(int x,int y, String icon, JFrame frame){
+        ArrayList<Point> points = new ArrayList<>();
+        points.add(new Point(100, 100));
+        points.add(new Point(500, 100));
+        points.add(new Point(700, 300));
+        points.add(new Point(700, 600));
+        points.add(new Point(500, 700));
+        points.add(new Point(100, 700));
+
+        ArrayList<Palka> palki = new ArrayList<>();
+
+        for (int i = 0; i < points.size() - 1; i++) {
+            Point a = points.get(i);
+            Point b = points.get(i + 1);
+            Palka palka = new Palka(a, b);
+            palki.add(palka);
+        }
+
+        CollisionKarta karta = new CollisionKarta(palki);
+        karta.setSize(1000,1000);
+        JLabel map = new MapLocation(karta);
         map.setSize(frame.getWidth(),frame.getHeight());
         map.setIcon(new ImageIcon(icon));
         map.setOpaque(true);
