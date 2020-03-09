@@ -8,8 +8,7 @@ public class Main {
 
         JFrame frame = creatOkno();
 
-        player player = player();
-        frame.add(player);
+        player player = player(frame);
 
         JLabel map = creatMap(0,0,("нижняя часть карты.jpg"),frame);
 
@@ -52,11 +51,12 @@ public class Main {
         return frame;
     }
 
-    public static player player(){
+    public static player player(JFrame frame){
         player player = new player();
         player.setSize(100,100);
         player.setIcon(new ImageIcon("pers.png"));
-        player.setLocation(100,100);
+        player.setLocation(500,500);
+        frame.add(player);
         return player;
     }
 
