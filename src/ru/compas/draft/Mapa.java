@@ -60,6 +60,8 @@ public class Mapa {
     }};
 
 
+
+
     public static void main(String[] args) {
         //для всех точек
         // создать линии между текущей точкой и следующей
@@ -76,8 +78,8 @@ public class Mapa {
 
         ArrayList<Palka> palkas = new ArrayList<>();
         for (int j = 0; j < colliderPoints.size() - 1; j++) {
-//            Palka palka = new Palka(colliderPoints.get(j), colliderPoints.get(j + 1));
-//            palkas.add(palka);
+           Palka palka = new Palka(colliderPoints.get(j), colliderPoints.get(j + 1));
+            palkas.add(palka);
         }
 
 

@@ -1,5 +1,6 @@
 package ru.compas;
 
+import com.company.point;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
@@ -15,35 +16,12 @@ public class Main {
 
         player player = player(frame);
 
-        MapLocation map = creatMap(0,0,("нижняя часть карты.jpg"),frame);
+        MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
 
-        MapLocation map2 = creatMap(0,1000,("images-1.jpeg"),frame);
-
-        MapLocation map3 = creatMap(1000,1000,("images-2.jpeg"),frame);
-
-        MapLocation map4 = creatMap(1000,0,("images-3.jpeg"),frame);
-
-        MapLocation map5 = creatMap(-1000,-1000,("images-4.jpeg"),frame);
-
-        MapLocation map6 = creatMap(0,-1000,("images-5.jpeg"),frame);
-
-        MapLocation map7 = creatMap(-1000,0,("images-6.jpeg"),frame);
-
-        MapLocation map8 = creatMap(-1000,1000,("images-7.jpeg"),frame);
-
-        MapLocation map9 = creatMap(1000,-1000,("libertycityL.jpg"),frame);
 
 
         ArrayList<MapLocation> maps = new ArrayList<>();
         maps.add(map);
-        maps.add(map2);
-        maps.add(map3);
-        maps.add(map4);
-        maps.add(map5);
-        maps.add(map6);
-        maps.add(map7);
-        maps.add(map8);
-        maps.add(map9);
 
         controller controller = new controller(frame,player,maps);
 
@@ -58,21 +36,71 @@ public class Main {
 
     public static player player(JFrame frame){
         player player = new player();
-        player.setSize(100,100);
+        player.setSize(70,700);
         player.setIcon(new ImageIcon("pers.png"));
-        player.setLocation(500,500);
+        player.setLocation(400,500);
         frame.add(player);
         return player;
     }
 
     public static MapLocation creatMap(int x,int y, String icon, JFrame frame){
         ArrayList<Point> points = new ArrayList<>();
-        points.add(new Point(100, 100));
-        points.add(new Point(500, 100));
-        points.add(new Point(700, 300));
-        points.add(new Point(700, 600));
-        points.add(new Point(500, 700));
-        points.add(new Point(100, 700));
+        points.add(new Point(549,0));
+        points.add(new Point(549,125));
+        points.add(new Point(622,125));
+        points.add(new Point(622,503));
+        points.add(new Point(440,503));
+        points.add(new Point(440,605));
+        points.add(new Point(404,605));
+        points.add(new Point(404,917));
+        points.add(new Point(659,917));
+        points.add(new Point(659,1054));
+        points.add(new Point(769,1054));
+        points.add(new Point(769,1261));
+        points.add(new Point(1683,1261));
+        points.add(new Point(1683,1123));
+        points.add(new Point(2119,1123));
+        points.add(new Point(2119,1467));
+        points.add(new Point(2484,1467));
+        points.add(new Point(2484,1535));
+        points.add(new Point(2556,1535));
+        points.add(new Point(2556,1948));
+        points.add(new Point(2483,1948));
+        points.add(new Point(2483,2498));
+        points.add(new Point(2013,2498));
+        points.add(new Point(2013,2429));
+        points.add(new Point(1609,2429));
+        points.add(new Point(1609,2396));
+        points.add(new Point(1208,2396));
+        points.add(new Point(1208,2533));
+        points.add(new Point(988,2533));
+        points.add(new Point(988,2395));
+        points.add(new Point(768,2395));
+        points.add(new Point(768,2189));
+        points.add(new Point(441,2189));
+        points.add(new Point(441,1984));
+        points.add(new Point(513,1984));
+        points.add(new Point(513,1742));
+        points.add(new Point(443,1742));
+        points.add(new Point(443,1536));
+        points.add(new Point(549,1536));
+        points.add(new Point(549,1124));
+        points.add(new Point(221,1124));
+        points.add(new Point(221,985));
+        points.add(new Point(76,985));
+        points.add(new Point(76,606));
+
+
+
+
+        // чтоб палки совпадали с картой
+        for (int i = 0; i < points.size(); i = i + 1) {
+            Point p = points.get(i);
+            p.y = p.y + 500;
+        }
+
+
+
 
         ArrayList<Palka> palki = new ArrayList<>();
 
@@ -84,10 +112,10 @@ public class Main {
         }
 
         CollisionKarta karta = new CollisionKarta(palki);
-        karta.setSize(1000,1000);
+        karta.setSize(3000,4000);
 
         MapLocation map = new MapLocation(karta);
-        map.setSize(frame.getWidth(),frame.getHeight());
+        map.setSize(3000, 4000);
         map.setIcon(new ImageIcon(icon));
         map.setOpaque(true);
         map.setLocation(x,y);
