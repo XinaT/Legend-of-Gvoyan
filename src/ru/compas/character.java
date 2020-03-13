@@ -16,20 +16,25 @@ public class character extends JLabel {
 
 
     public  void move(String direction) {
-    int x = this.getX();
-    int y = this.getY();
-    if (direction.equals("right")) {
-        this.setLocation(x + velocity, y);
-    }
-    if (direction.equals("left")) {
-        this.setLocation(x - velocity, y);
-    }
-    if (direction.equals("forward")){
-        this.setLocation(x,y - velocity);
-    }
-    if (direction.equals("toward")){
-        this.setLocation(x,y + velocity);
+        int x = this.getX();
+        int y = this.getY();
+        if (direction.equals("right")) {
+            this.setLocation(x + velocity, y);
+        }
+        if (direction.equals("left")) {
+            this.setLocation(x - velocity, y);
+        }
+        if (direction.equals("forward")){
+            this.setLocation(x,y - velocity);
+        }
+        if (direction.equals("toward")){
+            this.setLocation(x,y + velocity);
+        }
+
     }
 
-}
+    @Override
+    public void setLocation(int x, int y) {
+        super.setLocation(x, y);
+    }
 }
