@@ -108,9 +108,10 @@ public class controller {
                 int y = player.getY();
                 if (x < RIGHT_BORDER) {
                     player.move("right");
-                } else if (x >= RIGHT_BORDER) {
-                    shouldMoveMaps = true;
+                }
 
+                else if (x >= RIGHT_BORDER) {
+                    shouldMoveMaps = true;
                 }
 
                 for (int i = 0; i < maps.size(); i++) {
