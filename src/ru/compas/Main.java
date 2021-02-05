@@ -21,6 +21,8 @@ public class Main {
 
 
         ArrayList<MapLocation> maps = new ArrayList<>();
+
+
         maps.add(map);
 
         controller controller = new controller(frame,player,maps);
