@@ -23,6 +23,9 @@ public class controller {
 
     controller(JFrame frame, player player, ArrayList<MapLocation> maps) {
 
+        RIGHT_BORDER = frame.getWidth() - 250;
+        BOTTOM_BORDER = frame.getHeight() - 250;
+
         Timer up = new Timer(30, null);
         up.addActionListener(new ActionListener() {
             @Override
