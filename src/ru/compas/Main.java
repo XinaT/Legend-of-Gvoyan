@@ -46,6 +46,7 @@ public class Main {
     public static MapLocation creatMap(int x,int y, String icon, JFrame frame){
         ArrayList<Point> points = new ArrayList<>();
         points.add(new Point(549,0));
+
         points.add(new Point(549,125));
         points.add(new Point(622,125));
         points.add(new Point(622,503));
