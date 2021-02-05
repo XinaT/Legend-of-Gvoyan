@@ -25,6 +25,7 @@ public class Main {
 
         maps.add(map);
 
+
         controller controller = new controller(frame,player,maps);
 
         frame.setVisible(true);
