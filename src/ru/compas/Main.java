@@ -29,16 +29,16 @@ public class Main {
     }
     public static JFrame creatOkno(){
         JFrame frame = new JFrame();
-        frame.setSize(1000, 1000);
+        frame.setSize(600, 600);
         frame.setLayout(null);
         return frame;
     }
 
     public static player player(JFrame frame){
         player player = new player();
-        player.setSize(70,700);
+        player.setSize(70,70);
         player.setIcon(new ImageIcon("pers.png"));
-        player.setLocation(400,500);
+        player.setLocation(300,300);
         frame.add(player);
         return player;
     }
