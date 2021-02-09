@@ -19,8 +19,6 @@ public class Main {
 
         MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
 
-
-
         ArrayList<MapLocation> maps = new ArrayList<>();
         maps.add(map);
 
