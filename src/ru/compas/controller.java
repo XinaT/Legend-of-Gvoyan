@@ -169,7 +169,7 @@ public class controller {
                         map.setLocation(MAP_X, MAP_Y - player.velocity);
                     }
                 }
-
+                System.out.println("емае");
             }
         });
 
@@ -188,7 +188,6 @@ public class controller {
                     right.start();
                 }
             }
-
         });
 
         frame.addKeyListener(new KeyAdapter() {
