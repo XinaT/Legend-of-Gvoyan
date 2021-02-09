@@ -20,16 +20,27 @@ public class controller {
     static int BOTTOM_BORDER = 750;
     static boolean shouldMoveMaps;
 
+    static boolean blockUp = false;
+    static boolean blockDown = false;
+    static boolean blockRight = false;
+    static boolean blockLeft = false;
+
+
 
     controller(JFrame frame, player player, ArrayList<MapLocation> maps) {
 
         RIGHT_BORDER = frame.getWidth() - 250;
         BOTTOM_BORDER = frame.getHeight() - 250;
 
-        Timer up = new Timer(30, null);
+        Timer up = new Timer(40, null);
         up.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+//                 blockDown = false;
+//                 blockRight = false;
+//                 blockLeft = false;
+
+
                 shouldMoveMaps = false;
                 int x = player.getX();
                 int y = player.getY();
@@ -44,8 +55,11 @@ public class controller {
                     for (int j = 0; j < map.karta.palki.size(); j++) {
                         Palka palka = map.karta.palki.get(j);
                         if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-                            player.setLocation(x, y+1);
+//                            player.move("toward");
+                            player.setLocation(x, y+15);
+//                            blockUp = true;
                             shouldMoveMaps = false;
+//                            up.stop();
                             break;
                         }
                     }
@@ -67,6 +81,11 @@ public class controller {
         left.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+//                blockUp = false;
+//                blockDown = false;
+//                blockRight = false;
+
+
                 shouldMoveMaps = false;
                 int x = player.getX();
                 int y = player.getY();
@@ -81,8 +100,11 @@ public class controller {
                     for (int j = 0; j < map.karta.palki.size(); j++) {
                         Palka palka = map.karta.palki.get(j);
                         if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-                            player.setLocation(x+1, y);
+//                            player.move("right");
+                            player.setLocation(x+15, y);
                             shouldMoveMaps = false;
+//                            blockLeft = true;
+//                            left.stop();
                             break;
                         }
                     }
@@ -100,10 +122,18 @@ public class controller {
             }
         });
 
-        Timer right = new Timer(30, null);
+        Timer right = new Timer(40, null);
         right.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+//                blockDown = false;
+//                blockLeft = false;
+//                blockUp=false;
+//
+//
+//
+                shouldMoveMaps = false;
+
                 int x = player.getX();
                 int y = player.getY();
                 if (x < RIGHT_BORDER) {
@@ -118,8 +148,11 @@ public class controller {
                     for (int j = 0; j < map.karta.palki.size(); j++) {
                         Palka palka = map.karta.palki.get(j);
                         if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-                            player.setLocation(x-1, y);
+//                            player.move("left");
+                            player.setLocation(x-15, y);
                             shouldMoveMaps = false;
+//                            blockRight =true;
+//                            right.stop();
                             break;
                         }
                     }
@@ -136,10 +169,15 @@ public class controller {
             }
         });
 
-        Timer down = new Timer(30, null);
+        Timer down = new Timer(40, null);
         down.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+//                blockUp = false;
+//                blockRight = false;
+//                blockLeft = false;
+
+                shouldMoveMaps = false;
                 int x = player.getX();
                 int y = player.getY();
                 if (y < BOTTOM_BORDER) {
@@ -154,8 +192,11 @@ public class controller {
                     for (int j = 0; j < map.karta.palki.size(); j++) {
                         Palka palka = map.karta.palki.get(j);
                         if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-                            player.setLocation(x, y-1);
+//                            player.move("forward");
+                            player.setLocation(x, y-15);
                             shouldMoveMaps = false;
+//                            blockDown = true;
+//                            down.stop();
                             break;
                         }
                     }
@@ -178,13 +219,21 @@ public class controller {
                 super.keyPressed(e);
 
                 if ((e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W)) {
-                    up.start();
+                    if (!blockUp) {
+                        up.start();
+                    }
                 } else if ((e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S)) {
-                    down.start();
+                    if (!blockDown) {
+                        down.start();
+                    }
                 } else if ((e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A)) {
-                    left.start();
+                    if (!blockLeft) {
+                        left.start();
+                    }
                 } else if ((e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D)) {
-                    right.start();
+                    if (!blockRight) {
+                        right.start();
+                    }
                 }
             }
 
