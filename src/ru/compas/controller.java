@@ -44,7 +44,7 @@ public class controller {
                     for (int j = 0; j < map.karta.palki.size(); j++) {
                         Palka palka = map.karta.palki.get(j);
                         if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-                            player.setLocation(x, y);
+                            player.setLocation(x, y+1);
                             shouldMoveMaps = false;
                             break;
                         }
@@ -81,7 +81,7 @@ public class controller {
                     for (int j = 0; j < map.karta.palki.size(); j++) {
                         Palka palka = map.karta.palki.get(j);
                         if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-                            player.setLocation(x, y);
+                            player.setLocation(x+1, y);
                             shouldMoveMaps = false;
                             break;
                         }
@@ -118,7 +118,7 @@ public class controller {
                     for (int j = 0; j < map.karta.palki.size(); j++) {
                         Palka palka = map.karta.palki.get(j);
                         if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-                            player.setLocation(x, y);
+                            player.setLocation(x-1, y);
                             shouldMoveMaps = false;
                             break;
                         }
@@ -154,7 +154,7 @@ public class controller {
                     for (int j = 0; j < map.karta.palki.size(); j++) {
                         Palka palka = map.karta.palki.get(j);
                         if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-                            player.setLocation(x, y);
+                            player.setLocation(x, y-1);
                             shouldMoveMaps = false;
                             break;
                         }
