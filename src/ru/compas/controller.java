@@ -36,9 +36,9 @@ public class controller {
         up.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                 blockDown = false;
-//                 blockRight = false;
-//                 blockLeft = false;
+                 blockDown = false;
+                 blockRight = false;
+                 blockLeft = false;
 
 
                 shouldMoveMaps = false;
@@ -55,11 +55,11 @@ public class controller {
                     for (int j = 0; j < map.karta.palki.size(); j++) {
                         Palka palka = map.karta.palki.get(j);
                         if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-//                            player.move("toward");
-                            player.setLocation(x, y+15);
-//                            blockUp = true;
+                            player.move("stop");
+                            player.setLocation(x, y+20);
+                            blockUp = true;
                             shouldMoveMaps = false;
-//                            up.stop();
+                            up.stop();
                             break;
                         }
                     }
@@ -81,9 +81,9 @@ public class controller {
         left.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                blockUp = false;
-//                blockDown = false;
-//                blockRight = false;
+                blockUp = false;
+                blockDown = false;
+                blockRight = false;
 
 
                 shouldMoveMaps = false;
@@ -100,11 +100,11 @@ public class controller {
                     for (int j = 0; j < map.karta.palki.size(); j++) {
                         Palka palka = map.karta.palki.get(j);
                         if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-//                            player.move("right");
-                            player.setLocation(x+15, y);
+                            player.move("stop");
+                            player.setLocation(x+20, y);
                             shouldMoveMaps = false;
-//                            blockLeft = true;
-//                            left.stop();
+                            blockLeft = true;
+                            left.stop();
                             break;
                         }
                     }
@@ -126,10 +126,10 @@ public class controller {
         right.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                blockDown = false;
-//                blockLeft = false;
-//                blockUp=false;
-//
+                blockDown = false;
+                blockLeft = false;
+                blockUp=false;
+
 //
 //
                 shouldMoveMaps = false;
@@ -148,11 +148,11 @@ public class controller {
                     for (int j = 0; j < map.karta.palki.size(); j++) {
                         Palka palka = map.karta.palki.get(j);
                         if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-//                            player.move("left");
-                            player.setLocation(x-15, y);
+                            player.move("stop");
+                            player.setLocation(x-20, y);
                             shouldMoveMaps = false;
-//                            blockRight =true;
-//                            right.stop();
+                            blockRight =true;
+                            right.stop();
                             break;
                         }
                     }
@@ -173,9 +173,9 @@ public class controller {
         down.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                blockUp = false;
-//                blockRight = false;
-//                blockLeft = false;
+                blockUp = false;
+                blockRight = false;
+                blockLeft = false;
 
                 shouldMoveMaps = false;
                 int x = player.getX();
@@ -192,11 +192,11 @@ public class controller {
                     for (int j = 0; j < map.karta.palki.size(); j++) {
                         Palka palka = map.karta.palki.get(j);
                         if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-//                            player.move("forward");
-                            player.setLocation(x, y-15);
+                            player.move("stop");
+                            player.setLocation(x, y-20);
                             shouldMoveMaps = false;
-//                            blockDown = true;
-//                            down.stop();
+                            blockDown = true;
+                            down.stop();
                             break;
                         }
                     }
