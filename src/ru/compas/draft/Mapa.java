@@ -57,6 +57,9 @@ public class Mapa {
         add(new Point(76,985));
         add(new Point(76,606));
 
+
+
+
     }};
 
 
@@ -113,6 +116,7 @@ public class Mapa {
 
 
     }
+
 
 //    static int isIntersected(JLabel )
 }
