@@ -15,6 +15,7 @@ public class Main_GENERAL {
         JFrame frame = creatOkno();
 
         player player = player(frame);
+     //        int a = 2*2;
 
         MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
 
