@@ -1,8 +1,8 @@
 package ru.compas;
 
-import com.company.point;
+import ru.compas.Messager.Dialog;
+import ru.compas.Messager.Message;
 import ru.compas.collision.CollisionKarta;
-import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
 
@@ -15,7 +15,9 @@ public class Main_GENERAL {
         JFrame frame = creatOkno();
 
         player player = player(frame);
-     //        int a = 2*2;
+
+        Dialog dialog = new Dialog(Main_GENERAL.createmes(), frame);
+        frame.add(dialog);
 
         MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
 
@@ -32,14 +34,33 @@ public class Main_GENERAL {
 
         controller controller = new controller(frame,player,maps);
 
+
+
+
         frame.setVisible(true);
     }
     public static JFrame creatOkno(){
         JFrame frame = new JFrame();
-        frame.setSize(600, 600);
+        frame.setSize(1000, 1000);
         frame.setLayout(null);
         return frame;
     }
+    public static ArrayList<Message> createmes(){
+         ArrayList<Message> messages = new ArrayList<>();
+         Message message1 = new Message("Arab",new ImageIcon("Охотник.png"),true);
+         messages.add(message1);
+
+        Message message2 = new Message("Kavkazec",new ImageIcon("Болотный Лягуш.png"),true);
+        messages.add(message2);
+
+        Message message3 = new Message("Aaaooaa",new ImageIcon("Дух цветов.png"),true);
+        messages.add(message3);
+
+        Message message4 = new Message("Armen",new ImageIcon("Древесный киборг.png"),true);
+        messages.add(message4);
+         return messages;
+    }
+
 
     public static player player(JFrame frame){
         player player = new player();
