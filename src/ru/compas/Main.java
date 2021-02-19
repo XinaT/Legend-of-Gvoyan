@@ -1,8 +1,6 @@
 package ru.compas;
 
-import com.company.point;
 import ru.compas.collision.CollisionKarta;
-import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
 
@@ -17,12 +15,15 @@ public class Main {
         JFrame frame = creatOkno();
 
         player player = player(frame);
-
+        MapLocation SmallMap = createSmallMap(-667, 280, frame);
         MapLocation map = creatMap(-2000, -2000, ("Правая нижняя часть карты 2.png"), frame);
 
 
         ArrayList<MapLocation> maps = new ArrayList<>();
         maps.add(map);
+
+
+        maps.add(SmallMap);
 
         controller controller = new controller(frame, player, maps);
 
@@ -43,6 +44,36 @@ public class Main {
         player.setLocation(300, 300);
         frame.add(player);
         return player;
+    }
+
+    public static MapLocation createSmallMap(int x , int y, JFrame frame) {
+        ArrayList<Point> points = new ArrayList<>();
+        points.add(new Point(0, 0));
+        points.add(new Point(100, 0));
+        points.add(new Point(100, 100));
+        points.add(new Point(0, 100));
+        points.add(new Point(0, 0));
+
+        ArrayList<Palka> palki = new ArrayList<>();
+
+        for (int i = 0; i < points.size() - 1; i++) {
+            Point a = points.get(i);
+            Point b = points.get(i + 1);
+            Palka palka = new Palka(a, b);
+            palki.add(palka);
+        }
+
+        CollisionKarta karta = new CollisionKarta(palki);
+        karta.setSize(100, 100);
+
+
+        MapLocation map = new MapLocation(karta);
+        map.setSize(120, 120);
+        map.setOpaque(true);
+        map.setLocation(x, y);
+        frame.add(map);
+
+        return map;
     }
 
     public static MapLocation creatMap(int x, int y, String icon, JFrame frame) {
@@ -93,10 +124,10 @@ public class Main {
         points.add(new Point(76, 985));
         points.add(new Point(76, 606));
 
-        points.add(new Point(1329, 2392 - 500));
-        points.add(new Point(1461, 2392 - 500));
-        points.add(new Point(1462, 2271 - 500));
-        points.add(new Point(1329, 2271 - 500));
+//        points.add(new Point(1329, 2392 - 500));
+//        points.add(new Point(1461, 2392 - 500));
+//        points.add(new Point(1461, 2271 - 500));
+//        points.add(new Point(1329, 2271 - 500));
 
 
         // чтоб палки совпадали с картой
