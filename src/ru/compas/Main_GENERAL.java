@@ -18,8 +18,16 @@ public class Main_GENERAL {
 
         MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
 
+        MapLocation map1 = mapWithoutPalkiCreate(-5000, -2000, frame,  ("Карта_01.jpg"));
+        MapLocation map2 = mapWithoutPalkiCreate(-5000, -6000, frame, ("Карта_02.jpg"));
+        MapLocation map3 = mapWithoutPalkiCreate(-2000, -6000, frame, ("Карта_03.jpg"));
+
+
         ArrayList<MapLocation> maps = new ArrayList<>();
         maps.add(map);
+        maps.add(map1);
+        maps.add(map2);
+        maps.add(map3);
 
         controller controller = new controller(frame,player,maps);
 
@@ -121,5 +129,19 @@ public class Main_GENERAL {
         frame.add(map);
         return map;
 
+    }
+
+    public static MapLocation mapWithoutPalkiCreate(int x, int y, JFrame frame, String icon){
+        ArrayList<Palka> palkaNullList = new ArrayList<>();
+        CollisionKarta karta = new CollisionKarta(palkaNullList);
+        karta.setSize(3000,4000);
+
+        MapLocation map = new MapLocation(karta);
+        map.setSize(3000, 4000);
+        map.setIcon(new ImageIcon(icon));
+        map.setOpaque(true);
+        map.setLocation(x,y);
+        frame.add(map);
+        return map;
     }
 }
