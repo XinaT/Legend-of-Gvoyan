@@ -4,6 +4,8 @@ import ru.compas.character;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.player;
+import ru.compas.things.Coin;
+import ru.compas.things.CoinController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -60,6 +62,21 @@ public class controller {
                         map.setLocation(MAP_X, MAP_Y + player.velocity);
                     }
                 }
+
+
+                // собираем артефакты
+
+                for (int i = 0; i < maps.size(); i++) {
+                    MapLocation map = maps.get(i);
+                     for (int j = 0; j < map.coins.size(); j++) {
+                        Coin coin = map.coins.get(j);
+                        if (CoinController.isIntersected(player, coin, map)) {
+                            map.remove(coin);
+                        }
+                    }
+                }
+
+
             }
         });
 

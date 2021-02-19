@@ -1,10 +1,10 @@
 package ru.compas;
 
-import com.company.point;
+import ru.compas.things.Coin;
 import ru.compas.collision.CollisionKarta;
-import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
+import ru.compas.things.CoinController;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -17,8 +17,6 @@ public class Main {
         player player = player(frame);
 
         MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
-
-
 
         ArrayList<MapLocation> maps = new ArrayList<>();
         maps.add(map);
@@ -114,12 +112,19 @@ public class Main {
         CollisionKarta karta = new CollisionKarta(palki);
         karta.setSize(3000,4000);
 
-        MapLocation map = new MapLocation(karta);
+        ArrayList<Coin> coins = CoinController.createCoins();
+
+        MapLocation map = new MapLocation(karta, coins);
         map.setSize(3000, 4000);
         map.setIcon(new ImageIcon(icon));
         map.setOpaque(true);
         map.setLocation(x,y);
         frame.add(map);
+
+        for (int i = 0; i < coins.size(); i++) {
+            Coin coin = coins.get(i);
+            map.add(coin);
+        }
         return map;
 
     }

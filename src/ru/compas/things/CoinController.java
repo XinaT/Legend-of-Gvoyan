@@ -1,5 +1,6 @@
 package ru.compas.things;
 
+import ru.compas.MapLocation;
 import ru.compas.player;
 
 import javax.swing.*;
@@ -57,10 +58,10 @@ public class CoinController {
         return coins;
     }
 
-    public static boolean isIntersected(player player, Coin coin) {
-        int a = player.getY() - coin.getY();
-        int b = player.getX() - coin.getX();
-        int S = (int) Math.sqrt(a * a - b * b);
+    public static boolean isIntersected(player player, Coin coin, MapLocation map) {
+        int a = player.getY() - (coin.getY() + map.getY());
+        int b = player.getX() - (coin.getX() + map.getX());
+        int S = (int) Math.sqrt(a * a + b * b);
         if (S < player.getWidth()) {
             return true;
         } else {
