@@ -23,7 +23,6 @@ public class Main_GENERAL {
         MapLocation map3 = mapWithoutPalkiCreate(-2000, -6000, frame, ("Карта_03.jpg"));
 
 
-
         ArrayList<MapLocation> maps = new ArrayList<>();
         maps.add(map);
         maps.add(map1);
