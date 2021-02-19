@@ -25,7 +25,7 @@ public class controller {
     static boolean blockLeft = false;
 
     static boolean blockNow = false;
-    
+
     controller(JFrame frame, player player, ArrayList<MapLocation> maps) {
 
         RIGHT_BORDER = frame.getWidth() - 250;
@@ -151,10 +151,10 @@ public class controller {
                     blockDown = blockNow;
                     addy = -20;
                 }
-                
+
                 shouldMapMove(player, direction);
                 palkaFor(maps, player, addx,addy, timer);
-                
+
                 if(shouldMoveMaps) {
                     MapMoves(maps, player, addX, addY);
                 }
