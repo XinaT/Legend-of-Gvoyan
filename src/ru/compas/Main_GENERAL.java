@@ -15,7 +15,7 @@ public class Main_GENERAL {
         JFrame frame = creatOkno();
 
         player player = player(frame);
-        Dialog dialog = new Dialog(Main.createmes(), frame);
+        Dialog dialog = new Dialog(Main_GENERAL.createmes(), frame);
         frame.add(dialog);
         MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
 
