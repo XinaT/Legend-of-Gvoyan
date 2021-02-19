@@ -9,7 +9,7 @@ import ru.compas.collision.Point;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class Main {
+public class Main_GENERAL {
     public static void main(String[] args) {
 
         JFrame frame = creatOkno();
@@ -44,6 +44,7 @@ public class Main {
     public static MapLocation creatMap(int x,int y, String icon, JFrame frame){
         ArrayList<Point> points = new ArrayList<>();
         points.add(new Point(549,0));
+
         points.add(new Point(549,125));
         points.add(new Point(622,125));
         points.add(new Point(622,503));
