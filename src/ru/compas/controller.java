@@ -1,9 +1,7 @@
 package ru.compas;
 
-import ru.compas.character;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
-import ru.compas.player;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -21,156 +19,22 @@ public class controller {
     static boolean shouldMoveMaps;
 
 
+    static boolean blockUp = false;
+    static boolean blockDown = false;
+    static boolean blockRight = false;
+    static boolean blockLeft = false;
+
+    static boolean blockNow = false;
+    
     controller(JFrame frame, player player, ArrayList<MapLocation> maps) {
 
         RIGHT_BORDER = frame.getWidth() - 250;
         BOTTOM_BORDER = frame.getHeight() - 250;
 
-        Timer up = new Timer(30, null);
-        up.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                shouldMoveMaps = false;
-                int x = player.getX();
-                int y = player.getY();
-                if (y > TOP_BORDER) {
-                    player.move("forward");
-                } else if (y <= TOP_BORDER) {
-                    shouldMoveMaps = true;
-                }
-
-                for (int i = 0; i < maps.size(); i++) {
-                    MapLocation map = maps.get(i);
-                    for (int j = 0; j < map.karta.palki.size(); j++) {
-                        Palka palka = map.karta.palki.get(j);
-                        if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-                            player.setLocation(x, y);
-                            shouldMoveMaps = false;
-                            break;
-                        }
-                    }
-                }
-
-                if (shouldMoveMaps) {
-                    for (int i = 0; i < maps.size(); i++) {
-                        JLabel map = maps.get(i);
-                        int MAP_X = map.getX();
-                        int MAP_Y = map.getY();
-
-                        map.setLocation(MAP_X, MAP_Y + player.velocity);
-                    }
-                }
-            }
-        });
-
-        Timer left = new Timer(30, null);
-        left.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                shouldMoveMaps = false;
-                int x = player.getX();
-                int y = player.getY();
-                if (x > LEFT_BORDER) {
-                    player.move("left");
-                } else if (x <= LEFT_BORDER) {
-                    shouldMoveMaps = true;
-                }
-
-                for (int i = 0; i < maps.size(); i++) {
-                    MapLocation map = maps.get(i);
-                    for (int j = 0; j < map.karta.palki.size(); j++) {
-                        Palka palka = map.karta.palki.get(j);
-                        if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-                            player.setLocation(x, y);
-                            shouldMoveMaps = false;
-                            break;
-                        }
-                    }
-                }
-
-                if (shouldMoveMaps) {
-                    for (int i = 0; i < maps.size(); i++) {
-                        JLabel map = maps.get(i);
-                        int MAP_X = map.getX();
-                        int MAP_Y = map.getY();
-                        map.setLocation(MAP_X + player.velocity, MAP_Y);
-
-                    }
-                }
-            }
-        });
-
-        Timer right = new Timer(30, null);
-        right.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int x = player.getX();
-                int y = player.getY();
-                if (x < RIGHT_BORDER) {
-                    player.move("right");
-                } else if (x >= RIGHT_BORDER) {
-                    shouldMoveMaps = true;
-
-                }
-
-                for (int i = 0; i < maps.size(); i++) {
-                    MapLocation map = maps.get(i);
-                    for (int j = 0; j < map.karta.palki.size(); j++) {
-                        Palka palka = map.karta.palki.get(j);
-                        if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-                            player.setLocation(x, y);
-                            shouldMoveMaps = false;
-                            break;
-                        }
-                    }
-                }
-
-                if(shouldMoveMaps){
-                    for (int i = 0; i < maps.size(); i++) {
-                        JLabel map = maps.get(i);
-                        int MAP_X = map.getX();
-                        int MAP_Y = map.getY();
-                        map.setLocation(MAP_X - player.velocity, MAP_Y);
-                    }
-                }
-            }
-        });
-
-        Timer down = new Timer(30, null);
-        down.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int x = player.getX();
-                int y = player.getY();
-                if (y < BOTTOM_BORDER) {
-                    player.move("toward");
-                } else if (y >= BOTTOM_BORDER) {
-                    shouldMoveMaps = true;
-
-                }
-
-                for (int i = 0; i < maps.size(); i++) {
-                    MapLocation map = maps.get(i);
-                    for (int j = 0; j < map.karta.palki.size(); j++) {
-                        Palka palka = map.karta.palki.get(j);
-                        if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-                            player.setLocation(x, y);
-                            shouldMoveMaps = false;
-                            break;
-                        }
-                    }
-                }
-                if (shouldMoveMaps){
-                    for (int i = 0; i < maps.size(); i++) {
-                        JLabel map = maps.get(i);
-                        int MAP_X = map.getX();
-                        int MAP_Y = map.getY();
-                        map.setLocation(MAP_X, MAP_Y - player.velocity);
-                    }
-                }
-
-            }
-        });
+        Timer right = timer (maps, player, "right");
+        Timer left = timer(maps, player, "left");
+        Timer down = timer(maps, player, "toward");
+        Timer up = timer(maps, player, "forward");
 
         frame.addKeyListener(new KeyAdapter() {
             @Override
@@ -178,19 +42,24 @@ public class controller {
                 super.keyPressed(e);
 
                 if ((e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W)) {
-                    up.start();
+                    if (!blockUp) {
+                        up.start();
+                    }
                 } else if ((e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S)) {
-                    down.start();
+                    if (!blockDown) {
+                        down.start();
+                    }
                 } else if ((e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A)) {
-                    left.start();
+                    if (!blockLeft) {
+                        left.start();
+                    }
                 } else if ((e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D)) {
-                    right.start();
+                    if (!blockRight) {
+                        right.start();
+                    }
                 }
             }
 
-        });
-
-        frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
@@ -209,4 +78,90 @@ public class controller {
         });
 
     }
+
+        static void shouldMapMove (player player, String direction){
+        int x = player.getX();
+        int y = player.getY();
+
+        if(direction.equals("right") && x < RIGHT_BORDER || direction.equals("left") && x > LEFT_BORDER || direction.equals("toward") && y < BOTTOM_BORDER || direction.equals("forward") && y > TOP_BORDER ){
+            player.move(direction);
+        }
+        else {
+            shouldMoveMaps = true;
+        }
+
+    }
+
+        static void palkaFor (ArrayList<MapLocation> maps, player player, int addx, int addy, Timer timer) {
+        int x =player.getX();
+        int y =player.getY();
+        for (int i = 0; i < maps.size(); i++) {
+            MapLocation map = maps.get(i);
+            for (int j = 0; j < map.karta.palki.size(); j++) {
+                Palka palka = map.karta.palki.get(j);
+                if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
+                    player.move("stop");
+                    player.setLocation(x + addx,y + addy);
+                    shouldMoveMaps = false;
+                    blockNow = true;
+                    timer.stop();
+                    break;
+                }
+            }
+        }
+
+    }
+        static void MapMoves (ArrayList<MapLocation> maps, player player, int addX, int addY) {
+                for (int i = 0; i < maps.size(); i++) {
+                    JLabel map = maps.get(i);
+                    int MAP_X = map.getX();
+                    int MAP_Y = map.getY();
+                    map.setLocation(MAP_X + addX , MAP_Y + addY);
+            }
+        }
+
+        static Timer timer (ArrayList<MapLocation> maps, player player, String direction) {
+
+        Timer timer = new Timer(30, null);
+        timer.addActionListener(new ActionListener() {
+            int addx = 0;
+            int addy = 0;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int addX = 0;
+                int addY = 0;
+                blockNow = false;
+                if (direction.equals("right")) {
+                    addX = - player.velocity;
+                    blockRight = blockNow;
+                    addx = -20;
+                }
+                else if (direction.equals("left")) {
+                    addX =  player.velocity;
+                    blockLeft = blockNow;
+                    addx = 20;
+                }
+                else if (direction.equals("forward")) {
+                    addY = player.velocity;
+                    blockUp = blockNow;
+                    addy = 20;
+                }
+                else if (direction.equals("toward")) {
+                    addY = - player.velocity;
+                    blockDown = blockNow;
+                    addy = -20;
+                }
+                
+                shouldMapMove(player, direction);
+                palkaFor(maps, player, addx,addy, timer);
+                
+                if(shouldMoveMaps) {
+                    MapMoves(maps, player, addX, addY);
+                }
+            }
+        });
+        return timer;
+    }
+
+
 }

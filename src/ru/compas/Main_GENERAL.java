@@ -9,7 +9,7 @@ import ru.compas.collision.Point;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class Main {
+public class Main_GENERAL {
     public static void main(String[] args) {
 
         JFrame frame = creatOkno();
@@ -17,8 +17,6 @@ public class Main {
         player player = player(frame);
 
         MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
-
-
 
         ArrayList<MapLocation> maps = new ArrayList<>();
         maps.add(map);
