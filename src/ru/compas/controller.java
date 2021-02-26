@@ -2,6 +2,8 @@ package ru.compas;
 
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
+import ru.compas.things.Coin;
+import ru.compas.things.CoinController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 public class controller {
 
@@ -158,9 +161,26 @@ public class controller {
                 if(shouldMoveMaps) {
                     MapMoves(maps, player, addX, addY);
                 }
+
+                pickUpArtefacts(player, maps);
             }
         });
         return timer;
+    }
+
+
+    static void pickUpArtefacts(player player, ArrayList<MapLocation> maps) {
+        // собираем артефакты
+
+        for (int i = 0; i < maps.size(); i++) {
+            MapLocation map = maps.get(i);
+            for (int j = 0; j < map.coins.size(); j++) {
+                Coin coin = map.coins.get(j);
+                if (CoinController.isIntersected(player, coin, map)) {
+                    map.remove(coin);
+                }
+            }
+        }
     }
 
 
