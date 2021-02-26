@@ -1,10 +1,15 @@
 package ru.compas.things;
 
+import ru.compas.Main_GENERAL;
 import ru.compas.MapLocation;
+import ru.compas.Messager.Dialog;
 import ru.compas.player;
 
 import javax.swing.*;
 import java.util.ArrayList;
+
+import static ru.compas.Main_GENERAL.createmes;
+import static ru.compas.Main_GENERAL.createmes1;
 
 public class CoinController {
     public static ArrayList<Coin> createCoins() {
@@ -63,6 +68,8 @@ public class CoinController {
         int b = player.getX() - (coin.getX() + map.getX());
         int S = (int) Math.sqrt(a * a + b * b);
         if (S < player.getWidth()) {
+//            Dialog dialog = new Dialog(createmes1(), Main_GENERAL.creatOkno());
+//            Main_GENERAL.creatOkno().add(dialog);
             return true;
         } else {
             return false;

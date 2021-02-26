@@ -1,17 +1,22 @@
 package ru.compas;
 
+import ru.compas.Messager.Dialog;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.things.Coin;
 import ru.compas.things.CoinController;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+
+import static ru.compas.Main_GENERAL.creatOkno;
+import static ru.compas.Main_GENERAL.createmes;
 
 public class controller {
 
@@ -178,6 +183,9 @@ public class controller {
                 Coin coin = map.coins.get(j);
                 if (CoinController.isIntersected(player, coin, map)) {
                     map.remove(coin);
+                    ru.compas.Messager.Dialog dialog = new Dialog(createmes(), creatOkno());
+                    creatOkno().add(dialog);
+
                 }
             }
         }
