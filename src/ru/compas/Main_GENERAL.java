@@ -7,6 +7,8 @@ import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Main_GENERAL {
@@ -43,6 +45,16 @@ public class Main_GENERAL {
         JFrame frame = new JFrame();
         frame.setSize(1000, 1000);
         frame.setLayout(null);
+        frame.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if (e.getKeyCode() == KeyEvent.VK_R) {
+                    backpack backpack = new
+                    frame.add()
+                }
+            }
+        });
         return frame;
     }
     public static ArrayList<Message> createmes(){
