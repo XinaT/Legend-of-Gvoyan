@@ -18,9 +18,6 @@ public class Main_GENERAL {
 
         player player = player(frame);
 
-        Dialog dialog = new Dialog(Main_GENERAL.createmes(), frame);
-        frame.add(dialog);
-
         MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
 
         MapLocation map1 = mapWithoutPalkiCreate(-5000, -2000, frame,  ("Карта_01.jpg"));
@@ -151,7 +148,7 @@ public class Main_GENERAL {
         CollisionKarta karta = new CollisionKarta(palkaNullList);
         karta.setSize(3000,4000);
 
-        MapLocation map = new MapLocation(karta);
+        MapLocation map = new MapLocation(karta, new ArrayList<>());
         map.setSize(3000, 4000);
         map.setIcon(new ImageIcon(icon));
         map.setOpaque(true);
