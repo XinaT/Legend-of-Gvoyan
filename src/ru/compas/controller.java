@@ -183,9 +183,11 @@ public class controller {
                 Coin coin = map.coins.get(j);
                 if (CoinController.isIntersected(player, coin, map)) {
                     map.remove(coin);
-                    ru.compas.Messager.Dialog dialog = new Dialog(createmes(), creatOkno());
-                    creatOkno().add(dialog);
-
+                    map.coins.remove(coin);
+                    ru.compas.Messager.Dialog dialog = new Dialog(createmes(), Main_GENERAL.frame);
+                    Main_GENERAL.frame.add(dialog);
+                    Main_GENERAL.frame.repaint();
+                    break;
                 }
             }
         }
