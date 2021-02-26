@@ -1,12 +1,10 @@
 package ru.compas;
 
-import ru.compas.things.Coin;
-import ru.compas.Messager.Dialog;
-import ru.compas.Messager.Message;
+import ru.compas.things.Artefact;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
-import ru.compas.things.CoinController;
+import ru.compas.things.ArtefactContloller;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -126,7 +124,8 @@ public class Main_GENERAL {
         CollisionKarta karta = new CollisionKarta(palki);
         karta.setSize(3000,4000);
 
-        ArrayList<Coin> coins = CoinController.createCoins();
+        ArrayList<Artefact> coins = ArtefactContloller.createCoins();
+        ArrayList<Artefact> swords = ArtefactContloller.createSwords();
 
         MapLocation map = new MapLocation(karta, coins);
         map.setSize(3000, 4000);
@@ -136,7 +135,7 @@ public class Main_GENERAL {
         frame.add(map);
 
         for (int i = 0; i < coins.size(); i++) {
-            Coin coin = coins.get(i);
+            Artefact coin = coins.get(i);
             map.add(coin);
         }
         return map;
