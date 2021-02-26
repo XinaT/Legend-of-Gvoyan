@@ -92,16 +92,16 @@ public class controller {
 
     }
 
-        static void palkaFor (ArrayList<MapLocation> maps, player player, int addx, int addy, Timer timer) {
-        int x =player.getX();
-        int y =player.getY();
+    static void palkaFor (ArrayList<MapLocation> maps, player player, int addx, int addy, Timer timer) {
+        int x = player.getX();
+        int y = player.getY();
         for (int i = 0; i < maps.size(); i++) {
             MapLocation map = maps.get(i);
             for (int j = 0; j < map.karta.palki.size(); j++) {
                 Palka palka = map.karta.palki.get(j);
                 if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
                     player.move("stop");
-                    player.setLocation(x + addx,y + addy);
+                    player.setLocation(x + addx, y + addy);
                     shouldMoveMaps = false;
                     blockNow = true;
                     timer.stop();
@@ -109,7 +109,24 @@ public class controller {
                 }
             }
         }
-
+    }
+    static void checkCollision(ArrayList<MapLocation> maps, player player, int addx, int addy, Timer timer) {
+        int x = player.getX();
+        int y = player.getY();
+        for (int i = 0; i < Main_GENERAL.objects.size(); i++) {
+     JLabel object = Main_GENERAL.objects.get(i);
+            for (int j = 0; j < Main_GENERAL.objects.size(); j++) {
+                Palka palka = object.karta.palki.get(j);
+                if (CollisionUtils.isPersAndPalkaIntersected(player, palka, object)) {
+                    player.move("stop");
+                    player.setLocation(x + addx, y + addy);
+                    shouldMoveMaps = false;
+                    blockNow = true;
+                    timer.stop();
+                    break;
+                }
+            }
+        }
     }
         static void MapMoves (ArrayList<MapLocation> maps, player player, int addX, int addY) {
                 for (int i = 0; i < maps.size(); i++) {

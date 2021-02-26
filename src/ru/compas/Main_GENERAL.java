@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class Main_GENERAL {
+    static ArrayList<JLabel> objects = new ArrayList<>();
     public static void main(String[] args) {
 
         JFrame frame = creatOkno();
