@@ -26,7 +26,7 @@ public class controller {
 
     static boolean blockNow = false;
 
-    controller(JFrame frame, player player, ArrayList<MapLocation> maps) {
+    public controller(JFrame frame, player player, ArrayList<MapLocation> maps) {
 
         RIGHT_BORDER = frame.getWidth() - 250;
         BOTTOM_BORDER = frame.getHeight() - 250;
