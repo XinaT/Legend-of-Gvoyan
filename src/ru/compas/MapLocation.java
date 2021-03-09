@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class MapLocation extends JLabel {
-    CollisionKarta karta;
+    public CollisionKarta karta;
 
     public MapLocation(CollisionKarta karta) {
         this.karta = karta;

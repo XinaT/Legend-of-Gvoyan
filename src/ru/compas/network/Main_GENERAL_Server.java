@@ -10,17 +10,21 @@ import ru.compas.controller;
 import ru.compas.player;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.ArrayList;
 
 public class Main_GENERAL_Server {
     static int port_of_server = 1452;
-    static ArrayList<player> list_players = new ArrayList<>();
+    public static ArrayList<player> list_players = new ArrayList<>();
     static JFrame frame;
+    static JLayeredPane pane;
     public static void main(String[] args) throws IOException {
 
         frame = creatOkno();
+        pane = pane_made();
+
 
         player player = player_make(new ImageIcon("pers.png"), 300, 300, "I");
         list_players.add(player);
@@ -41,7 +45,7 @@ public class Main_GENERAL_Server {
         maps.add(map2);
         maps.add(map3);
 
-        controller controller = new controller(frame,player,maps);
+        Server_controller server_controller = new Server_controller(frame,player,maps);
 
 
         Thread thread = new Thread(new Runnable() {
@@ -95,9 +99,18 @@ public class Main_GENERAL_Server {
         player.setIcon(icon);
         player.setLocation(x, y);
         player.unique_code = name;
-        frame.add(player);
+        pane.add(player);
+        pane.setLayer(player, 3);
         frame.repaint();
         return player;
+    }
+
+    static JLayeredPane pane_made(){
+        JLayeredPane pane = new JLayeredPane();
+        pane.setSize(frame.getWidth(), frame.getHeight());
+        pane.setLocation(1, 1);
+        frame.add(pane);
+        return pane;
     }
 
     public static MapLocation creatMap(int x,int y, String icon, JFrame frame){
@@ -192,7 +205,8 @@ public class Main_GENERAL_Server {
         map.setIcon(new ImageIcon(icon));
         map.setOpaque(true);
         map.setLocation(x,y);
-        frame.add(map);
+        pane.add(map);
+        pane.setLayer(map, 1);
         return map;
     }
 }

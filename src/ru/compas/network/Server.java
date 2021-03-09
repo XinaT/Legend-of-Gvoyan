@@ -28,9 +28,27 @@ public class Server {
                         try {
                             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                             String string = bufferedReader.readLine();
+
                             if (string!=null) {
                                 System.out.println(socket.getInetAddress() + "  " + string);
+                                int index_probel = string.indexOf('*');
+                                String x_str = string.substring(0, index_probel);
+                                String y_str = string.substring(index_probel+1, string.length());
+
+
+
+                                int x = Integer.valueOf(x_str);
+                                int y = Integer.valueOf(y_str);
+
+
+                                for (int i = 0; i < Main_GENERAL_Server.list_players.size(); i++){
+                                    if ((socket.getInetAddress()+"").equals(Main_GENERAL_Server.list_players.get(i).unique_code)){
+                                        Main_GENERAL_Server.list_players.get(i).setLocation(x, y);
+                                    }
+                                }
                             }
+
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
