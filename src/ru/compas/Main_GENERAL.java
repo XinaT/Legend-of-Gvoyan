@@ -3,14 +3,15 @@ package ru.compas;
 import ru.compas.Messager.Dialog;
 import ru.compas.Messager.Message;
 import ru.compas.collision.CollisionKarta;
+import ru.compas.collision.CollisionObject;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
+import ru.compas.objects.Domik;
 
 import javax.swing.*;
 import java.util.ArrayList;
 
 public class Main_GENERAL {
-    static ArrayList<JLabel> objects = new ArrayList<>();
     public static void main(String[] args) {
 
         JFrame frame = creatOkno();
@@ -35,7 +36,10 @@ public class Main_GENERAL {
 
         controller controller = new controller(frame,player,maps);
 
-
+        Domik dom = new Domik(1500,1800, 250, 250);
+        dom.setVisible(true);
+        map.add(dom);
+        map.collisionObjects.add(dom);
 
 
         frame.setVisible(true);
