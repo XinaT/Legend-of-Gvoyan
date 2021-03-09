@@ -88,6 +88,7 @@ public class Server_controller {
 
         if(direction.equals("right") && x < RIGHT_BORDER || direction.equals("left") && x > LEFT_BORDER || direction.equals("toward") && y < BOTTOM_BORDER || direction.equals("forward") && y > TOP_BORDER ){
             player.move(direction);
+            shouldMoveMaps = false;
         }
         else {
             shouldMoveMaps = true;
