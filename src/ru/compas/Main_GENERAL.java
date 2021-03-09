@@ -2,6 +2,7 @@ package ru.compas;
 
 import ru.compas.Messager.Dialog;
 import ru.compas.Messager.Message;
+import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
@@ -35,13 +36,10 @@ public class Main_GENERAL {
         maps.add(map3);
 
         controller controller = new controller(frame,player,maps);
-
-
-
-
         frame.setVisible(true);
     }
-    public static JFrame creatOkno(){
+    static boolean R;
+    public static JFrame creatOkno() {
         JFrame frame = new JFrame();
         frame.setSize(1000, 1000);
         frame.setLayout(null);
@@ -50,13 +48,22 @@ public class Main_GENERAL {
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
                 if (e.getKeyCode() == KeyEvent.VK_R) {
-                    backpack backpack = new
-                    frame.add()
+                    Backpack backpack = new Backpack(frame.getWidth()/2, frame.getHeight(), new ArrayList<>());
+                    if(R){
+                        backpack.setVisible(false);
+                        R = false;
+                    }
+                    else{
+                    backpack.setVisible(true);
+                    R = true;
+                 }
+
                 }
             }
         });
         return frame;
     }
+
     public static ArrayList<Message> createmes(){
          ArrayList<Message> messages = new ArrayList<>();
          Message message1 = new Message("Arab",new ImageIcon("Охотник.png"),true);
