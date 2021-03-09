@@ -16,11 +16,14 @@ import java.util.ArrayList;
 
 public class Main_GENERAL_Server {
     static int port_of_server = 1452;
+    static ArrayList<player> list_players = new ArrayList<>();
+    static JFrame frame;
     public static void main(String[] args) throws IOException {
 
-        JFrame frame = creatOkno();
+        frame = creatOkno();
 
-        player player = player(frame);
+        player player = player_make(new ImageIcon("pers.png"), 300, 300, "I");
+        list_players.add(player);
 
         Dialog dialog = new Dialog(Main_GENERAL_Server.createmes(), frame);
         frame.add(dialog);
@@ -86,12 +89,14 @@ public class Main_GENERAL_Server {
     }
 
 
-    public static player player(JFrame frame){
+    public static player player_make(ImageIcon icon, int x, int y, String name){
         player player = new player();
         player.setSize(70,70);
-        player.setIcon(new ImageIcon("pers.png"));
-        player.setLocation(300,300);
+        player.setIcon(icon);
+        player.setLocation(x, y);
+        player.unique_code = name;
         frame.add(player);
+        frame.repaint();
         return player;
     }
 

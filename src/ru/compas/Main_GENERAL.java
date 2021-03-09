@@ -6,15 +6,17 @@ import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
 
+
 import javax.swing.*;
 import java.util.ArrayList;
 
 public class Main_GENERAL {
+    static ArrayList<player> list_players = new ArrayList<>();
     public static void main(String[] args) {
 
         JFrame frame = creatOkno();
 
-        player player = player(frame);
+        player player = player_make(frame, new ImageIcon("pers.png"), 300, 300);
 
         Dialog dialog = new Dialog(Main_GENERAL.createmes(), frame);
         frame.add(dialog);
@@ -62,11 +64,11 @@ public class Main_GENERAL {
     }
 
 
-    public static player player(JFrame frame){
+    public static player player_make(JFrame frame, ImageIcon icon, int x, int y){
         player player = new player();
         player.setSize(70,70);
-        player.setIcon(new ImageIcon("pers.png"));
-        player.setLocation(300,300);
+        player.setIcon(icon);
+        player.setLocation(x, y);
         frame.add(player);
         return player;
     }
