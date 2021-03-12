@@ -1,14 +1,17 @@
 package ru.compas;
 
-import ru.compas.things.Coin;
 import ru.compas.Messager.Dialog;
 import ru.compas.Messager.Message;
+import ru.compas.backpack.Backpack;
+import ru.compas.things.Artefact;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
-import ru.compas.things.CoinController;
+import ru.compas.things.ArtefactContloller;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Main_GENERAL {
@@ -20,7 +23,7 @@ public class Main_GENERAL {
         player player = player(frame);
 //        Dialog dialog = new Dialog(createmes(), frame);
 //        frame.add(dialog);
-        MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2 .png"),frame);
+        MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
 
         MapLocation map1 = mapWithoutPalkiCreate(-5000, -2000, frame,  ("Карта_01.jpg"));
         MapLocation map2 = mapWithoutPalkiCreate(-5000, -6000, frame, ("Карта_02.jpg"));
@@ -39,10 +42,29 @@ public class Main_GENERAL {
 
         frame.setVisible(true);
     }
-    public static JFrame creatOkno(){
+    static boolean R;
+    public static JFrame creatOkno() {
         JFrame frame = new JFrame();
         frame.setSize(1000, 1000);
         frame.setLayout(null);
+        frame.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if (e.getKeyCode() == KeyEvent.VK_R) {
+                    Backpack backpack = new Backpack(frame.getWidth()/2, frame.getHeight(), new ArrayList<>());
+                    if(R){
+                        backpack.setVisible(false);
+                        R = false;
+                    }
+                    else{
+                    backpack.setVisible(true);
+                    R = true;
+                 }
+
+                }
+            }
+        });
         return frame;
     }
     public static ArrayList<Message> createmes(){
@@ -152,18 +174,26 @@ public class Main_GENERAL {
         CollisionKarta karta = new CollisionKarta(palki);
         karta.setSize(3000,4000);
 
-        ArrayList<Coin> coins = CoinController.createCoins();
 
-        MapLocation map = new MapLocation(karta, coins);
+        ArrayList<Artefact> all = new ArrayList<>();
+        ArrayList<Artefact> coins = ArtefactContloller.createCoins();
+        ArrayList<Artefact> swords = ArtefactContloller.createSwords();
+        ArrayList<Artefact> bows = ArtefactContloller.createBows();
+
+        all.addAll(coins);
+        all.addAll(swords);
+        all.addAll(bows);
+
+        MapLocation map = new MapLocation(karta, all);
         map.setSize(3000, 4000);
         map.setIcon(new ImageIcon(icon));
         map.setOpaque(true);
         map.setLocation(x,y);
         frame.add(map);
 
-        for (int i = 0; i < coins.size(); i++) {
-            Coin coin = coins.get(i);
-            map.add(coin);
+        for (int i = 0; i < all.size(); i++) {
+            Artefact artefact = all.get(i);
+            map.add(artefact);
         }
         return map;
 

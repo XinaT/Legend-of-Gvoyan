@@ -3,8 +3,8 @@ package ru.compas;
 import ru.compas.Messager.Dialog;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
-import ru.compas.things.Coin;
-import ru.compas.things.CoinController;
+import ru.compas.things.Artefact;
+import ru.compas.things.ArtefactContloller;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.List;
 
 import static ru.compas.Main_GENERAL.creatOkno;
 import static ru.compas.Main_GENERAL.createmes;
@@ -179,15 +178,10 @@ public class controller {
 
         for (int i = 0; i < maps.size(); i++) {
             MapLocation map = maps.get(i);
-            for (int j = 0; j < map.coins.size(); j++) {
-                Coin coin = map.coins.get(j);
-                if (CoinController.isIntersected(player, coin, map)) {
-                    map.remove(coin);
-                    map.coins.remove(coin);
-                    ru.compas.Messager.Dialog dialog = new Dialog(createmes(), Main_GENERAL.frame);
-                    Main_GENERAL.frame.add(dialog);
-                    Main_GENERAL.frame.repaint();
-                    break;
+            for (int j = 0; j < map.artefacts.size(); j++) {
+                Artefact artefact = map.artefacts.get(j);
+                if (ArtefactContloller.isIntersected(player, artefact, map)) {
+                    map.remove(artefact);
                 }
             }
         }

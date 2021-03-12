@@ -2,7 +2,7 @@ package ru.compas.things;
 
 import javax.swing.*;
 
-public class Coin extends JLabel {
+public class Coin extends Artefact {
     public Coin(int x, int y) {
         setSize(30, 30);
         setLocation(x,y);
