@@ -35,14 +35,12 @@ public class Main_GENERAL_Server {
 
         MapLocation map = Combo_General.creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
 
-        MapLocation map1 = Combo_General.mapWithoutPalkiCreate(-5000, -2000, frame,  ("Карта_01.jpg"));
-        MapLocation map2 = Combo_General.mapWithoutPalkiCreate(-5000, -6000, frame, ("Карта_02.jpg"));
-        MapLocation map3 = Combo_General.mapWithoutPalkiCreate(-2000, -6000, frame, ("Карта_03.jpg"));
+//        MapLocation map1 = Combo_General.mapWithoutPalkiCreate(-5000, -2000, frame,  ("Карта_01.jpg"));
+//        MapLocation map2 = Combo_General.mapWithoutPalkiCreate(-5000, -6000, frame, ("Карта_02.jpg"));
+//        MapLocation map3 = Combo_General.mapWithoutPalkiCreate(-2000, -6000, frame, ("Карта_03.jpg"));
 
         maps.add(map);
-        maps.add(map1);
-        maps.add(map2);
-        maps.add(map3);
+
 
         Server_controller server_controller = new Server_controller(frame,player,maps);
 

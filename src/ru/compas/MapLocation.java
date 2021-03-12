@@ -9,8 +9,8 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class MapLocation extends JLabel {
-    CollisionKarta karta;
-    ArrayList<Artefact> artefacts;
+    public CollisionKarta karta;
+    public ArrayList<Artefact> artefacts;
 
 
     public MapLocation(CollisionKarta karta, ArrayList<Artefact> artefacts) {

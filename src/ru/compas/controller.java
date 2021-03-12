@@ -14,8 +14,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import static ru.compas.Main_GENERAL.creatOkno;
-import static ru.compas.Main_GENERAL.createmes;
+
 
 public class controller {
 

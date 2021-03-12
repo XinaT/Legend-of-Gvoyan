@@ -8,8 +8,7 @@ import ru.compas.player;
 import javax.swing.*;
 import java.util.ArrayList;
 
-import static ru.compas.Main_GENERAL.createmes;
-import static ru.compas.Main_GENERAL.createmes1;
+
 
 public class CoinController {
     public static ArrayList<Coin> createCoins() {

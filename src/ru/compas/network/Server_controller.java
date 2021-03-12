@@ -5,6 +5,8 @@ import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.network.Main_GENERAL_Server;
 import ru.compas.player;
+import ru.compas.things.Artefact;
+import ru.compas.things.ArtefactContloller;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -190,9 +192,26 @@ public class Server_controller {
                 if(shouldMoveMaps) {
                     MapMoves(maps, player, addX, addY);
                 }
+
+                pickUpArtefacts(player, maps);
             }
         });
         return timer;
+    }
+
+
+    static void pickUpArtefacts(player player, ArrayList<MapLocation> maps) {
+        // собираем артефакты
+
+        for (int i = 0; i < maps.size(); i++) {
+            MapLocation map = maps.get(i);
+            for (int j = 0; j < map.artefacts.size(); j++) {
+                Artefact artefact = map.artefacts.get(j);
+                if (ArtefactContloller.isIntersected(player, artefact, map)) {
+                    map.remove(artefact);
+                }
+            }
+        }
     }
 
 
