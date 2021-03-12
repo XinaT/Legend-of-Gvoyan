@@ -17,9 +17,10 @@ import java.util.ArrayList;
 
 public class Main_GENERAL {
     static ArrayList<player> list_players = new ArrayList<>();
+     static JFrame frame = creatOkno();
     public static void main(String[] args) {
 
-        JFrame frame = creatOkno();
+
 
         player player = player_make(frame, new ImageIcon("pers.png"), 300, 300);
 
@@ -37,6 +38,9 @@ public class Main_GENERAL {
         maps.add(map3);
 
         controller controller = new controller(frame,player,maps);
+
+
+
         frame.setVisible(true);
     }
     static boolean R;
@@ -64,6 +68,7 @@ public class Main_GENERAL {
         });
         return frame;
     }
+
 
     public static player player_make(JFrame frame, ImageIcon icon, int x, int y){
         player player = new player();

@@ -37,6 +37,7 @@ button.setFocusable(false);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 if (index==messages.size()){
                     setVisible(false);
                 }
