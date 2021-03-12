@@ -7,6 +7,14 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class ArtefactContloller extends JLabel {
+    public static ArrayList<Artefact> createBows() {
+        ArrayList<Artefact> bows = new ArrayList<>();
+
+        Bow bow1 = new Bow(2200, 2100);
+        bows.add(bow1);
+
+        return bows;
+    }
     public static ArrayList<Artefact> createSwords() {
         ArrayList<Artefact> swords = new ArrayList<>();
 

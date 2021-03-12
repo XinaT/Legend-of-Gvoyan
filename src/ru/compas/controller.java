@@ -3,6 +3,7 @@ package ru.compas;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.things.Artefact;
+import ru.compas.things.ArtefactContloller;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -174,7 +175,7 @@ public class controller {
             MapLocation map = maps.get(i);
             for (int j = 0; j < map.artefacts.size(); j++) {
                 Artefact artefact = map.artefacts.get(j);
-                if (CoinController.isIntersected(player, artefact, map)) {
+                if (ArtefactContloller.isIntersected(player, artefact, map)) {
                     map.remove(artefact);
                 }
             }

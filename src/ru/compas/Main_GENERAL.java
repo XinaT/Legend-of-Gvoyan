@@ -124,19 +124,26 @@ public class Main_GENERAL {
         CollisionKarta karta = new CollisionKarta(palki);
         karta.setSize(3000,4000);
 
+
+        ArrayList<Artefact> all = new ArrayList<>();
         ArrayList<Artefact> coins = ArtefactContloller.createCoins();
         ArrayList<Artefact> swords = ArtefactContloller.createSwords();
+        ArrayList<Artefact> bows = ArtefactContloller.createBows();
 
-        MapLocation map = new MapLocation(karta, coins);
+        all.addAll(coins);
+        all.addAll(swords);
+        all.addAll(bows);
+
+        MapLocation map = new MapLocation(karta, all);
         map.setSize(3000, 4000);
         map.setIcon(new ImageIcon(icon));
         map.setOpaque(true);
         map.setLocation(x,y);
         frame.add(map);
 
-        for (int i = 0; i < coins.size(); i++) {
-            Artefact coin = coins.get(i);
-            map.add(coin);
+        for (int i = 0; i < all.size(); i++) {
+            Artefact artefact = all.get(i);
+            map.add(artefact);
         }
         return map;
 
