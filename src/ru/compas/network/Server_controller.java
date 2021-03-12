@@ -122,16 +122,33 @@ public class Server_controller {
             int MAP_Y = map.getY();
             map.setLocation(MAP_X + addX , MAP_Y + addY);
 
-            for (int a = 0; a < Main_GENERAL_Server.list_players.size(); a++){
-                if (!(Main_GENERAL_Server.list_players.get(a).unique_code).equals("I")){
-                    int x = Main_GENERAL_Server.list_players.get(a).getX();
-                    int y = Main_GENERAL_Server.list_players.get(a).getY();
-                    x = x + addX;
-                    y = y + addY;
-                    Main_GENERAL_Server.list_players.get(a).setLocation(x, y);
-                }
+
+        }
+
+        for (int a = 0; a < Main_GENERAL_Server.list_players.size(); a++){
+            if (!(Main_GENERAL_Server.list_players.get(a).unique_code).equals("I")){
+                int x = Main_GENERAL_Server.list_players.get(a).getX();
+                int y = Main_GENERAL_Server.list_players.get(a).getY();
+                x = x + addX;
+                y = y + addY;
+                Main_GENERAL_Server.list_players.get(a).setLocation(x, y);
             }
         }
+    }
+
+    static void move_other_players(player playerik, int x, int y, int mapX, int mapY){
+        System.out.println("MAP_OTH  " + mapX+  "  " + mapY);
+        int IMapX = Main_GENERAL_Server.maps.get(0).getX();
+        int IMapY = Main_GENERAL_Server.maps.get(0).getY();
+        System.out.println("IMAP   " + IMapX + "  " + IMapY);
+        int mapX_dob = -IMapX+mapX;
+        int mapY_dob = -IMapY+mapY;
+        System.out.println("MAPDOB  " + mapX_dob + "  "+ + mapY_dob);
+
+        x = x - mapX_dob;
+        y = y - mapY_dob;
+        System.out.println("XY  "+  x+ "  " + +y);
+        playerik.setLocation(x, y);
     }
 
     static Timer timer (ArrayList<MapLocation> maps, player player, String direction) {
@@ -168,6 +185,7 @@ public class Server_controller {
 
                 shouldMapMove(player, direction);
                 palkaFor(maps, player, addx,addy, timer);
+
 
                 if(shouldMoveMaps) {
                     MapMoves(maps, player, addX, addY);

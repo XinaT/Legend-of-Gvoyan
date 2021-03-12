@@ -1,56 +1,23 @@
 package ru.compas;
 
-import ru.compas.Messager.Dialog;
 import ru.compas.Messager.Message;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
 
-
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class Main_GENERAL {
-    static ArrayList<player> list_players = new ArrayList<>();
-    public static void main(String[] args) {
-
-        JFrame frame = creatOkno();
-
-        player player = player_make(frame, new ImageIcon("pers.png"), 300, 300);
-
-        Dialog dialog = new Dialog(Main_GENERAL.createmes());
-        frame.add(dialog);
-
-        MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
-
-        MapLocation map1 = mapWithoutPalkiCreate(-5000, -2000, frame,  ("Карта_01.jpg"));
-        MapLocation map2 = mapWithoutPalkiCreate(-5000, -6000, frame, ("Карта_02.jpg"));
-        MapLocation map3 = mapWithoutPalkiCreate(-2000, -6000, frame, ("Карта_03.jpg"));
 
 
-        ArrayList<MapLocation> maps = new ArrayList<>();
-        maps.add(map);
-        maps.add(map1);
-        maps.add(map2);
-        maps.add(map3);
+public class Combo_General {
 
-        controller controller = new controller(frame,player,maps);
+    public static JLayeredPane pane = null;
 
-
-
-
-        frame.setVisible(true);
-    }
-    public static JFrame creatOkno(){
-        JFrame frame = new JFrame();
-        frame.setSize(1000, 1000);
-        frame.setLayout(null);
-        return frame;
-    }
     public static ArrayList<Message> createmes(){
-         ArrayList<Message> messages = new ArrayList<>();
-         Message message1 = new Message("Arab",new ImageIcon("Охотник.png"),true);
-         messages.add(message1);
+        ArrayList<Message> messages = new ArrayList<>();
+        Message message1 = new Message("Arab",new ImageIcon("Охотник.png"),true);
+        messages.add(message1);
 
         Message message2 = new Message("Kavkazec",new ImageIcon("Болотный Лягуш.png"),true);
         messages.add(message2);
@@ -60,16 +27,17 @@ public class Main_GENERAL {
 
         Message message4 = new Message("Armen",new ImageIcon("Древесный киборг.png"),true);
         messages.add(message4);
-         return messages;
+        return messages;
     }
 
-
-    public static player player_make(JFrame frame, ImageIcon icon, int x, int y){
+    public static player player_make(ImageIcon icon, int x, int y, String name){
         player player = new player();
         player.setSize(70,70);
         player.setIcon(icon);
         player.setLocation(x, y);
-        frame.add(player);
+        player.unique_code = name;
+        pane.add(player);
+        pane.setLayer(player, 3);
         return player;
     }
 
@@ -150,7 +118,9 @@ public class Main_GENERAL {
         map.setIcon(new ImageIcon(icon));
         map.setOpaque(true);
         map.setLocation(x,y);
-        frame.add(map);
+        Combo_General.pane.add(map);
+        Combo_General.pane.setLayer(map, 1);
+        frame.repaint();
         return map;
 
     }
@@ -165,7 +135,17 @@ public class Main_GENERAL {
         map.setIcon(new ImageIcon(icon));
         map.setOpaque(true);
         map.setLocation(x,y);
-        frame.add(map);
+        Combo_General.pane.add(map);
+        Combo_General.pane.setLayer(map, 1);
         return map;
     }
+
+    public static JFrame creatOkno(){
+        JFrame frame = new JFrame();
+        frame.setSize(1000, 1000);
+        frame.setLayout(null);
+        return frame;
+    }
+
+
 }
