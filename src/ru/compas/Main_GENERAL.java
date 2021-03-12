@@ -23,7 +23,7 @@ public class Main_GENERAL {
         player player = player(frame);
 //        Dialog dialog = new Dialog(createmes(), frame);
 //        frame.add(dialog);
-        MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2 .png"),frame);
+        MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
 
         MapLocation map1 = mapWithoutPalkiCreate(-5000, -2000, frame,  ("Карта_01.jpg"));
         MapLocation map2 = mapWithoutPalkiCreate(-5000, -6000, frame, ("Карта_02.jpg"));
