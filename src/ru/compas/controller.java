@@ -1,6 +1,7 @@
 package ru.compas;
 
 import ru.compas.Messager.Dialog;
+import ru.compas.Messager.Message;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.things.Coin;
@@ -15,8 +16,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ru.compas.Main_GENERAL.creatOkno;
-import static ru.compas.Main_GENERAL.createmes;
+import static ru.compas.Main_GENERAL.*;
 
 public class controller {
 
@@ -39,7 +39,7 @@ public class controller {
         RIGHT_BORDER = frame.getWidth() - 250;
         BOTTOM_BORDER = frame.getHeight() - 250;
 
-        Timer right = timer (maps, player, "right");
+        Timer right = timer(maps, player, "right");
         Timer left = timer(maps, player, "left");
         Timer down = timer(maps, player, "toward");
         Timer up = timer(maps, player, "forward");
@@ -87,29 +87,28 @@ public class controller {
 
     }
 
-        static void shouldMapMove (player player, String direction){
+    static void shouldMapMove(player player, String direction) {
         int x = player.getX();
         int y = player.getY();
 
-        if(direction.equals("right") && x < RIGHT_BORDER || direction.equals("left") && x > LEFT_BORDER || direction.equals("toward") && y < BOTTOM_BORDER || direction.equals("forward") && y > TOP_BORDER ){
+        if (direction.equals("right") && x < RIGHT_BORDER || direction.equals("left") && x > LEFT_BORDER || direction.equals("toward") && y < BOTTOM_BORDER || direction.equals("forward") && y > TOP_BORDER) {
             player.move(direction);
-        }
-        else {
+        } else {
             shouldMoveMaps = true;
         }
 
     }
 
-        static void palkaFor (ArrayList<MapLocation> maps, player player, int addx, int addy, Timer timer) {
-        int x =player.getX();
-        int y =player.getY();
+    static void palkaFor(ArrayList<MapLocation> maps, player player, int addx, int addy, Timer timer) {
+        int x = player.getX();
+        int y = player.getY();
         for (int i = 0; i < maps.size(); i++) {
             MapLocation map = maps.get(i);
             for (int j = 0; j < map.karta.palki.size(); j++) {
                 Palka palka = map.karta.palki.get(j);
                 if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
                     player.move("stop");
-                    player.setLocation(x + addx,y + addy);
+                    player.setLocation(x + addx, y + addy);
                     shouldMoveMaps = false;
                     blockNow = true;
                     timer.stop();
@@ -119,51 +118,50 @@ public class controller {
         }
 
     }
-        static void MapMoves (ArrayList<MapLocation> maps, player player, int addX, int addY) {
-                for (int i = 0; i < maps.size(); i++) {
-                    JLabel map = maps.get(i);
-                    int MAP_X = map.getX();
-                    int MAP_Y = map.getY();
-                    map.setLocation(MAP_X + addX , MAP_Y + addY);
-            }
-        }
 
-        static Timer timer (ArrayList<MapLocation> maps, player player, String direction) {
+    static void MapMoves(ArrayList<MapLocation> maps, player player, int addX, int addY) {
+        for (int i = 0; i < maps.size(); i++) {
+            JLabel map = maps.get(i);
+            int MAP_X = map.getX();
+            int MAP_Y = map.getY();
+            map.setLocation(MAP_X + addX, MAP_Y + addY);
+        }
+    }
+
+    static Timer timer(ArrayList<MapLocation> maps, player player, String direction) {
 
         Timer timer = new Timer(30, null);
         timer.addActionListener(new ActionListener() {
             int addx = 0;
             int addy = 0;
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 int addX = 0;
                 int addY = 0;
                 blockNow = false;
                 if (direction.equals("right")) {
-                    addX = - player.velocity;
+                    addX = -player.velocity;
                     blockRight = blockNow;
                     addx = -20;
-                }
-                else if (direction.equals("left")) {
-                    addX =  player.velocity;
+                } else if (direction.equals("left")) {
+                    addX = player.velocity;
                     blockLeft = blockNow;
                     addx = 20;
-                }
-                else if (direction.equals("forward")) {
+                } else if (direction.equals("forward")) {
                     addY = player.velocity;
                     blockUp = blockNow;
                     addy = 20;
-                }
-                else if (direction.equals("toward")) {
-                    addY = - player.velocity;
+                } else if (direction.equals("toward")) {
+                    addY = -player.velocity;
                     blockDown = blockNow;
                     addy = -20;
                 }
 
                 shouldMapMove(player, direction);
-                palkaFor(maps, player, addx,addy, timer);
+                palkaFor(maps, player, addx, addy, timer);
 
-                if(shouldMoveMaps) {
+                if (shouldMoveMaps) {
                     MapMoves(maps, player, addX, addY);
                 }
 
@@ -184,13 +182,19 @@ public class controller {
                 if (CoinController.isIntersected(player, coin, map)) {
                     map.remove(coin);
                     map.coins.remove(coin);
-                    ru.compas.Messager.Dialog dialog = new Dialog(createmes(), Main_GENERAL.frame);
-                    Main_GENERAL.frame.add(dialog);
-                    Main_GENERAL.frame.repaint();
+                    Main_GENERAL.dialog.setVisible(true);
+                    Main_GENERAL.dialog.setMessages(createCoinMessage());
                     break;
                 }
             }
         }
+    }
+
+    static ArrayList<Message> createCoinMessage() {
+        Message message = new Message("Сoбрали 100P", new ImageIcon("pers.png"), true);
+        ArrayList<Message> messages = new ArrayList<>();
+        messages.add(message);
+        return messages;
     }
 
 
