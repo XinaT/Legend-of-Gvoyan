@@ -3,9 +3,11 @@ package ru.compas;
 import ru.compas.Messager.Dialog;
 import ru.compas.Messager.Message;
 import ru.compas.backpack.Backpack;
+import ru.compas.things.Artefact;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
+import ru.compas.things.ArtefactContloller;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -18,9 +20,6 @@ public class Main_GENERAL {
         JFrame frame = creatOkno();
 
         player player = player(frame);
-
-        Dialog dialog = new Dialog(Main_GENERAL.createmes(), frame);
-        frame.add(dialog);
 
         MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
 
@@ -63,23 +62,6 @@ public class Main_GENERAL {
         });
         return frame;
     }
-
-    public static ArrayList<Message> createmes(){
-         ArrayList<Message> messages = new ArrayList<>();
-         Message message1 = new Message("Arab",new ImageIcon("Охотник.png"),true);
-         messages.add(message1);
-
-        Message message2 = new Message("Kavkazec",new ImageIcon("Болотный Лягуш.png"),true);
-        messages.add(message2);
-
-        Message message3 = new Message("Aaaooaa",new ImageIcon("Дух цветов.png"),true);
-        messages.add(message3);
-
-        Message message4 = new Message("Armen",new ImageIcon("Древесный киборг.png"),true);
-        messages.add(message4);
-         return messages;
-    }
-
 
     public static player player(JFrame frame){
         player player = new player();
@@ -162,12 +144,27 @@ public class Main_GENERAL {
         CollisionKarta karta = new CollisionKarta(palki);
         karta.setSize(3000,4000);
 
-        MapLocation map = new MapLocation(karta);
+
+        ArrayList<Artefact> all = new ArrayList<>();
+        ArrayList<Artefact> coins = ArtefactContloller.createCoins();
+        ArrayList<Artefact> swords = ArtefactContloller.createSwords();
+        ArrayList<Artefact> bows = ArtefactContloller.createBows();
+
+        all.addAll(coins);
+        all.addAll(swords);
+        all.addAll(bows);
+
+        MapLocation map = new MapLocation(karta, all);
         map.setSize(3000, 4000);
         map.setIcon(new ImageIcon(icon));
         map.setOpaque(true);
         map.setLocation(x,y);
         frame.add(map);
+
+        for (int i = 0; i < all.size(); i++) {
+            Artefact artefact = all.get(i);
+            map.add(artefact);
+        }
         return map;
 
     }
@@ -177,7 +174,7 @@ public class Main_GENERAL {
         CollisionKarta karta = new CollisionKarta(palkaNullList);
         karta.setSize(3000,4000);
 
-        MapLocation map = new MapLocation(karta);
+        MapLocation map = new MapLocation(karta, new ArrayList<>());
         map.setSize(3000, 4000);
         map.setIcon(new ImageIcon(icon));
         map.setOpaque(true);
