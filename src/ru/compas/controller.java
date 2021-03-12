@@ -1,16 +1,21 @@
 package ru.compas;
 
+import ru.compas.Messager.Dialog;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+import static ru.compas.Main_GENERAL.creatOkno;
+import static ru.compas.Main_GENERAL.createmes;
 
 public class controller {
 

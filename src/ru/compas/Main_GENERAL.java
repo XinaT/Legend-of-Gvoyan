@@ -15,13 +15,15 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Main_GENERAL {
+     static JFrame frame = creatOkno();
     public static void main(String[] args) {
 
-        JFrame frame = creatOkno();
+
 
         player player = player(frame);
-
-        MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
+//        Dialog dialog = new Dialog(createmes(), frame);
+//        frame.add(dialog);
+        MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2 .png"),frame);
 
         MapLocation map1 = mapWithoutPalkiCreate(-5000, -2000, frame,  ("Карта_01.jpg"));
         MapLocation map2 = mapWithoutPalkiCreate(-5000, -6000, frame, ("Карта_02.jpg"));
@@ -35,6 +37,9 @@ public class Main_GENERAL {
         maps.add(map3);
 
         controller controller = new controller(frame,player,maps);
+
+
+
         frame.setVisible(true);
     }
     static boolean R;
@@ -62,7 +67,32 @@ public class Main_GENERAL {
         });
         return frame;
     }
+    public static ArrayList<Message> createmes(){
+        ArrayList<Message> messages = new ArrayList<>();
+        Message message1 = new Message("Arab",new ImageIcon("Охотник.png"),true);
+        messages.add(message1);
 
+        Message message2 = new Message("Kavkazec",new ImageIcon("Болотный Лягуш.png"),true);
+        messages.add(message2);
+
+        Message message3 = new Message("Aaaooaa",new ImageIcon("Дух цветов.png"),true);
+        messages.add(message3);
+
+        Message message4 = new Message("Armen",new ImageIcon("Древесный киборг.png"),true);
+        messages.add(message4);
+
+
+        return messages;
+    }
+    public static ArrayList<Message> createmes1(){
+        ArrayList<Message> messages1 = new ArrayList<>();
+        Message message1 = new Message("Монiтка",new ImageIcon("pers.png"),true);
+        messages1.add(message1);
+
+
+
+        return messages1;
+    }
     public static player player(JFrame frame){
         player player = new player();
         player.setSize(70,70);
