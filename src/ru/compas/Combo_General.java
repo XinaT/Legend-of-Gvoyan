@@ -1,13 +1,18 @@
 package ru.compas;
 
 import ru.compas.Messager.Message;
+import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
+import ru.compas.objects.Domik;
+import ru.compas.objects.DomikController;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 
@@ -30,12 +35,33 @@ public class Combo_General {
         return player;
     }
 
-    public static JFrame creatOkno(){
+    static boolean R;
+    public static JFrame creatOkno() {
         JFrame frame = new JFrame();
         frame.setSize(1000, 1000);
         frame.setLayout(null);
+        frame.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if (e.getKeyCode() == KeyEvent.VK_R) {
+                    Backpack backpack = new Backpack(frame.getWidth()/2, frame.getHeight(), new ArrayList<>());
+                    if(R){
+                        backpack.setVisible(false);
+                        R = false;
+                    }
+                    else{
+                    backpack.setVisible(true);
+                    R = true;
+                 }
+
+                }
+            }
+        });
         return frame;
     }
+
+
 
         public static JLayeredPane pane_made(JFrame frame){
         JLayeredPane pane = new JLayeredPane();
@@ -138,9 +164,16 @@ public class Combo_General {
             Artefact artefact = all.get(i);
             map.add(artefact);
         }
+
+        ArrayList<Domik> domiks = DomikController.createDomik();
+        for (int i = 0; i < domiks.size(); i++) {
+            Domik domik = domiks.get(i);
+            map.add(domik);
+            map.collisionObjects.add(domik);
+        }
+
         return map;
 
     }
-
 
 }

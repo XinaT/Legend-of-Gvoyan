@@ -8,7 +8,7 @@ public class CollisionUtils {
 
         int x = pers.getX() - label.getX();
         int y = pers.getY() - label.getY();
-        Point M = new Point(x, y );
+        Point M = new Point(x, y);
         Point N = new Point(x + pers.getWidth(), y);
         Point K = new Point(x + pers.getWidth(), y + pers.getHeight());
         Point L = new Point(x, y + pers.getHeight());

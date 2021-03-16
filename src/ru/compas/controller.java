@@ -1,5 +1,6 @@
 package ru.compas;
 
+import ru.compas.collision.CollisionObject;
 import ru.compas.Messager.Dialog;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
@@ -99,16 +100,16 @@ public class controller {
 
     }
 
-        static void palkaFor (ArrayList<MapLocation> maps, player player, int addx, int addy, Timer timer) {
-        int x =player.getX();
-        int y =player.getY();
+    static void palkaFor (ArrayList<MapLocation> maps, player player, int addx, int addy, Timer timer) {
+        int x = player.getX();
+        int y = player.getY();
         for (int i = 0; i < maps.size(); i++) {
             MapLocation map = maps.get(i);
             for (int j = 0; j < map.karta.palki.size(); j++) {
                 Palka palka = map.karta.palki.get(j);
                 if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
                     player.move("stop");
-                    player.setLocation(x + addx,y + addy);
+                    player.setLocation(x + addx, y + addy);
                     shouldMoveMaps = false;
                     blockNow = true;
                     timer.stop();
@@ -116,7 +117,27 @@ public class controller {
                 }
             }
         }
-
+    }
+    static void checkCollision(ArrayList<MapLocation> maps, player player, int addx, int addy, Timer timer) {
+        int x = player.getX();
+        int y = player.getY();
+        for (int j = 0; j < maps.size(); j++) {
+            MapLocation mapLocation = maps.get(j);
+            for (int i = 0; i < mapLocation.collisionObjects.size(); i++) {
+                CollisionObject object = mapLocation.collisionObjects.get(i);
+                for (int k = 0; k < object.karta.palki.size(); k++) {
+                    Palka palka = object.karta.palki.get(k);
+                    if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation)) {
+                        player.move("stop");
+                        player.setLocation(x + addx, y + addy);
+                        shouldMoveMaps = false;
+                        blockNow = true;
+                        timer.stop();
+                        break;
+                    }
+                }
+            }
+        }
     }
         static void MapMoves (ArrayList<MapLocation> maps, player player, int addX, int addY) {
                 for (int i = 0; i < maps.size(); i++) {
@@ -170,6 +191,7 @@ public class controller {
                 }
 
                 shouldMapMove(player, direction);
+                checkCollision(maps, player, addx,addy, timer);
                 palkaFor(maps, player, addx,addy, timer);
 
                 if(shouldMoveMaps) {
