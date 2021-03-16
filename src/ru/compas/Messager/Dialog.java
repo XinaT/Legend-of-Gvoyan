@@ -13,7 +13,7 @@ public class Dialog extends JLabel {
 
 
 
-    public Dialog(ArrayList<Message> messages, JFrame frame) {
+    public Dialog(ArrayList<Message> messages) {
         this.message = messages.get(0);
         this.messages = messages;
         setSize(900, 190);
