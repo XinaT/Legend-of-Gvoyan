@@ -8,6 +8,7 @@ import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
 import ru.compas.things.ArtefactContloller;
+import ru.compas.things.CounterController;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -65,6 +66,9 @@ public class Main_GENERAL {
                 }
             }
         });
+
+        CounterController.createArtefactCounter(frame);
+
         return frame;
     }
     public static ArrayList<Message> createmes(){
