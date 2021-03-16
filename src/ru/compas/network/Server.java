@@ -24,7 +24,7 @@ public class Server {
                 public void run() {
                     System.out.println("CONNECT");
                     player playerik = Combo_General.player_make(new ImageIcon("Древесный киборг.png"), 350, 300, socket.getInetAddress()+"");
-                    Main_GENERAL_Server.list_players.add(playerik);
+                    Combo_General.list_players.add(playerik);
                     while (true){
                         try {
                             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -52,10 +52,10 @@ public class Server {
 
 
 
-                                for (int i = 0; i < Main_GENERAL_Server.list_players.size(); i++){
-                                    if ((socket.getInetAddress()+"").equals(Main_GENERAL_Server.list_players.get(i).unique_code)){
+                                for (int i = 0; i <Combo_General.list_players.size(); i++){
+                                    if ((socket.getInetAddress()+"").equals(Combo_General.list_players.get(i).unique_code)){
 //                                        Main_GENERAL_Server.list_players.get(i).setLocation(x, y);
-                                        Server_controller.move_other_players(Main_GENERAL_Server.list_players.get(i), x, y, mapX, mapY);
+                                        Server_controller.move_other_players(Combo_General.list_players.get(i), x, y, mapX, mapY);
 
                                     }
                                 }

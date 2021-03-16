@@ -1,5 +1,6 @@
 package ru.compas.network;
 
+import ru.compas.Combo_General;
 import ru.compas.MapLocation;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
@@ -127,13 +128,13 @@ public class Server_controller {
 
         }
 
-        for (int a = 0; a < Main_GENERAL_Server.list_players.size(); a++){
-            if (!(Main_GENERAL_Server.list_players.get(a).unique_code).equals("I")){
-                int x = Main_GENERAL_Server.list_players.get(a).getX();
-                int y = Main_GENERAL_Server.list_players.get(a).getY();
+        for (int a = 0; a < Combo_General.list_players.size(); a++){
+            if (!(Combo_General.list_players.get(a).unique_code).equals("I")){
+                int x = Combo_General.list_players.get(a).getX();
+                int y = Combo_General.list_players.get(a).getY();
                 x = x + addX;
                 y = y + addY;
-                Main_GENERAL_Server.list_players.get(a).setLocation(x, y);
+                Combo_General.list_players.get(a).setLocation(x, y);
             }
         }
     }
