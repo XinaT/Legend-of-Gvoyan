@@ -5,8 +5,10 @@ import ru.compas.Messager.Message;
 import ru.compas.backpack.Backpack;
 import ru.compas.things.Artefact;
 import ru.compas.collision.CollisionKarta;
+import ru.compas.collision.CollisionObject;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
+import ru.compas.objects.Domik;
 import ru.compas.things.ArtefactContloller;
 
 import javax.swing.*;
@@ -38,7 +40,10 @@ public class Main_GENERAL {
 
         controller controller = new controller(frame,player,maps);
 
-
+        Domik dom = new Domik(1500,1800, 250, 250);
+        dom.setVisible(true);
+        map.add(dom);
+        map.collisionObjects.add(dom);
 
         frame.setVisible(true);
     }
