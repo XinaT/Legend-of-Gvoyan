@@ -1,15 +1,22 @@
 package ru.compas;
 
 import ru.compas.collision.CollisionObject;
+import ru.compas.Messager.Dialog;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
+import ru.compas.things.Artefact;
+import ru.compas.things.ArtefactContloller;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+import static ru.compas.Main_GENERAL.creatOkno;
+import static ru.compas.Main_GENERAL.createmes;
 
 public class controller {
 
@@ -180,9 +187,26 @@ public class controller {
                 if(shouldMoveMaps) {
                     MapMoves(maps, player, addX, addY);
                 }
+
+                pickUpArtefacts(player, maps);
             }
         });
         return timer;
+    }
+
+
+    static void pickUpArtefacts(player player, ArrayList<MapLocation> maps) {
+        // собираем артефакты
+
+        for (int i = 0; i < maps.size(); i++) {
+            MapLocation map = maps.get(i);
+            for (int j = 0; j < map.artefacts.size(); j++) {
+                Artefact artefact = map.artefacts.get(j);
+                if (ArtefactContloller.isIntersected(player, artefact, map)) {
+                    map.remove(artefact);
+                }
+            }
+        }
     }
 
 
