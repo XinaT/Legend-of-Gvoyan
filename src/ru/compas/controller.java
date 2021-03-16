@@ -1,9 +1,11 @@
 package ru.compas;
 
+import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
+import ru.compas.things.Coin;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -27,6 +29,8 @@ public class controller {
     static boolean blockLeft = false;
 
     static boolean blockNow = false;
+
+    static int coins = 0;
 
     controller(JFrame frame, player player, ArrayList<MapLocation> maps) {
 
@@ -177,10 +181,14 @@ public class controller {
                 Artefact artefact = map.artefacts.get(j);
                 if (ArtefactContloller.isIntersected(player, artefact, map)) {
                     map.remove(artefact);
+                    map.artefacts.remove(artefact);
+                    if(artefact instanceof Coin){
+                        coins ++;
+                        Backpack.updateCoins(coins);
+                        break;
+                    }
                 }
             }
         }
     }
-
-
 }

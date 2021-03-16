@@ -10,11 +10,15 @@ import ru.compas.collision.Point;
 import ru.compas.things.ArtefactContloller;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Main_GENERAL {
+
+    static Backpack backpack;
+    public static boolean R = false;
     public static void main(String[] args) {
 
         JFrame frame = creatOkno();
@@ -36,30 +40,28 @@ public class Main_GENERAL {
 
         controller controller = new controller(frame,player,maps);
         frame.setVisible(true);
-    }
-    static boolean R;
-    public static JFrame creatOkno() {
-        JFrame frame = new JFrame();
-        frame.setSize(1000, 1000);
-        frame.setLayout(null);
+
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
                 if (e.getKeyCode() == KeyEvent.VK_R) {
-                    Backpack backpack = new Backpack(frame.getWidth()/2, frame.getHeight(), new ArrayList<>());
-                    if(R){
-                        backpack.setVisible(false);
-                        R = false;
+                    if(backpack == null) {
+                        backpack = new Backpack(frame.getWidth() / 2, frame.getHeight(), new ArrayList<>());
                     }
-                    else{
-                    backpack.setVisible(true);
-                    R = true;
-                 }
-
+                        if(!R) {
+                            backpack.setVisible(true);
+                            R = true;
+                        }
+                    }
                 }
-            }
-        });
+            });
+    }
+
+    public static JFrame creatOkno() {
+        JFrame frame = new JFrame();
+        frame.setSize(1000, 1000);
+        frame.setLayout(null);
         return frame;
     }
 
