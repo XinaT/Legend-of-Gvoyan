@@ -16,22 +16,8 @@ public class Combo_General {
 
     public static JLayeredPane pane = null;
     public static ArrayList<player> list_players = null;
+    public static ArrayList<MapLocation> maps = null;
 
-    public static ArrayList<Message> createmes(){
-        ArrayList<Message> messages = new ArrayList<>();
-        Message message1 = new Message("Arab",new ImageIcon("Охотник.png"),true);
-        messages.add(message1);
-
-        Message message2 = new Message("Kavkazec",new ImageIcon("Болотный Лягуш.png"),true);
-        messages.add(message2);
-
-        Message message3 = new Message("Aaaooaa",new ImageIcon("Дух цветов.png"),true);
-        messages.add(message3);
-
-        Message message4 = new Message("Armen",new ImageIcon("Древесный киборг.png"),true);
-        messages.add(message4);
-        return messages;
-    }
 
     public static player player_make(ImageIcon icon, int x, int y, String name){
         player player = new player();

@@ -125,6 +125,16 @@ public class controller {
                     int MAP_Y = map.getY();
                     map.setLocation(MAP_X + addX , MAP_Y + addY);
             }
+
+            for (int a = 0; a < Combo_General.list_players.size(); a++){
+                if (!(Combo_General.list_players.get(a).unique_code).equals("I")){
+                    int x = Combo_General.list_players.get(a).getX();
+                    int y = Combo_General.list_players.get(a).getY();
+                    x = x + addX;
+                    y = y + addY;
+                    Combo_General.list_players.get(a).setLocation(x, y);
+                }
+            }
         }
 
         static Timer timer (ArrayList<MapLocation> maps, player player, String direction) {
@@ -185,6 +195,21 @@ public class controller {
                 }
             }
         }
+    }
+
+    public static void move_other_players(player playerik, int x, int y, int mapX, int mapY){
+        System.out.println("MAP_OTH  " + mapX+  "  " + mapY);
+        int IMapX = Combo_General.maps.get(0).getX();
+        int IMapY = Combo_General.maps.get(0).getY();
+        System.out.println("IMAP   " + IMapX + "  " + IMapY);
+        int mapX_dob = -IMapX+mapX;
+        int mapY_dob = -IMapY+mapY;
+        System.out.println("MAPDOB  " + mapX_dob + "  "+ + mapY_dob);
+
+        x = x - mapX_dob;
+        y = y - mapY_dob;
+        System.out.println("XY  "+  x+ "  " + +y);
+        playerik.setLocation(x, y);
     }
 
 

@@ -2,22 +2,25 @@ package ru.compas.network;
 
 import ru.compas.Combo_General;
 import ru.compas.Main_GENERAL;
+import ru.compas.controller;
 import ru.compas.player;
 
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class Server {
+    static ArrayList<Socket> socket_list = new ArrayList<>();
 
     public static void Server_make(int port) throws IOException {
         ServerSocket server = new ServerSocket(port);
 
         while (true){
             Socket socket = server.accept();
+            socket_list.add(socket);
+
 
             Thread theard = new Thread(new Runnable() {
                 @Override
@@ -50,15 +53,16 @@ public class Server {
                                 int mapY = Integer.valueOf(mapY_str);
 
 
-
-
-                                for (int i = 0; i <Combo_General.list_players.size(); i++){
+                                for (int i = 0; i < Combo_General.list_players.size(); i++){
                                     if ((socket.getInetAddress()+"").equals(Combo_General.list_players.get(i).unique_code)){
-//                                        Main_GENERAL_Server.list_players.get(i).setLocation(x, y);
-                                        Server_controller.move_other_players(Combo_General.list_players.get(i), x, y, mapX, mapY);
+                                        controller.move_other_players(Combo_General.list_players.get(i), x, y, mapX, mapY);
+
 
                                     }
                                 }
+
+
+
                             }
 
 
@@ -73,6 +77,14 @@ public class Server {
 
         }
 
+    }
+
+    public static void rassilka (player playerik, int x, int y, int mapX, int mapY) throws IOException {
+        for (int i = 0; i < socket_list.size(); i++){
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket_list.get(i).getOutputStream()));
+            bufferedWriter.write("RASSILKA");
+            bufferedWriter.flush();
+        }
     }
 
 }
