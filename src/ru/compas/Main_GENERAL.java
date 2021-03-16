@@ -8,12 +8,17 @@ import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.CollisionObject;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
-import ru.compas.objects.Domik;
 import ru.compas.things.ArtefactContloller;
+import ru.compas.things.CoinController;
+import ru.compas.things.Domik;
+import ru.compas.things.DomikController;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class Main_GENERAL {
@@ -39,11 +44,15 @@ public class Main_GENERAL {
         maps.add(map3);
 
         controller controller = new controller(frame,player,maps);
+        map.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                System.out.println(e.getX());
+                System.out.println(e.getY());
+            }
+        });
 
-        Domik dom = new Domik(1500,1800, 250, 250);
-        dom.setVisible(true);
-        map.add(dom);
-        map.collisionObjects.add(dom);
 
         frame.setVisible(true);
     }
@@ -184,6 +193,7 @@ public class Main_GENERAL {
         ArrayList<Artefact> coins = ArtefactContloller.createCoins();
         ArrayList<Artefact> swords = ArtefactContloller.createSwords();
         ArrayList<Artefact> bows = ArtefactContloller.createBows();
+        ArrayList<Domik> domik = DomikController.createDomik();
 
         all.addAll(coins);
         all.addAll(swords);
@@ -199,6 +209,12 @@ public class Main_GENERAL {
         for (int i = 0; i < all.size(); i++) {
             Artefact artefact = all.get(i);
             map.add(artefact);
+        }
+
+        for (int i = 0; i < domik.size(); i++) {
+            Domik d  = domik.get(i);
+            map.add(d);
+            map.collisionObjects.add(d);
         }
         return map;
 
