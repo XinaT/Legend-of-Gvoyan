@@ -1,24 +1,21 @@
 package ru.compas;
 
-import ru.compas.Messager.Dialog;
 import ru.compas.Messager.Message;
 import ru.compas.backpack.Backpack;
+import ru.compas.objects.Domik;
 import ru.compas.things.Artefact;
 import ru.compas.collision.CollisionKarta;
-import ru.compas.collision.CollisionObject;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
 import ru.compas.things.ArtefactContloller;
-import ru.compas.things.CoinController;
-import ru.compas.things.Domik;
-import ru.compas.things.DomikController;
+
+import ru.compas.objects.DomikController;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class Main_GENERAL {

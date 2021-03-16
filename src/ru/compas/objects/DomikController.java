@@ -1,4 +1,6 @@
-package ru.compas.things;
+package ru.compas.objects;
+import ru.compas.objects.Domik;
+
 import java.util.ArrayList;
 
 public class DomikController {
