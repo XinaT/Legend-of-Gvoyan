@@ -1,6 +1,7 @@
 package ru.compas.backpack;
 
 import org.w3c.dom.Text;
+import ru.compas.Combo_General;
 import ru.compas.Main_GENERAL;
 import ru.compas.things.Coin;
 
@@ -67,9 +68,9 @@ public class Backpack extends JFrame {
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
                 if (e.getKeyCode() == KeyEvent.VK_R) {
-                    if (Main_GENERAL.R) {
+                    if (Combo_General.R) {
                         setVisible(false);
-                        Main_GENERAL.R = false;
+                        Combo_General.R = false;
                     }
                 }
             }

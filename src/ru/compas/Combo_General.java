@@ -23,6 +23,9 @@ public class Combo_General {
     public static ArrayList<player> list_players = null;
     public static ArrayList<MapLocation> maps = null;
 
+    static Backpack backpack;
+    public static boolean R = false;
+
 
     public static player player_make(ImageIcon icon, int x, int y, String name){
         player player = new player();
@@ -35,7 +38,7 @@ public class Combo_General {
         return player;
     }
 
-    static boolean R;
+
     public static JFrame creatOkno() {
         JFrame frame = new JFrame();
         frame.setSize(1000, 1000);
@@ -45,16 +48,13 @@ public class Combo_General {
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
                 if (e.getKeyCode() == KeyEvent.VK_R) {
-                    Backpack backpack = new Backpack(frame.getWidth()/2, frame.getHeight(), new ArrayList<>());
-                    if(R){
-                        backpack.setVisible(false);
-                        R = false;
+                    if(backpack == null) {
+                        backpack = new Backpack(frame.getWidth() / 2, frame.getHeight(), new ArrayList<>());
                     }
-                    else{
-                    backpack.setVisible(true);
-                    R = true;
-                 }
-
+                    if(!R) {
+                        backpack.setVisible(true);
+                        R = true;
+                    }
                 }
             }
         });
