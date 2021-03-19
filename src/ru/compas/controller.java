@@ -1,6 +1,8 @@
 package ru.compas;
 
 import ru.compas.backpack.Backpack;
+import ru.compas.collision.CollisionObject;
+import ru.compas.Messager.Dialog;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.things.Artefact;
@@ -8,11 +10,14 @@ import ru.compas.things.ArtefactContloller;
 import ru.compas.things.Coin;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+
 
 public class controller {
 
@@ -32,7 +37,8 @@ public class controller {
 
     static int coins = 0;
 
-    controller(JFrame frame, player player, ArrayList<MapLocation> maps) {
+
+    public controller(JFrame frame, player player, ArrayList<MapLocation> maps) {
 
         RIGHT_BORDER = frame.getWidth() - 250;
         BOTTOM_BORDER = frame.getHeight() - 250;
@@ -91,6 +97,7 @@ public class controller {
 
         if(direction.equals("right") && x < RIGHT_BORDER || direction.equals("left") && x > LEFT_BORDER || direction.equals("toward") && y < BOTTOM_BORDER || direction.equals("forward") && y > TOP_BORDER ){
             player.move(direction);
+            shouldMoveMaps = false;
         }
         else {
             shouldMoveMaps = true;
@@ -98,16 +105,16 @@ public class controller {
 
     }
 
-        static void palkaFor (ArrayList<MapLocation> maps, player player, int addx, int addy, Timer timer) {
-        int x =player.getX();
-        int y =player.getY();
+    static void palkaFor (ArrayList<MapLocation> maps, player player, int addx, int addy, Timer timer) {
+        int x = player.getX();
+        int y = player.getY();
         for (int i = 0; i < maps.size(); i++) {
             MapLocation map = maps.get(i);
             for (int j = 0; j < map.karta.palki.size(); j++) {
                 Palka palka = map.karta.palki.get(j);
                 if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
                     player.move("stop");
-                    player.setLocation(x + addx,y + addy);
+                    player.setLocation(x + addx, y + addy);
                     shouldMoveMaps = false;
                     blockNow = true;
                     timer.stop();
@@ -115,7 +122,27 @@ public class controller {
                 }
             }
         }
-
+    }
+    static void checkCollision(ArrayList<MapLocation> maps, player player, int addx, int addy, Timer timer) {
+        int x = player.getX();
+        int y = player.getY();
+        for (int j = 0; j < maps.size(); j++) {
+            MapLocation mapLocation = maps.get(j);
+            for (int i = 0; i < mapLocation.collisionObjects.size(); i++) {
+                CollisionObject object = mapLocation.collisionObjects.get(i);
+                for (int k = 0; k < object.karta.palki.size(); k++) {
+                    Palka palka = object.karta.palki.get(k);
+                    if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation)) {
+                        player.move("stop");
+                        player.setLocation(x + addx, y + addy);
+                        shouldMoveMaps = false;
+                        blockNow = true;
+                        timer.stop();
+                        break;
+                    }
+                }
+            }
+        }
     }
         static void MapMoves (ArrayList<MapLocation> maps, player player, int addX, int addY) {
                 for (int i = 0; i < maps.size(); i++) {
@@ -123,6 +150,16 @@ public class controller {
                     int MAP_X = map.getX();
                     int MAP_Y = map.getY();
                     map.setLocation(MAP_X + addX , MAP_Y + addY);
+            }
+
+            for (int a = 0; a < Combo_General.list_players.size(); a++){
+                if (!(Combo_General.list_players.get(a).unique_code).equals("I")){
+                    int x = Combo_General.list_players.get(a).getX();
+                    int y = Combo_General.list_players.get(a).getY();
+                    x = x + addX;
+                    y = y + addY;
+                    Combo_General.list_players.get(a).setLocation(x, y);
+                }
             }
         }
 
@@ -159,6 +196,7 @@ public class controller {
                 }
 
                 shouldMapMove(player, direction);
+                checkCollision(maps, player, addx,addy, timer);
                 palkaFor(maps, player, addx,addy, timer);
 
                 if(shouldMoveMaps) {
@@ -191,4 +229,21 @@ public class controller {
             }
         }
     }
+
+    public static void move_other_players(player playerik, int x, int y, int mapX, int mapY){
+        System.out.println("MAP_OTH  " + mapX+  "  " + mapY);
+        int IMapX = Combo_General.maps.get(0).getX();
+        int IMapY = Combo_General.maps.get(0).getY();
+        System.out.println("IMAP   " + IMapX + "  " + IMapY);
+        int mapX_dob = -IMapX+mapX;
+        int mapY_dob = -IMapY+mapY;
+        System.out.println("MAPDOB  " + mapX_dob + "  "+ + mapY_dob);
+
+        x = x - mapX_dob;
+        y = y - mapY_dob;
+        System.out.println("XY  "+  x+ "  " + +y);
+        playerik.setLocation(x, y);
+    }
+
+
 }

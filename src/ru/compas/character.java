@@ -12,7 +12,7 @@ public class character extends JLabel {
     String abilities;
     ArrayList<player> battleUnits;
 
-    int velocity = 20;
+    public int velocity = 20;
 
 
     public  void move(String direction) {

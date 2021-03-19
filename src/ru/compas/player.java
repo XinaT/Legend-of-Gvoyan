@@ -12,6 +12,7 @@ public class player extends character {
     int xp;
     int protection;
     String type;
+    public String unique_code;
 
     boolean battleAction;
     boolean dialogue;
