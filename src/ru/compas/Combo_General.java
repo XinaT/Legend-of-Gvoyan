@@ -9,6 +9,7 @@ import ru.compas.objects.Domik;
 import ru.compas.objects.DomikController;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
+import ru.compas.things.CounterController;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -43,6 +44,7 @@ public class Combo_General {
         JFrame frame = new JFrame();
         frame.setSize(1000, 1000);
         frame.setLayout(null);
+        CounterController.createArtefactCounter(frame);
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -60,8 +62,6 @@ public class Combo_General {
         });
         return frame;
     }
-
-
 
         public static JLayeredPane pane_made(JFrame frame){
         JLayeredPane pane = new JLayeredPane();
@@ -119,17 +119,11 @@ public class Combo_General {
         points.add(new Point(76,985));
         points.add(new Point(76,606));
 
-
-
-
         // чтоб палки совпадали с картой
         for (int i = 0; i < points.size(); i = i + 1) {
             Point p = points.get(i);
             p.y = p.y + 500;
         }
-
-
-
 
         ArrayList<Palka> palki = new ArrayList<>();
 
@@ -142,7 +136,6 @@ public class Combo_General {
 
         CollisionKarta karta = new CollisionKarta(palki);
         karta.setSize(3000,4000);
-
 
         ArrayList<Artefact> all = new ArrayList<>();
         ArrayList<Artefact> coins = ArtefactContloller.createCoins();
@@ -173,7 +166,5 @@ public class Combo_General {
         }
 
         return map;
-
     }
-
 }
