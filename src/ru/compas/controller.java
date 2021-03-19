@@ -5,6 +5,7 @@ import ru.compas.Messager.Dialog;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.network.Client;
+import ru.compas.network.Server;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
 
@@ -147,6 +148,7 @@ public class controller {
                     int MAP_X = map.getX();
                     int MAP_Y = map.getY();
                     map.setLocation(MAP_X + addX , MAP_Y + addY);
+
             }
 
             for (int a = 0; a < Combo_General.list_players.size(); a++){
@@ -196,6 +198,8 @@ public class controller {
                 if (shouldMoveMaps) {
                     MapMoves(maps, player, addX, addY);
                 }
+                player.mapX = maps.get(0).getX();
+                player.mapY = maps.get(0).getY();
 
                 pickUpArtefacts(player, maps);
 
@@ -205,6 +209,12 @@ public class controller {
                         Client.send_to_server(s);
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
+                    }
+                } else{
+                    try {
+                        Server.rassilka();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
                     }
                 }
 
@@ -241,6 +251,8 @@ public class controller {
         y = y - mapY_dob;
         System.out.println("XY  "+  x+ "  " + +y);
         playerik.setLocation(x, y);
+        playerik.mapX = mapX;
+        playerik.mapY = mapY;
     }
 
 

@@ -18,13 +18,16 @@ public class Main_GENERAL {
 
 
 
-        Combo_General.list_players = new ArrayList<>();
-        player player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 300, "I");
-        Combo_General.list_players.add(player);
+
 
         MapLocation map = Combo_General.creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
         ArrayList<MapLocation> maps = new ArrayList<>();
         maps.add(map);
+
+
+        Combo_General.list_players = new ArrayList<>();
+        player player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 300, "I", -2000, -2000);
+        Combo_General.list_players.add(player);
 
         Combo_General.maps = maps;
         Combo_General.isServer = false;

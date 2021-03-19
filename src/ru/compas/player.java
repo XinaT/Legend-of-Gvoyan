@@ -13,6 +13,8 @@ public class player extends character {
     int protection;
     String type;
     public String unique_code;
+    public int mapX;
+    public int mapY;
 
     boolean battleAction;
     boolean dialogue;
