@@ -2,18 +2,11 @@ package ru.compas.network;
 
 import ru.compas.Combo_General;
 import ru.compas.MapLocation;
-import ru.compas.Messager.Dialog;
-import ru.compas.Messager.Message;
-import ru.compas.collision.CollisionKarta;
-import ru.compas.collision.Palka;
-import ru.compas.collision.Point;
 import ru.compas.controller;
 import ru.compas.player;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.util.ArrayList;
 
 public class Main_GENERAL_Server {
@@ -37,8 +30,6 @@ public class Main_GENERAL_Server {
         frame.setVisible(true);
 
         controller controller = new controller(frame, player, maps);
-
-
 
 
         Thread thread = new Thread(new Runnable() {
