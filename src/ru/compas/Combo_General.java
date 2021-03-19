@@ -22,6 +22,7 @@ public class Combo_General {
     public static JLayeredPane pane = null;
     public static ArrayList<player> list_players = null;
     public static ArrayList<MapLocation> maps = null;
+    public static boolean isServer = false;
 
 
     public static player player_make(ImageIcon icon, int x, int y, String name){
