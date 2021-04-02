@@ -1,10 +1,14 @@
 package ru.compas;
 
 import javax.imageio.ImageIO;
+import ru.compas.Enemy.EnemyController;
+import ru.compas.network.Client;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -13,9 +17,15 @@ public class Main_GENERAL {
     public static Player player;
 
     public static void main(String[] args) throws IOException {
+    static String ip_server = "192.168.0.115";
+    static int server_port = 1800;
+    public static void main(String[] args) throws IOException {
+
 
         frame = Combo_General.creatOkno();
         Combo_General.pane = Combo_General.pane_made(frame);
+
+
 
         Combo_General.list_players = new ArrayList<>();
         player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 300, "I");
@@ -26,17 +36,24 @@ public class Main_GENERAL {
         maps.add(map);
 
         Combo_General.maps = maps;
+        Combo_General.isServer = false;
 
+        // создание контроллера персонажа, который отвечает за перемещение и за коллизии
         controller controller = new controller(frame,player,maps);
 
-//        JLabel fight = new JLabel();
-//        fight.setSize(100,100);
-//        fight.setLocation(2300,2300);
-//        fight.setVisible(false);
-//        fight.setIcon(new ImageIcon("tenor-unscreen.gif"));
-//        map.add(fight);
-
+        EnemyController.createEnemies(map);
 
         frame.setVisible(true);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Client.Client_network_make(ip_server, server_port);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
     }
 }

@@ -32,8 +32,6 @@ public class Main_GENERAL_Server {
         controller controller = new controller(frame, player, maps);
 
 
-
-
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
