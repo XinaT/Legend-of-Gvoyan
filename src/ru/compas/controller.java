@@ -5,9 +5,7 @@ import ru.compas.collision.CollisionObject;
 import ru.compas.Messager.Dialog;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
-import ru.compas.things.Artefact;
-import ru.compas.things.ArtefactContloller;
-import ru.compas.things.Coin;
+import ru.compas.things.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,6 +34,8 @@ public class controller {
     static boolean blockNow = false;
 
     static int coins = 0;
+    static int swords = 0;
+    static int bows = 0;
 
 
     public controller(JFrame frame, player player, ArrayList<MapLocation> maps) {
@@ -212,7 +212,6 @@ public class controller {
 
     static void pickUpArtefacts(player player, ArrayList<MapLocation> maps) {
         // собираем артефакты
-
         for (int i = 0; i < maps.size(); i++) {
             MapLocation map = maps.get(i);
             for (int j = 0; j < map.artefacts.size(); j++) {
@@ -220,10 +219,20 @@ public class controller {
                 if (ArtefactContloller.isIntersected(player, artefact, map)) {
                     map.remove(artefact);
                     map.artefacts.remove(artefact);
+                    Backpack.artefacts.add(artefact);
+                    Combo_General.backpack.update();
                     if(artefact instanceof Coin){
                         coins ++;
-                        Backpack.updateCoins(coins);
+//                        Backpack.updateArtefact(coins, Backpack.Coins);
                         break;
+                    }
+                    else if(artefact instanceof Sword){
+                        swords++;
+
+                    }
+                    else if(artefact instanceof Bow){
+                        bows++;
+
                     }
                 }
             }

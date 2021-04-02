@@ -1,16 +1,6 @@
 package ru.compas;
 
-import ru.compas.Messager.Dialog;
-import ru.compas.Messager.Message;
-import ru.compas.backpack.Backpack;
-import ru.compas.things.Artefact;
-import ru.compas.collision.CollisionKarta;
-import ru.compas.collision.Palka;
-import ru.compas.collision.Point;
-import ru.compas.things.ArtefactContloller;
-import ru.compas.things.CounterController;
 
-///>>>>>>> origin/coin
 import javax.swing.*;
 import java.util.ArrayList;
 

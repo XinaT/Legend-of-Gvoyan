@@ -1,11 +1,17 @@
 package ru.compas.backpack;
 
 import org.w3c.dom.Text;
+import org.w3c.dom.css.Counter;
 import ru.compas.Combo_General;
 import ru.compas.Main_GENERAL;
+import ru.compas.things.Artefact;
 import ru.compas.things.Coin;
+import ru.compas.things.CounterController;
+import ru.compas.things.Sword;
 
+import javax.management.monitor.CounterMonitorMBean;
 import javax.swing.*;
+import javax.swing.event.SwingPropertyChangeSupport;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -13,7 +19,12 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class Backpack extends JFrame {
-    static JLabel Coins = new JLabel();
+    public static JLabel Coins = new JLabel();
+    public static JLabel Swords = new JLabel();
+    public static  JLabel Bows = new JLabel();
+
+    public static  ArrayList<Artefact> artefacts = new ArrayList<>();
+    public static ArrayList<JLabel> artefactslabel = new ArrayList<>();
 
     public Backpack(int width, int height, ArrayList<JButton> items) throws HeadlessException {
         setSize(width, height);
@@ -62,7 +73,6 @@ public class Backpack extends JFrame {
         mana.setOpaque(true);
         add(mana);
 
-
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -106,8 +116,49 @@ public class Backpack extends JFrame {
 
     }
 
-    public static void updateCoins(int coins) {
-        Coins.setText("" + coins);
+    @Deprecated
+    public static void updateArtefact(int amount, Artefact artefact) {
+        artefact.setText("" + amount);
+        if (artefact instanceof Coin) {
+            CounterController.c = amount;
+        }
+        else if (artefact instanceof Sword){
+            CounterController.s = amount;
+        }
+        else {
+            CounterController.b = amount;
+        }
 
     }
+
+
+    public void update() {
+        //1 удалять все лейблы артефактов
+        for (int i = 0; i < artefactslabel.size(); i++) {
+            this.remove(artefactslabel.get(i));
+        }
+        //2 очищать список лейблов артефактов
+        artefactslabel.clear();
+        //3 (рисовать) создавать лейблы для списка артефактов и добавлять в ячейки рюкзака
+        int x = 0;
+        int y = 300;
+
+        for (int j = 0; j < artefacts.size(); j++) {
+            JLabel artefact = new JLabel();
+            artefact.setSize(100,100);
+            if (x >= this.getWidth() - artefact.getWidth()) {
+                y =+ 100;
+                x = 0;
+            }
+
+            artefact.setLocation(x,y);
+            artefact.setVisible(true);
+            artefact.setIcon(new ImageIcon(artefacts.get(j).getImageName()));
+            artefactslabel.add(artefact);
+            add(artefact);
+            x +=100;
+        }
+        repaint();
+    }
+
 }

@@ -9,4 +9,9 @@ public class Sword extends Artefact {
         setOpaque(false);
         setIcon(new ImageIcon("sword.png"));
   }
+
+    @Override
+    public String getImageName() {
+        return "sword.png";
+    }
 }

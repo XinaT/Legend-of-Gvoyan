@@ -45,14 +45,13 @@ public class Combo_General {
         frame.setSize(1000, 1000);
         frame.setLayout(null);
         CounterController.createArtefactCounter(frame);
+        backpack = new Backpack(frame.getWidth() / 2, frame.getHeight(), new ArrayList<>());
+
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
                 if (e.getKeyCode() == KeyEvent.VK_R) {
-                    if(backpack == null) {
-                        backpack = new Backpack(frame.getWidth() / 2, frame.getHeight(), new ArrayList<>());
-                    }
                     if(!R) {
                         backpack.setVisible(true);
                         R = true;
