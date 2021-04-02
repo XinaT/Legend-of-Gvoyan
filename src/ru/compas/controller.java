@@ -4,6 +4,7 @@ import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionObject;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
+import ru.compas.network.Client;
 import ru.compas.objects.Domik;
 import ru.compas.objects.Vzbuchka;
 import ru.compas.things.Artefact;
@@ -16,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -131,6 +133,7 @@ public class controller {
         int y = player.getY();
         for (int j = 0; j < maps.size(); j++) {
             MapLocation mapLocation = maps.get(j);
+            //
             for (int i = 0; i < mapLocation.collisionObjects.size(); i++) {
                 CollisionObject object = mapLocation.collisionObjects.get(i);
                 for (int k = 0; k < object.karta.palki.size(); k++) {
@@ -189,35 +192,42 @@ public class controller {
                 int addY = 0;
                 blockNow = false;
                 if (direction.equals("right")) {
-                    addX = - player.velocity;
+                    addX = -player.velocity;
                     blockRight = blockNow;
                     addx = -20;
-                }
-                else if (direction.equals("left")) {
-                    addX =  player.velocity;
+                } else if (direction.equals("left")) {
+                    addX = player.velocity;
                     blockLeft = blockNow;
                     addx = 20;
-                }
-                else if (direction.equals("forward")) {
+                } else if (direction.equals("forward")) {
                     addY = player.velocity;
                     blockUp = blockNow;
                     addy = 20;
-                }
-                else if (direction.equals("toward")) {
-                    addY = - player.velocity;
+                } else if (direction.equals("toward")) {
+                    addY = -player.velocity;
                     blockDown = blockNow;
                     addy = -20;
                 }
 
                 shouldMapMove(player, direction);
-                checkCollision(maps, player, addx,addy, timer);
-                palkaFor(maps, player, addx,addy, timer);
+                checkCollision(maps, player, addx, addy, timer);
+                palkaFor(maps, player, addx, addy, timer);
 
-                if(shouldMoveMaps) {
+                if (shouldMoveMaps) {
                     MapMoves(maps, player, addX, addY);
                 }
 
                 pickUpArtefacts(player, maps);
+
+                if (!Combo_General.isServer) {
+                    try {
+                        String s = player.getX() + "*" + player.getY() + " " +maps.get(0).getX() + "@" + maps.get(0).getY();
+                        Client.send_to_server(s);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                }
+
             }
         });
         return timer;
