@@ -125,6 +125,7 @@ public class controller {
         int y = player.getY();
         for (int j = 0; j < maps.size(); j++) {
             MapLocation mapLocation = maps.get(j);
+            //
             for (int i = 0; i < mapLocation.collisionObjects.size(); i++) {
                 CollisionObject object = mapLocation.collisionObjects.get(i);
                 for (int k = 0; k < object.karta.palki.size(); k++) {
@@ -139,6 +140,7 @@ public class controller {
                     }
                 }
             }
+            //
         }
     }
         static void MapMoves (ArrayList<MapLocation> maps, player player, int addX, int addY) {

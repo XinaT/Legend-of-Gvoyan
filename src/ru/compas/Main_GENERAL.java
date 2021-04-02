@@ -1,5 +1,6 @@
 package ru.compas;
 
+import ru.compas.Enemy.EnemyController;
 import ru.compas.network.Client;
 
 import javax.swing.*;
@@ -29,7 +30,10 @@ public class Main_GENERAL {
         Combo_General.maps = maps;
         Combo_General.isServer = false;
 
+        // создание контроллера персонажа, который отвечает за перемещение и за коллизии
         controller controller = new controller(frame,player,maps);
+
+        EnemyController.createEnemies(map);
 
         frame.setVisible(true);
         Thread thread = new Thread(new Runnable() {
