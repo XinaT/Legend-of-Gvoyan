@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class MapLocation extends JLabel {
     CollisionKarta karta;
-    ArrayList<CollisionObject> collisionObjects = new ArrayList<>();
+    public ArrayList<CollisionObject> collisionObjects = new ArrayList<>();
     ArrayList<Artefact> artefacts;
 
 
