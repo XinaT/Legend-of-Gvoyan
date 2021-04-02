@@ -1,5 +1,4 @@
 package ru.compas.objects;
-import ru.compas.objects.Domik;
 
 import java.util.ArrayList;
 

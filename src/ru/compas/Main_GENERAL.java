@@ -3,6 +3,8 @@ package ru.compas;
 import ru.compas.Messager.Message;
 import ru.compas.backpack.Backpack;
 import ru.compas.objects.Domik;
+import ru.compas.objects.VolosatayaPalka;
+import ru.compas.objects.VolosatayaPalkaController;
 import ru.compas.things.Artefact;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
@@ -28,6 +30,13 @@ public class Main_GENERAL {
 //        Dialog dialog = new Dialog(createmes(), frame);
 //        frame.add(dialog);
         MapLocation map = creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
+        map.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println(frame.getX());
+                //System.out.println(frame.getY());
+            }
+        });
 
         MapLocation map1 = mapWithoutPalkiCreate(-5000, -2000, frame,  ("Карта_01.jpg"));
         MapLocation map2 = mapWithoutPalkiCreate(-5000, -6000, frame, ("Карта_02.jpg"));
@@ -52,6 +61,7 @@ public class Main_GENERAL {
 
 
         frame.setVisible(true);
+
     }
     static boolean R;
     public static JFrame creatOkno() {
@@ -191,6 +201,7 @@ public class Main_GENERAL {
         ArrayList<Artefact> swords = ArtefactContloller.createSwords();
         ArrayList<Artefact> bows = ArtefactContloller.createBows();
         ArrayList<Domik> domik = DomikController.createDomik();
+        ArrayList<VolosatayaPalka> volosatayaPalkas = VolosatayaPalkaController.createVolosatayaPalka();
 
         all.addAll(coins);
         all.addAll(swords);
@@ -212,6 +223,12 @@ public class Main_GENERAL {
             Domik d  = domik.get(i);
             map.add(d);
             map.collisionObjects.add(d);
+        }
+
+        for (int i = 0; i < volosatayaPalkas.size(); i++) {
+            VolosatayaPalka Vp  = volosatayaPalkas.get(i);
+            map.add(Vp);
+            map.collisionObjects.add(Vp);
         }
         return map;
 
