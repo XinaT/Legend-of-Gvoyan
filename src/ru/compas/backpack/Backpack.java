@@ -3,6 +3,7 @@ package ru.compas.backpack;
 import org.w3c.dom.Text;
 import ru.compas.Combo_General;
 import ru.compas.Main_GENERAL;
+import ru.compas.Player;
 import ru.compas.things.Coin;
 
 import javax.swing.*;
@@ -22,45 +23,54 @@ public class Backpack extends JFrame {
         getContentPane().setBackground(Color.getColor("#E59866"));
 
         JButton avatar = new JButton();
-        avatar.setFocusable(false);
-        avatar.setSize(100, 100);
-        avatar.setLocation(20, 20);
+        avatar.setSize(100,100);
+        avatar.setLocation(20,20);
         avatar.setOpaque(true);
-        avatar.setIcon(new ImageIcon(""));
+        avatar.setIcon(new ImageIcon("icon-van.jpg"));
 
         add(avatar);
 
-        JButton HEALTH = new JButton();
-        HEALTH.setFocusable(false);
-        HEALTH.setSize(115, 20);
-        HEALTH.setLocation(130, 40);
-        HEALTH.setBackground(Color.gray);
-        add(HEALTH);
+        Player player = Main_GENERAL.player;
 
-        int w = 0; /// расписать оставшееся здоровье
-        JButton health = new JButton();
-        health.setFocusable(false);
-        health.setSize(w, 20);
-        health.setLocation(130, 40);
-        health.setBackground(Color.getColor("#EE430C"));
+
+        int w = 300; /// расписать оставшееся здоровье
+        int x = (int) ((float) w/ player.max_hp * player.hp);
+
+        JLabel health = new JLabel();
+        health.setSize(x, 20);
+        health.setLocation(130,40);
+        health.setBackground(Color.red);
         health.setOpaque(true);
         add(health);
 
-        JButton MANA = new JButton();
-        MANA.setFocusable(false);
-        MANA.setSize(115, 20);
-        MANA.setLocation(130, 65);
-        MANA.setBackground(Color.gray);
-        MANA.setOpaque(true);
-        add(MANA);
+        JLabel max_health = new JLabel();
+        max_health.setSize(w, 20);
+        max_health.setLocation(130,40);
+        max_health.setBackground(Color.getColor("#00ff00"));
+        max_health.setBackground(Color.lightGray);
+        max_health.setOpaque(true);
+        add(max_health);
 
-        int m = 0; ///
-        JButton mana = new JButton();
+
+       ///
+        x = (int) ((float) w/ player.max_mana * player.mana);
+        JLabel mana = new JLabel();
         mana.setFocusable(false);
-        mana.setSize(m, 20);
+        mana.setSize(x, 20);
+        mana.setOpaque(true);
         mana.setLocation(130, 65);
+        mana.setBackground(Color.blue);
         mana.setOpaque(true);
         add(mana);
+
+        JLabel MANA = new JLabel();
+        MANA.setFocusable(false);
+        MANA.setSize(w, 20);
+        MANA.setLocation(130, 65);
+        MANA.setOpaque(true);
+        MANA.setBackground(Color.lightGray);
+        add(MANA);
+
 
 
         addKeyListener(new KeyAdapter() {

@@ -1,9 +1,8 @@
 package ru.compas.network;
 
 import ru.compas.Combo_General;
-import ru.compas.Main_GENERAL;
 import ru.compas.controller;
-import ru.compas.player;
+import ru.compas.Player;
 
 import javax.swing.*;
 import java.io.*;
@@ -26,7 +25,7 @@ public class Server {
                 @Override
                 public void run() {
                     System.out.println("CONNECT");
-                    player playerik = Combo_General.player_make(new ImageIcon("Древесный киборг.png"), 350, 300, socket.getInetAddress()+"");
+                    Player playerik = Combo_General.player_make(new ImageIcon("Древесный киборг.png"), 350, 300, socket.getInetAddress()+"");
                     Combo_General.list_players.add(playerik);
                     while (true){
                         try {
@@ -79,7 +78,7 @@ public class Server {
 
     }
 
-    public static void rassilka (player playerik, int x, int y, int mapX, int mapY) throws IOException {
+    public static void rassilka (Player playerik, int x, int y, int mapX, int mapY) throws IOException {
         for (int i = 0; i < socket_list.size(); i++){
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket_list.get(i).getOutputStream()));
             bufferedWriter.write("RASSILKA");

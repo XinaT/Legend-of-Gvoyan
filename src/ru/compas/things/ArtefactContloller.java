@@ -1,7 +1,7 @@
 package ru.compas.things;
 
 import ru.compas.MapLocation;
-import ru.compas.player;
+import ru.compas.Player;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -75,7 +75,7 @@ public class ArtefactContloller extends JLabel {
         return coins;
 }
 
-    public static boolean isIntersected(player player, Artefact artefact, MapLocation map) {
+    public static boolean isIntersected(Player player, Artefact artefact, MapLocation map) {
         int a = player.getY() - (artefact.getY() + map.getY());
         int b = player.getX() - (artefact.getX() + map.getX());
         int S = (int) Math.sqrt(a * a + b * b);

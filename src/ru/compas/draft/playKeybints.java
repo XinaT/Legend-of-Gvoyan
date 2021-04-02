@@ -1,13 +1,9 @@
 package ru.compas.draft;
 
-import ru.compas.player;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
-import static ru.compas.draft.main.chel;
 
 public class playKeybints {
     public static void main(String[] args) {
