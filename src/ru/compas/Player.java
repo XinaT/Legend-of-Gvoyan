@@ -16,9 +16,10 @@ public class Player extends character {
     boolean battleAction;
     boolean dialogue;
 
+
     public Player() {
         max_hp = 30;
-        hp = 15;
+        hp =15;
         max_mana = 20;
         mana = 10;
     }

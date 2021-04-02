@@ -22,9 +22,9 @@ import java.util.ArrayList;
 public class Backpack extends JFrame {
     public static JLabel Coins = new JLabel();
     public static JLabel Swords = new JLabel();
-    public static  JLabel Bows = new JLabel();
+    public static JLabel Bows = new JLabel();
 
-    public static  ArrayList<Artefact> artefacts = new ArrayList<>();
+    public static ArrayList<Artefact> artefacts = new ArrayList<>();
     public static ArrayList<JLabel> artefactslabel = new ArrayList<>();
 
     public Backpack(int width, int height, ArrayList<JButton> items) throws HeadlessException {
@@ -33,9 +33,9 @@ public class Backpack extends JFrame {
         setLayout(null);
         getContentPane().setBackground(Color.getColor("#E59866"));
 
-        JButton avatar = new JButton();
-        avatar.setSize(100,100);
-        avatar.setLocation(20,20);
+        JLabel avatar = new JLabel();
+        avatar.setSize(100, 100);
+        avatar.setLocation(20, 20);
         avatar.setOpaque(true);
         avatar.setIcon(new ImageIcon("icon-van.jpg"));
 
@@ -45,26 +45,26 @@ public class Backpack extends JFrame {
 
 
         int w = 300; /// расписать оставшееся здоровье
-        int x = (int) ((float) w/ player.max_hp * player.hp);
+        int x = (int) ((float) w / player.max_hp * player.hp);
 
         JLabel health = new JLabel();
         health.setSize(x, 20);
-        health.setLocation(130,40);
+        health.setLocation(130, 40);
         health.setBackground(Color.red);
         health.setOpaque(true);
         add(health);
 
         JLabel max_health = new JLabel();
         max_health.setSize(w, 20);
-        max_health.setLocation(130,40);
+        max_health.setLocation(130, 40);
         max_health.setBackground(Color.getColor("#00ff00"));
         max_health.setBackground(Color.lightGray);
         max_health.setOpaque(true);
         add(max_health);
 
 
-       ///
-        x = (int) ((float) w/ player.max_mana * player.mana);
+        ///
+        x = (int) ((float) w / player.max_mana * player.mana);
         JLabel mana = new JLabel();
         mana.setFocusable(false);
         mana.setSize(x, 20);
@@ -87,10 +87,8 @@ public class Backpack extends JFrame {
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
                 if (e.getKeyCode() == KeyEvent.VK_R) {
-                    if (Combo_General.R) {
-                        setVisible(false);
-                        Combo_General.R = false;
-                    }
+                    setVisible(!Combo_General.R);
+                    Combo_General.R = !Combo_General.R;
                 }
             }
         });
@@ -130,11 +128,9 @@ public class Backpack extends JFrame {
         artefact.setText("" + amount);
         if (artefact instanceof Coin) {
             CounterController.c = amount;
-        }
-        else if (artefact instanceof Sword){
+        } else if (artefact instanceof Sword) {
             CounterController.s = amount;
-        }
-        else {
+        } else {
             CounterController.b = amount;
         }
 
@@ -154,18 +150,18 @@ public class Backpack extends JFrame {
 
         for (int j = 0; j < artefacts.size(); j++) {
             JLabel artefact = new JLabel();
-            artefact.setSize(100,100);
+            artefact.setSize(100, 100);
             if (x >= this.getWidth() - artefact.getWidth()) {
-                y =+ 100;
+                y = +100;
                 x = 0;
             }
 
-            artefact.setLocation(x,y);
+            artefact.setLocation(x, y);
             artefact.setVisible(true);
             artefact.setIcon(new ImageIcon(artefacts.get(j).getImageName()));
             artefactslabel.add(artefact);
             add(artefact);
-            x +=100;
+            x += 100;
         }
         repaint();
     }
