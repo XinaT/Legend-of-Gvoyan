@@ -1,6 +1,6 @@
 package ru.compas;
 
-public class Player extends character {
+public class Pers extends character {
     public int max_hp;
     public int hp;
     public int max_mana;
@@ -17,7 +17,7 @@ public class Player extends character {
     boolean dialogue;
 
 
-    public Player() {
+    public Pers() {
         max_hp = 30;
         hp =15;
         max_mana = 20;

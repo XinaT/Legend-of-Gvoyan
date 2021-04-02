@@ -9,7 +9,7 @@ public class character extends JLabel {
     int mana;
     String name;
     String abilities;
-    ArrayList<Player> battleUnits;
+    ArrayList<Pers> battleUnits;
 
     public int velocity = 20;
 

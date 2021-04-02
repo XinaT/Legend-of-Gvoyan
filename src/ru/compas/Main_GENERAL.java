@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Main_GENERAL {
     static JFrame frame;
-    public static Player player;
+    public static Pers player;
     static String ip_server = "192.168.0.115";
     static int server_port = 1800;
     public static void main(String[] args) throws IOException {

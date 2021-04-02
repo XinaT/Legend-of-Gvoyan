@@ -3,7 +3,7 @@ package ru.compas.network;
 import ru.compas.Combo_General;
 import ru.compas.MapLocation;
 import ru.compas.controller;
-import ru.compas.Player;
+import ru.compas.Pers;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class Main_GENERAL_Server {
         Combo_General.pane = Combo_General.pane_made(frame);
 
         Combo_General.list_players = new ArrayList<>();
-        Player player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 300, "I");
+        Pers player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 300, "I");
         Combo_General.list_players.add(player);
 
         ArrayList<MapLocation> maps = new ArrayList<>();

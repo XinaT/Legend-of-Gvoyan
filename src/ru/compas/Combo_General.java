@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Combo_General {
 
     public static JLayeredPane pane = null;
-    public static ArrayList<Player> list_players = null;
+    public static ArrayList<Pers> list_players = null;
     public static ArrayList<MapLocation> maps = null;
     public static boolean isServer = false;
 
@@ -28,8 +28,8 @@ public class Combo_General {
     public static boolean R = false;
 
 
-    public static Player player_make(ImageIcon icon, int x, int y, String name){
-        Player player = new Player();
+    public static Pers player_make(ImageIcon icon, int x, int y, String name){
+        Pers player = new Pers();
         player.setSize(70,70);
         player.setIcon(icon);
         player.setLocation(x, y);

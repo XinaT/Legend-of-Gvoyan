@@ -5,7 +5,7 @@ import org.w3c.dom.css.Counter;
 import ru.compas.Combo_General;
 import ru.compas.Main_GENERAL;
 import ru.compas.things.Artefact;
-import ru.compas.Player;
+import ru.compas.Pers;
 import ru.compas.things.Coin;
 import ru.compas.things.CounterController;
 import ru.compas.things.Sword;
@@ -41,7 +41,7 @@ public class Backpack extends JFrame {
 
         add(avatar);
 
-        Player player = Main_GENERAL.player;
+        Pers player = Main_GENERAL.player;
 
 
         int w = 300; /// расписать оставшееся здоровье

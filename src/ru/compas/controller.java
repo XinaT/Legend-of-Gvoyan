@@ -43,7 +43,7 @@ public class controller {
     static int bows = 0;
 
 
-    public controller(JFrame frame, Player player, ArrayList<MapLocation> maps) {
+    public controller(JFrame frame, Pers player, ArrayList<MapLocation> maps) {
 
         RIGHT_BORDER = frame.getWidth() - 250;
         BOTTOM_BORDER = frame.getHeight() - 250;
@@ -96,7 +96,7 @@ public class controller {
 
     }
 
-        static void shouldMapMove (Player player, String direction){
+        static void shouldMapMove (Pers player, String direction){
         int x = player.getX();
         int y = player.getY();
 
@@ -110,7 +110,7 @@ public class controller {
 
     }
 
-    static void palkaFor (ArrayList<MapLocation> maps, Player player, int addx, int addy, Timer timer) {
+    static void palkaFor (ArrayList<MapLocation> maps, Pers player, int addx, int addy, Timer timer) {
         int x = player.getX();
         int y = player.getY();
         for (int i = 0; i < maps.size(); i++) {
@@ -128,7 +128,7 @@ public class controller {
             }
         }
     }
-    static void checkCollision(ArrayList<MapLocation> maps, Player player, int addx, int addy, Timer timer) {
+    static void checkCollision(ArrayList<MapLocation> maps, Pers player, int addx, int addy, Timer timer) {
         int x = player.getX();
         int y = player.getY();
         for (int j = 0; j < maps.size(); j++) {
@@ -161,7 +161,7 @@ public class controller {
             }
         }
     }
-        static void MapMoves (ArrayList<MapLocation> maps, Player player, int addX, int addY) {
+        static void MapMoves (ArrayList<MapLocation> maps, Pers player, int addX, int addY) {
                 for (int i = 0; i < maps.size(); i++) {
                     JLabel map = maps.get(i);
                     int MAP_X = map.getX();
@@ -180,7 +180,7 @@ public class controller {
             }
         }
 
-        static Timer timer (ArrayList<MapLocation> maps, Player player, String direction) {
+        static Timer timer (ArrayList<MapLocation> maps, Pers player, String direction) {
 
         Timer timer = new Timer(30, null);
         timer.addActionListener(new ActionListener() {
@@ -234,7 +234,7 @@ public class controller {
     }
 
 
-    static void pickUpArtefacts(Player player, ArrayList<MapLocation> maps) {
+    static void pickUpArtefacts(Pers player, ArrayList<MapLocation> maps) {
         // собираем артефакты
 
         for (int i = 0; i < maps.size(); i++) {
@@ -264,7 +264,7 @@ public class controller {
         }
     }
 
-    public static void move_other_players(Player playerik, int x, int y, int mapX, int mapY){
+    public static void move_other_players(Pers playerik, int x, int y, int mapX, int mapY){
         System.out.println("MAP_OTH  " + mapX+  "  " + mapY);
         int IMapX = Combo_General.maps.get(0).getX();
         int IMapY = Combo_General.maps.get(0).getY();
