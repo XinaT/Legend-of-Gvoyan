@@ -109,7 +109,7 @@ public class controller {
             MapLocation map = maps.get(i);
             for (int j = 0; j < map.karta.palki.size(); j++) {
                 Palka palka = map.karta.palki.get(j);
-                if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
+                if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map, true)) {
                     player.move("stop");
                     player.setLocation(x + addx, y + addy);
                     shouldMoveMaps = false;
@@ -130,7 +130,7 @@ public class controller {
                 CollisionObject object = mapLocation.collisionObjects.get(i);
                 for (int k = 0; k < object.karta.palki.size(); k++) {
                     Palka palka = object.karta.palki.get(k);
-                    if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation)) {
+                    if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation, true)) {
                         player.move("stop");
                         player.setLocation(x + addx, y + addy);
                         shouldMoveMaps = false;
