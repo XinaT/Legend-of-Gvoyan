@@ -1,6 +1,5 @@
 package ru.compas;
 
-import ru.compas.Messager.Message;
 import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
@@ -21,21 +20,21 @@ import java.util.ArrayList;
 public class Combo_General {
 
     public static JLayeredPane pane = null;
-    public static ArrayList<player> list_players = null;
+    public static ArrayList<Player> list_players = null;
     public static ArrayList<MapLocation> maps = null;
 
     static Backpack backpack;
     public static boolean R = false;
 
 
-    public static player player_make(ImageIcon icon, int x, int y, String name){
-        player player = new player();
+    public static Player player_make(ImageIcon icon, int x, int y, String name){
+        Player player = new Player();
         player.setSize(70,70);
         player.setIcon(icon);
         player.setLocation(x, y);
         player.unique_code = name;
         pane.add(player);
-        pane.setLayer(player, 3);
+        pane.setLayer(player, 5);
         return player;
     }
 
