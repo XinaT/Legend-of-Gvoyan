@@ -15,6 +15,7 @@ public class Main_GENERAL_Server {
     public static void main(String[] args) throws IOException {
 
 
+
         frame = Combo_General.creatOkno();
         Combo_General.pane = Combo_General.pane_made(frame);
         Combo_General.isServer = true;

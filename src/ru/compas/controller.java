@@ -251,8 +251,8 @@ public class controller {
         y = y - mapY_dob;
         System.out.println("XY  "+  x+ "  " + +y);
         playerik.setLocation(x, y);
-        playerik.mapX = mapX;
-        playerik.mapY = mapY;
+//        playerik.mapX = mapX;
+//        playerik.mapY = mapY;
 
     }
 }
