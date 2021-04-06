@@ -9,4 +9,8 @@ public class Coin extends Artefact {
         setOpaque(false);
         setIcon(new ImageIcon("coin.png"));
     }
+    @Override
+    public String getImageName() {
+        return "coin.png";
+    }
 }

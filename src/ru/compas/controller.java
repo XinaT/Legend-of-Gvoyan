@@ -6,10 +6,12 @@ import ru.compas.collision.CollisionObject;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.network.Client;
+import ru.compas.objects.Domik;
 import ru.compas.objects.Vzbuchka;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
 import ru.compas.things.Coin;
+import ru.compas.things.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -38,9 +40,11 @@ public class controller {
     static boolean blockNow = false;
 
     static int coins = 0;
+    static int swords = 0;
+    static int bows = 0;
 
 
-    public controller(JFrame frame, Player player, ArrayList<MapLocation> maps) {
+    public controller(JFrame frame, Pers player, ArrayList<MapLocation> maps) {
 
         RIGHT_BORDER = frame.getWidth() - 250;
         BOTTOM_BORDER = frame.getHeight() - 250;
@@ -93,7 +97,7 @@ public class controller {
 
     }
 
-    static void shouldMapMove(Player player, String direction) {
+    static void shouldMapMove(Pers player, String direction) {
         int x = player.getX();
         int y = player.getY();
 
@@ -106,14 +110,14 @@ public class controller {
 
     }
 
-    static void palkaFor(ArrayList<MapLocation> maps, Player player, int addx, int addy, Timer timer) {
+    static void palkaFor (ArrayList<MapLocation> maps, Pers player, int addx, int addy, Timer timer) {
         int x = player.getX();
         int y = player.getY();
         for (int i = 0; i < maps.size(); i++) {
             MapLocation map = maps.get(i);
-            for (int j = 0; j < map.karta.palki.size(); j++) {
-                Palka palka = map.karta.palki.get(j);
-                if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
+            for (int j = 0; j < map.getKarta().palki.size(); j++) {
+                Palka palka = map.getKarta().palki.get(j);
+                if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map, true)) {
                     player.move("stop");
                     player.setLocation(x + addx, y + addy);
                     shouldMoveMaps = false;
@@ -124,8 +128,7 @@ public class controller {
             }
         }
     }
-
-    static void checkCollision(ArrayList<MapLocation> maps, Player player, int addx, int addy, Timer timer) {
+    static void checkCollision(ArrayList<MapLocation> maps, Pers player, int addx, int addy, Timer timer) {
         int x = player.getX();
         int y = player.getY();
         for (int j = 0; j < maps.size(); j++) {
@@ -135,9 +138,7 @@ public class controller {
                 CollisionObject object = mapLocation.getCollisionObjects().get(i);
                 for (int k = 0; k < object.karta.palki.size(); k++) {
                     Palka palka = object.karta.palki.get(k);
-                    if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation)) {
-
-                        // изучить instanceof
+                    if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation, true)) {
 
 //                        if (object instanceof Domik) {
 //                            player.setVisible(false);
@@ -170,7 +171,7 @@ public class controller {
         }
     }
 
-    static void MapMoves(ArrayList<MapLocation> maps, Player player, int addX, int addY) {
+    static void MapMoves(ArrayList<MapLocation> maps, Pers player, int addX, int addY) {
         for (int i = 0; i < maps.size(); i++) {
             JLabel map = maps.get(i);
             int MAP_X = map.getX();
@@ -189,7 +190,7 @@ public class controller {
         }
     }
 
-    static Timer timer(ArrayList<MapLocation> maps, Player player, String direction) {
+        static Timer timer (ArrayList<MapLocation> maps, Pers player, String direction) {
 
         Timer timer = new Timer(30, null);
         timer.addActionListener(new ActionListener() {
@@ -250,7 +251,7 @@ public class controller {
     }
 
 
-    static void pickUpArtefacts(Player player, ArrayList<MapLocation> maps) {
+    static void pickUpArtefacts(Pers player, ArrayList<MapLocation> maps) {
         // собираем артефакты
 
         for (int i = 0; i < maps.size(); i++) {
@@ -260,18 +261,28 @@ public class controller {
                 if (ArtefactContloller.isIntersected(player, artefact, map)) {
                     map.remove(artefact);
                     map.artefacts.remove(artefact);
-                    if (artefact instanceof Coin) {
-                        coins++;
-                        Backpack.updateCoins(coins);
+                    Backpack.artefacts.add(artefact);
+                    Combo_General.backpack.update();
+                    if(artefact instanceof Coin){
+                        coins ++;
+//                        Backpack.updateArtefact(coins, Backpack.Coins);
                         break;
+                    }
+                    else if(artefact instanceof Sword){
+                        swords++;
+
+                    }
+                    else if(artefact instanceof Bow){
+                        bows++;
+
                     }
                 }
             }
         }
     }
 
-    public static void move_other_players(Player playerik, int x, int y, int mapX, int mapY) {
-        System.out.println("MAP_OTH  " + mapX + "  " + mapY);
+    public static void move_other_players(Pers playerik, int x, int y, int mapX, int mapY){
+        System.out.println("MAP_OTH  " + mapX+  "  " + mapY);
         int IMapX = Combo_General.maps.get(0).getX();
         int IMapY = Combo_General.maps.get(0).getY();
         System.out.println("IMAP   " + IMapX + "  " + IMapY);

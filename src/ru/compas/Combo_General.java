@@ -8,6 +8,7 @@ import ru.compas.objects.Domik;
 import ru.compas.objects.DomikController;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
+import ru.compas.things.CounterController;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class Combo_General {
 
     public static JLayeredPane pane = null;
-    public static ArrayList<Player> list_players = null;
+    public static ArrayList<Pers> list_players = null;
     public static ArrayList<MapLocation> maps = null;
     public static boolean isServer = false;
 
@@ -27,8 +28,8 @@ public class Combo_General {
     public static boolean R = false;
 
 
-    public static Player player_make(ImageIcon icon, int x, int y, String name){
-        Player player = new Player();
+    public static Pers player_make(ImageIcon icon, int x, int y, String name){
+        Pers player = new Pers();
         player.setSize(70,70);
         player.setIcon(icon);
         player.setLocation(x, y);
@@ -43,21 +44,7 @@ public class Combo_General {
         JFrame frame = new JFrame();
         frame.setSize(1000, 1000);
         frame.setLayout(null);
-        frame.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
-                if (e.getKeyCode() == KeyEvent.VK_R) {
-                    if(backpack == null) {
-                        backpack = new Backpack(frame.getWidth() / 2, frame.getHeight(), new ArrayList<>());
-                    }
-                    if(!R) {
-                        backpack.setVisible(true);
-                        R = true;
-                    }
-                }
-            }
-        });
+        CounterController.createArtefactCounter(frame);
         return frame;
     }
 
@@ -119,17 +106,11 @@ public class Combo_General {
         points.add(new Point(76,985));
         points.add(new Point(76,606));
 
-
-
-
         // чтоб палки совпадали с картой
         for (int i = 0; i < points.size(); i = i + 1) {
             Point p = points.get(i);
             p.y = p.y + 500;
         }
-
-
-
 
         ArrayList<Palka> palki = new ArrayList<>();
 
@@ -142,7 +123,6 @@ public class Combo_General {
 
         CollisionKarta karta = new CollisionKarta(palki);
         karta.setSize(3000,4000);
-
 
         ArrayList<Artefact> all = new ArrayList<>();
         ArrayList<Artefact> coins = ArtefactContloller.createCoins();
@@ -172,7 +152,19 @@ public class Combo_General {
         }
 
         return map;
-
     }
+    public static void create_backpack (JFrame frame) {
+        backpack = new Backpack(frame.getWidth() / 2, frame.getHeight(), new ArrayList<>());
 
+        frame.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if (e.getKeyCode() == KeyEvent.VK_R) {
+                    backpack.setVisible(!R);
+                    R = !R;
+                }
+            }
+        });
+        }
 }

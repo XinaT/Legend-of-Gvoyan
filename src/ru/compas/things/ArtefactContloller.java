@@ -1,24 +1,31 @@
 package ru.compas.things;
 
 import ru.compas.MapLocation;
-import ru.compas.Player;
+import ru.compas.Pers;
 
 import javax.swing.*;
 import java.util.ArrayList;
 
 public class ArtefactContloller extends JLabel {
     public static ArrayList<Artefact> createBows() {
-        ArrayList<Artefact> bows = new ArrayList<>();
 
+        ArrayList<Artefact> bows = new ArrayList<>();
         Bow bow1 = new Bow(2200, 2100);
+        Bow bow2 = new Bow(2270, 2300);
+        Bow bow3 = new Bow(1500, 2100);
+        Bow bow4 = new Bow(2200, 2100);
+
         bows.add(bow1);
+        bows.add(bow2);
+        bows.add(bow3);
+        bows.add(bow4);
 
         return bows;
     }
     public static ArrayList<Artefact> createSwords() {
         ArrayList<Artefact> swords = new ArrayList<>();
 
-        Sword sword1 = new Sword(2000, 2100);
+        Sword sword1 = new Sword(2000, 2300);
         swords.add(sword1);
 
         return swords;
@@ -75,7 +82,7 @@ public class ArtefactContloller extends JLabel {
         return coins;
 }
 
-    public static boolean isIntersected(Player player, Artefact artefact, MapLocation map) {
+    public static boolean isIntersected(Pers player, Artefact artefact, MapLocation map) {
         int a = player.getY() - (artefact.getY() + map.getY());
         int b = player.getX() - (artefact.getX() + map.getX());
         int S = (int) Math.sqrt(a * a + b * b);
