@@ -138,29 +138,24 @@ public class controller {
                 CollisionObject object = mapLocation.collisionObjects.get(i);
                 for (int k = 0; k < object.karta.palki.size(); k++) {
                     Palka palka = object.karta.palki.get(k);
-                    if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation)) {
-
-                        // изучить instanceof
+                    if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation, true)) {
 
                         if (object instanceof Domik) {
                             player.setVisible(false);
-                            Vzbuchka draka = new Vzbuchka(player.getX(), player.getY());
+                            Vzbuchka draka = new Vzbuchka(player.getX(),player.getY());
                             Combo_General.pane.add(draka);
                             Combo_General.pane.setLayer(draka, 1);
                             Main_GENERAL.frame.repaint();
                         }
 
-                        if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation, true)) {
-                            player.move("stop");
-                            player.setLocation(x + addx, y + addy);
-                            shouldMoveMaps = false;
-                            blockNow = true;
-                            timer.stop();
-                            break;
-                        }
+                        player.move("stop");
+                        player.setLocation(x + addx, y + addy);
+                        shouldMoveMaps = false;
+                        blockNow = true;
+                        timer.stop();
+                        break;
                     }
                 }
-                //
             }
         }
     }
