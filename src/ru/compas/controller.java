@@ -117,7 +117,7 @@ public class controller {
             MapLocation map = maps.get(i);
             for (int j = 0; j < map.karta.palki.size(); j++) {
                 Palka palka = map.karta.palki.get(j);
-                if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
+                if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map, true)) {
                     player.move("stop");
                     player.setLocation(x + addx, y + addy);
                     shouldMoveMaps = false;
@@ -144,20 +144,23 @@ public class controller {
 
                         if (object instanceof Domik) {
                             player.setVisible(false);
-                            Vzbuchka draka = new Vzbuchka(player.getX(),player.getY());
+                            Vzbuchka draka = new Vzbuchka(player.getX(), player.getY());
                             Combo_General.pane.add(draka);
-                            Combo_General.pane.setLayer(draka,1);
+                            Combo_General.pane.setLayer(draka, 1);
                             Main_GENERAL.frame.repaint();
                         }
 
-                        player.move("stop");
-                        player.setLocation(x + addx, y + addy);
-                        shouldMoveMaps = false;
-                        blockNow = true;
-                        timer.stop();
-                        break;
+                        if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation, true)) {
+                            player.move("stop");
+                            player.setLocation(x + addx, y + addy);
+                            shouldMoveMaps = false;
+                            blockNow = true;
+                            timer.stop();
+                            break;
+                        }
                     }
                 }
+                //
             }
         }
     }
