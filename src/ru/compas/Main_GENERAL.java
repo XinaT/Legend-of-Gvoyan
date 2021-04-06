@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Main_GENERAL {
     static JFrame frame;
-    static String ip_server = "192.168.0.115";
+    static String ip_server = "192.168.0.144";
     static int server_port = 1800;
     public static void main(String[] args) throws IOException {
 

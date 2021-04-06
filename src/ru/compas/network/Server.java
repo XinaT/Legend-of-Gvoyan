@@ -17,7 +17,6 @@ public class Server {
 
     public static void Server_make(int port) throws IOException {
         ServerSocket server = new ServerSocket(port);
-//        System.out.println(InetAddress.getLocalHost());
 
         while (true) {
             Socket socket = server.accept();
@@ -42,11 +41,12 @@ public class Server {
                                 int index_probel = string.indexOf(' ');
                                 int index_sobaka = string.indexOf('@');
 
+
                                 String x_str = string.substring(0, index_zvezda);
                                 String y_str = string.substring(index_zvezda + 1, index_probel);
 
                                 String mapX_str = string.substring(index_probel + 1, index_sobaka);
-                                String mapY_str = string.substring(index_sobaka + 1, string.length());
+                                String mapY_str = string.substring(index_sobaka + 1, string.length()-1);
 
 
                                 int x = Integer.valueOf(x_str);
@@ -84,6 +84,7 @@ public class Server {
 
         for (int a = 0; a < Combo_General.list_players.size(); a++){
 
+
             String adress = "";
             String dannieOfPlayer = "";
             if (Combo_General.list_players.get(a).unique_code.equals("I")){
@@ -94,7 +95,7 @@ public class Server {
 
             dannieOfPlayer = adress + " " + Combo_General.list_players.get(a).getX() + "@" +
                     Combo_General.list_players.get(a).getY() + "_" + Combo_General.list_players.get(a).mapX + "*"
-                    + Combo_General.list_players.get(a).mapY + "\n";
+                    + Combo_General.list_players.get(a).mapY + "r";
 
             string = string + dannieOfPlayer;
 
@@ -102,9 +103,8 @@ public class Server {
 
         for (int i = 0; i < socket_list.size(); i++) {
 
-
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket_list.get(i).getOutputStream()));
-            bufferedWriter.write(string);
+            bufferedWriter.write(string + "\n");
             bufferedWriter.flush();
 
         }

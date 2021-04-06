@@ -253,7 +253,6 @@ public class controller {
         playerik.setLocation(x, y);
         playerik.mapX = mapX;
         playerik.mapY = mapY;
+
     }
-
-
 }
