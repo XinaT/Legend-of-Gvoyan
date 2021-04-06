@@ -5,11 +5,12 @@ import ru.compas.collision.CollisionObject;
 import ru.compas.things.Artefact;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class MapLocation extends JLabel {
-    public CollisionKarta karta;
-    public ArrayList<CollisionObject> collisionObjects = new ArrayList<>();
+    private CollisionKarta karta;
+    private ArrayList<CollisionObject> collisionObjects = new ArrayList<>();
     ArrayList<Artefact> artefacts;
 
 
@@ -18,5 +19,22 @@ public class MapLocation extends JLabel {
         this.karta = karta;
         this.artefacts = artefacts;
         add(karta);
+    }
+
+    @Override
+    public Component add(Component comp) {
+        if (comp instanceof CollisionObject) {
+            CollisionObject object = (CollisionObject) comp;
+            collisionObjects.add(object);
+        }
+        return super.add(comp);
+    }
+
+    public ArrayList<CollisionObject> getCollisionObjects() {
+        return collisionObjects;
+    }
+
+    public CollisionKarta getKarta() {
+        return karta;
     }
 }

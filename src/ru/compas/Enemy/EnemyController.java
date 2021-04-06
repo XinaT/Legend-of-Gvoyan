@@ -11,16 +11,15 @@ import java.awt.event.ActionListener;
 
 public class EnemyController {
     public static void createEnemies(MapLocation map) {
-
-        Enemy enemy1 = new Enemy(1500, 2200);
+        Enemy enemy1 = new Enemy(1500, 2200,100,100);
         map.add(enemy1);
         setEnemyMovement(enemy1, map);
 
-        Enemy enemy2 = new Enemy(1700, 2200);
+        Enemy enemy2 = new Enemy(1700, 2200,100,100);
         map.add(enemy2);
         setEnemyMovement(enemy2, map);
 
-        Enemy enemy3 = new Enemy(1800, 2200);
+        Enemy enemy3 = new Enemy(1800, 2200,100,100);
         map.add(enemy3);
         setEnemyMovement(enemy3, map);
     }
@@ -36,8 +35,8 @@ public class EnemyController {
                 int y = enemy.getY();
 
                 boolean isUdarilsya = false;
-                for (int i = 0; i < map.collisionObjects.size(); i++) {
-                    CollisionObject object = map.collisionObjects.get(i);
+                for (int i = 0; i < map.getCollisionObjects().size(); i++) {
+                    CollisionObject object = map.getCollisionObjects().get(i);
                     for (int k = 0; k < object.karta.palki.size(); k++) {
                         Palka palka = object.karta.palki.get(k);
                         if (CollisionUtils.isPersAndPalkaIntersected(enemy, palka, map, false)) {
@@ -52,8 +51,8 @@ public class EnemyController {
                 //проверяем, что враг пересекается с палкой
                 //если пересекается то ваыставляем, что он ударился и заканчиваем проверку
 
-                for (int i = 0; i < map.karta.palki.size(); i++) {
-                    Palka palka = map.karta.palki.get(i);
+                for (int i = 0; i < map.getKarta().palki.size(); i++) {
+                    Palka palka = map.getKarta().palki.get(i);
                     if (CollisionUtils.isPersAndPalkaIntersected(enemy, palka, map, false)){
                         isUdarilsya = true;
                         break;
@@ -68,5 +67,10 @@ public class EnemyController {
             }
         });
         timer.start();
+
+        Enemy enemy2 = new Enemy(1700, 2500,100,100);
+        map.add(enemy2);
+        Enemy enemy3 = new Enemy(1800, 2500,100,100);
+        map.add(enemy3);
     }
 }

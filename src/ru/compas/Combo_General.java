@@ -149,7 +149,6 @@ public class Combo_General {
         for (int i = 0; i < domiks.size(); i++) {
             Domik domik = domiks.get(i);
             map.add(domik);
-            map.collisionObjects.add(domik);
         }
 
         return map;
