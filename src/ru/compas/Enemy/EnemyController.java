@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 
 public class EnemyController extends JLabel {
     public static void createEnemies(MapLocation map) {
-        Enemy enemy1 = new Enemy(1500, 2100);
+        Enemy enemy1 = new Enemy(1500, 2100,100,100);
         map.add(enemy1);
 
         Timer timer = new Timer(30,null);
@@ -25,8 +25,8 @@ public class EnemyController extends JLabel {
                 int y = enemy1.getY();
 
                 boolean isUdarilsya = false;
-                for (int i = 0; i < map.collisionObjects.size(); i++) {
-                    CollisionObject object = map.collisionObjects.get(i);
+                for (int i = 0; i < map.getCollisionObjects().size(); i++) {
+                    CollisionObject object = map.getCollisionObjects().get(i);
                     for (int k = 0; k < object.karta.palki.size(); k++) {
                         Palka palka = object.karta.palki.get(k);
                         if (CollisionUtils.isPersAndPalkaIntersected(enemy1, palka, map)) {
@@ -45,9 +45,9 @@ public class EnemyController extends JLabel {
         });
         timer.start();
 
-        Enemy enemy2 = new Enemy(1700, 2100);
+        Enemy enemy2 = new Enemy(1700, 2500,100,100);
         map.add(enemy2);
-        Enemy enemy3 = new Enemy(1800, 2100);
+        Enemy enemy3 = new Enemy(1800, 2500,100,100);
         map.add(enemy3);
     }
 }

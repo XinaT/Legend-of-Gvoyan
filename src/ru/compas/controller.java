@@ -1,12 +1,12 @@
 package ru.compas;
 
+import ru.compas.Enemy.Enemy;
 import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionObject;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
-import ru.compas.objects.Domik;
-import ru.compas.objects.Vzbuchka;
 import ru.compas.network.Client;
+import ru.compas.objects.Vzbuchka;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
 import ru.compas.things.Coin;
@@ -16,8 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.ArrayList;
-
 
 
 public class controller {
@@ -34,6 +34,7 @@ public class controller {
     static boolean blockRight = false;
     static boolean blockLeft = false;
 
+    static boolean motion = true;
     static boolean blockNow = false;
 
     static int coins = 0;
@@ -44,7 +45,7 @@ public class controller {
         RIGHT_BORDER = frame.getWidth() - 250;
         BOTTOM_BORDER = frame.getHeight() - 250;
 
-        Timer right = timer (maps, player, "right");
+        Timer right = timer(maps, player, "right");
         Timer left = timer(maps, player, "left");
         Timer down = timer(maps, player, "toward");
         Timer up = timer(maps, player, "forward");
@@ -92,21 +93,20 @@ public class controller {
 
     }
 
-        static void shouldMapMove (Player player, String direction){
+    static void shouldMapMove(Player player, String direction) {
         int x = player.getX();
         int y = player.getY();
 
-        if(direction.equals("right") && x < RIGHT_BORDER || direction.equals("left") && x > LEFT_BORDER || direction.equals("toward") && y < BOTTOM_BORDER || direction.equals("forward") && y > TOP_BORDER ){
+        if (direction.equals("right") && x < RIGHT_BORDER || direction.equals("left") && x > LEFT_BORDER || direction.equals("toward") && y < BOTTOM_BORDER || direction.equals("forward") && y > TOP_BORDER) {
             player.move(direction);
             shouldMoveMaps = false;
-        }
-        else {
+        } else {
             shouldMoveMaps = true;
         }
 
     }
 
-    static void palkaFor (ArrayList<MapLocation> maps, Player player, int addx, int addy, Timer timer) {
+    static void palkaFor(ArrayList<MapLocation> maps, Player player, int addx, int addy, Timer timer) {
         int x = player.getX();
         int y = player.getY();
         for (int i = 0; i < maps.size(); i++) {
@@ -124,25 +124,36 @@ public class controller {
             }
         }
     }
+
     static void checkCollision(ArrayList<MapLocation> maps, Player player, int addx, int addy, Timer timer) {
         int x = player.getX();
         int y = player.getY();
         for (int j = 0; j < maps.size(); j++) {
             MapLocation mapLocation = maps.get(j);
             //
-            for (int i = 0; i < mapLocation.collisionObjects.size(); i++) {
-                CollisionObject object = mapLocation.collisionObjects.get(i);
+            for (int i = 0; i < mapLocation.getCollisionObjects().size(); i++) {
+                CollisionObject object = mapLocation.getCollisionObjects().get(i);
                 for (int k = 0; k < object.karta.palki.size(); k++) {
                     Palka palka = object.karta.palki.get(k);
                     if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation)) {
 
                         // изучить instanceof
 
-                        if (object instanceof Domik) {
+//                        if (object instanceof Domik) {
+//                            player.setVisible(false);
+//                            Vzbuchka draka = new Vzbuchka(player.getX(),player.getY());
+//                            Combo_General.pane.add(draka);
+//                            Combo_General.pane.setLayer(draka,1);
+//                            Main_GENERAL.frame.repaint();
+//                        }
+
+                        if (object instanceof Enemy) {
+                            object.setVisible(false);
                             player.setVisible(false);
-                            Vzbuchka draka = new Vzbuchka(player.getX(),player.getY());
-                            Combo_General.pane.add(draka);
-                            Combo_General.pane.setLayer(draka,1);
+                            Vzbuchka draka1 = new Vzbuchka(player.getX(), player.getY());
+                            Combo_General.pane.add(draka1);
+                            motion = false;
+                            Combo_General.pane.setLayer(draka1, 1);
                             Main_GENERAL.frame.repaint();
                         }
 
@@ -158,52 +169,60 @@ public class controller {
             //
         }
     }
-        static void MapMoves (ArrayList<MapLocation> maps, Player player, int addX, int addY) {
-                for (int i = 0; i < maps.size(); i++) {
-                    JLabel map = maps.get(i);
-                    int MAP_X = map.getX();
-                    int MAP_Y = map.getY();
-                    map.setLocation(MAP_X + addX , MAP_Y + addY);
-            }
 
-            for (int a = 0; a < Combo_General.list_players.size(); a++){
-                if (!(Combo_General.list_players.get(a).unique_code).equals("I")){
-                    int x = Combo_General.list_players.get(a).getX();
-                    int y = Combo_General.list_players.get(a).getY();
-                    x = x + addX;
-                    y = y + addY;
-                    Combo_General.list_players.get(a).setLocation(x, y);
-                }
-            }
+    static void MapMoves(ArrayList<MapLocation> maps, Player player, int addX, int addY) {
+        for (int i = 0; i < maps.size(); i++) {
+            JLabel map = maps.get(i);
+            int MAP_X = map.getX();
+            int MAP_Y = map.getY();
+            map.setLocation(MAP_X + addX, MAP_Y + addY);
         }
 
-        static Timer timer (ArrayList<MapLocation> maps, Player player, String direction) {
+        for (int a = 0; a < Combo_General.list_players.size(); a++) {
+            if (!(Combo_General.list_players.get(a).unique_code).equals("I")) {
+                int x = Combo_General.list_players.get(a).getX();
+                int y = Combo_General.list_players.get(a).getY();
+                x = x + addX;
+                y = y + addY;
+                Combo_General.list_players.get(a).setLocation(x, y);
+            }
+        }
+    }
+
+    static Timer timer(ArrayList<MapLocation> maps, Player player, String direction) {
 
         Timer timer = new Timer(30, null);
         timer.addActionListener(new ActionListener() {
             int addx = 0;
             int addy = 0;
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 int addX = 0;
                 int addY = 0;
                 blockNow = false;
-                if (direction.equals("right")) {
-                    addX = -player.velocity;
-                    blockRight = blockNow;
-                    addx = -20;
-                } else if (direction.equals("left")) {
-                    addX = player.velocity;
-                    blockLeft = blockNow;
-                    addx = 20;
-                } else if (direction.equals("forward")) {
-                    addY = player.velocity;
-                    blockUp = blockNow;
-                    addy = 20;
-                } else if (direction.equals("toward")) {
-                    addY = -player.velocity;
-                    blockDown = blockNow;
-                    addy = -20;
+
+                if (motion) {
+                    if (direction.equals("right")) {
+                        addX = -player.velocity;
+                        blockRight = blockNow;
+                        addx = -20;
+                    } else if (direction.equals("left")) {
+                        addX = player.velocity;
+                        blockLeft = blockNow;
+                        addx = 20;
+                    } else if (direction.equals("forward")) {
+                        addY = player.velocity;
+                        blockUp = blockNow;
+                        addy = 20;
+                    } else if (direction.equals("toward")) {
+                        addY = -player.velocity;
+                        blockDown = blockNow;
+                        addy = -20;
+                    }
+
+                } else {
+
                 }
 
                 shouldMapMove(player, direction);
@@ -218,10 +237,10 @@ public class controller {
 
                 if (!Combo_General.isServer) {
                     try {
-                        String s = player.getX() + "*" + player.getY() + " " +maps.get(0).getX() + "@" + maps.get(0).getY();
+                        String s = player.getX() + "*" + player.getY() + " " + maps.get(0).getX() + "@" + maps.get(0).getY();
                         Client.send_to_server(s);
-                    } catch (IOException ioException) {
-                        ioException.printStackTrace();
+                    } catch (IOException IOException) {
+                        IOException.printStackTrace();
                     }
                 }
 
@@ -241,8 +260,8 @@ public class controller {
                 if (ArtefactContloller.isIntersected(player, artefact, map)) {
                     map.remove(artefact);
                     map.artefacts.remove(artefact);
-                    if(artefact instanceof Coin){
-                        coins ++;
+                    if (artefact instanceof Coin) {
+                        coins++;
                         Backpack.updateCoins(coins);
                         break;
                     }
@@ -251,18 +270,18 @@ public class controller {
         }
     }
 
-    public static void move_other_players(Player playerik, int x, int y, int mapX, int mapY){
-        System.out.println("MAP_OTH  " + mapX+  "  " + mapY);
+    public static void move_other_players(Player playerik, int x, int y, int mapX, int mapY) {
+        System.out.println("MAP_OTH  " + mapX + "  " + mapY);
         int IMapX = Combo_General.maps.get(0).getX();
         int IMapY = Combo_General.maps.get(0).getY();
         System.out.println("IMAP   " + IMapX + "  " + IMapY);
-        int mapX_dob = -IMapX+mapX;
-        int mapY_dob = -IMapY+mapY;
-        System.out.println("MAPDOB  " + mapX_dob + "  "+ + mapY_dob);
+        int mapX_dob = -IMapX + mapX;
+        int mapY_dob = -IMapY + mapY;
+        System.out.println("MAPDOB  " + mapX_dob + "  " + +mapY_dob);
 
         x = x - mapX_dob;
         y = y - mapY_dob;
-        System.out.println("XY  "+  x+ "  " + +y);
+        System.out.println("XY  " + x + "  " + +y);
         playerik.setLocation(x, y);
     }
 

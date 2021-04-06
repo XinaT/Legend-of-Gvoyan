@@ -1,10 +1,11 @@
 package ru.compas;
 
-import ru.compas.character;
-
-import java.util.ArrayList;
-
-public class player extends character {
+public class Player extends character {
+    public int max_hp;
+    public int hp;
+    public int max_mana;
+    public int mana;
+    public String unique_code;
     int strength;
     int intellect;
     int damage;
@@ -12,8 +13,13 @@ public class player extends character {
     int xp;
     int protection;
     String type;
-    public String unique_code;
-
     boolean battleAction;
     boolean dialogue;
+
+    public Player() {
+        max_hp = 30;
+        hp = 15;
+        max_mana = 20;
+        mana = 10;
+    }
 }
