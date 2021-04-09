@@ -1,9 +1,8 @@
 package ru.compas.network;
 
 import ru.compas.Combo_General;
-import ru.compas.Main_GENERAL;
 import ru.compas.controller;
-import ru.compas.player;
+import ru.compas.Pers;
 
 import javax.swing.*;
 import java.io.*;
@@ -27,7 +26,7 @@ public class Server {
                 @Override
                 public void run() {
                     System.out.println("CONNECT");
-                    player playerik = Combo_General.player_make(new ImageIcon("Древесный киборг.png"), 350, 300,
+                    Pers playerik = Combo_General.player_make(new ImageIcon("Древесный киборг.png"), 350, 300,
                             socket.getInetAddress() + "", -2000, -2000);
                     Combo_General.list_players.add(playerik);
                     while (true) {

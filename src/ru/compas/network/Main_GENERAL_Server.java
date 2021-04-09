@@ -3,7 +3,7 @@ package ru.compas.network;
 import ru.compas.Combo_General;
 import ru.compas.MapLocation;
 import ru.compas.controller;
-import ru.compas.player;
+import ru.compas.Pers;
 
 import javax.swing.*;
 import java.io.IOException;

@@ -5,7 +5,7 @@
 //import ru.compas.collision.CollisionUtils;
 //import ru.compas.collision.Palka;
 //import ru.compas.network.Main_GENERAL_Server;
-//import ru.compas.player;
+//import ru.compas.Player;
 //import ru.compas.things.Artefact;
 //import ru.compas.things.ArtefactContloller;
 //
@@ -32,15 +32,15 @@
 //
 //    static boolean blockNow = false;
 //
-//    public Server_controller(JFrame frame, player player, ArrayList<MapLocation> maps) {
+//    public Server_controller(JFrame frame, Player Player, ArrayList<MapLocation> maps) {
 //
 //        RIGHT_BORDER = frame.getWidth() - 250;
 //        BOTTOM_BORDER = frame.getHeight() - 250;
 //
-//        Timer right = timer (maps, player, "right");
-//        Timer left = timer(maps, player, "left");
-//        Timer down = timer(maps, player, "toward");
-//        Timer up = timer(maps, player, "forward");
+//        Timer right = timer (maps, Player, "right");
+//        Timer left = timer(maps, Player, "left");
+//        Timer down = timer(maps, Player, "toward");
+//        Timer up = timer(maps, Player, "forward");
 //
 //        frame.addKeyListener(new KeyAdapter() {
 //            @Override
@@ -85,12 +85,12 @@
 //
 //    }
 //
-//    static void shouldMapMove (player player, String direction){
-//        int x = player.getX();
-//        int y = player.getY();
+//    static void shouldMapMove (Player Player, String direction){
+//        int x = Player.getX();
+//        int y = Player.getY();
 //
 //        if(direction.equals("right") && x < RIGHT_BORDER || direction.equals("left") && x > LEFT_BORDER || direction.equals("toward") && y < BOTTOM_BORDER || direction.equals("forward") && y > TOP_BORDER ){
-//            player.move(direction);
+//            Player.move(direction);
 //            shouldMoveMaps = false;
 //        }
 //        else {
@@ -99,16 +99,16 @@
 //
 //    }
 //
-//    static void palkaFor (ArrayList<MapLocation> maps, player player, int addx, int addy, Timer timer) {
-//        int x =player.getX();
-//        int y =player.getY();
+//    static void palkaFor (ArrayList<MapLocation> maps, Player Player, int addx, int addy, Timer timer) {
+//        int x =Player.getX();
+//        int y =Player.getY();
 //        for (int i = 0; i < maps.size(); i++) {
 //            MapLocation map = maps.get(i);
 //            for (int j = 0; j < map.karta.palki.size(); j++) {
 //                Palka palka = map.karta.palki.get(j);
-//                if (CollisionUtils.isPersAndPalkaIntersected(player, palka, map)) {
-//                    player.move("stop");
-//                    player.setLocation(x + addx,y + addy);
+//                if (CollisionUtils.isPersAndPalkaIntersected(Player, palka, map)) {
+//                    Player.move("stop");
+//                    Player.setLocation(x + addx,y + addy);
 //                    shouldMoveMaps = false;
 //                    blockNow = true;
 //                    timer.stop();
@@ -118,7 +118,7 @@
 //        }
 //
 //    }
-//    static void MapMoves (ArrayList<MapLocation> maps, player player, int addX, int addY) {
+//    static void MapMoves (ArrayList<MapLocation> maps, Player Player, int addX, int addY) {
 //        for (int i = 0; i < maps.size(); i++) {
 //            JLabel map = maps.get(i);
 //            int MAP_X = map.getX();
@@ -139,7 +139,7 @@
 //        }
 //    }
 //
-//    static void move_other_players(player playerik, int x, int y, int mapX, int mapY){
+//    static void move_other_players(Player playerik, int x, int y, int mapX, int mapY){
 //        System.out.println("MAP_OTH  " + mapX+  "  " + mapY);
 //        int IMapX = Combo_General.maps.get(0).getX();
 //        int IMapY = Combo_General.maps.get(0).getY();
@@ -154,7 +154,7 @@
 //        playerik.setLocation(x, y);
 //    }
 //
-//    static Timer timer (ArrayList<MapLocation> maps, player player, String direction) {
+//    static Timer timer (ArrayList<MapLocation> maps, Player Player, String direction) {
 //
 //        Timer timer = new Timer(30, null);
 //        timer.addActionListener(new ActionListener() {
@@ -166,49 +166,49 @@
 //                int addY = 0;
 //                blockNow = false;
 //                if (direction.equals("right")) {
-//                    addX = - player.velocity;
+//                    addX = - Player.velocity;
 //                    blockRight = blockNow;
 //                    addx = -20;
 //                }
 //                else if (direction.equals("left")) {
-//                    addX =  player.velocity;
+//                    addX =  Player.velocity;
 //                    blockLeft = blockNow;
 //                    addx = 20;
 //                }
 //                else if (direction.equals("forward")) {
-//                    addY = player.velocity;
+//                    addY = Player.velocity;
 //                    blockUp = blockNow;
 //                    addy = 20;
 //                }
 //                else if (direction.equals("toward")) {
-//                    addY = - player.velocity;
+//                    addY = - Player.velocity;
 //                    blockDown = blockNow;
 //                    addy = -20;
 //                }
 //
-//                shouldMapMove(player, direction);
-//                palkaFor(maps, player, addx,addy, timer);
+//                shouldMapMove(Player, direction);
+//                palkaFor(maps, Player, addx,addy, timer);
 //
 //
 //                if(shouldMoveMaps) {
-//                    MapMoves(maps, player, addX, addY);
+//                    MapMoves(maps, Player, addX, addY);
 //                }
 //
-//                pickUpArtefacts(player, maps);
+//                pickUpArtefacts(Player, maps);
 //            }
 //        });
 //        return timer;
 //    }
 //
 //
-//    static void pickUpArtefacts(player player, ArrayList<MapLocation> maps) {
+//    static void pickUpArtefacts(Player Player, ArrayList<MapLocation> maps) {
 //        // собираем артефакты
 //
 //        for (int i = 0; i < maps.size(); i++) {
 //            MapLocation map = maps.get(i);
 //            for (int j = 0; j < map.artefacts.size(); j++) {
 //                Artefact artefact = map.artefacts.get(j);
-//                if (ArtefactContloller.isIntersected(player, artefact, map)) {
+//                if (ArtefactContloller.isIntersected(Player, artefact, map)) {
 //                    map.remove(artefact);
 //                }
 //            }

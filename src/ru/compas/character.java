@@ -1,7 +1,6 @@
 package ru.compas;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class character extends JLabel {
@@ -10,7 +9,7 @@ public class character extends JLabel {
     int mana;
     String name;
     String abilities;
-    ArrayList<player> battleUnits;
+    ArrayList<Pers> battleUnits;
 
     public int velocity = 20;
 

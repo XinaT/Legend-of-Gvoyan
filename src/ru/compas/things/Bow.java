@@ -9,4 +9,10 @@ public class Bow extends Artefact {
         setOpaque(false);
         setIcon(new ImageIcon("bow1.png"));
     }
+
+        @Override
+       public String getImageName() {
+       return "bow1.png";
+
+    }
 }
