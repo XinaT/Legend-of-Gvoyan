@@ -41,7 +41,7 @@ public class Backpack extends JFrame {
 
         add(avatar);
 
-        Pers player = Main_GENERAL.player;
+        Pers player = Combo_General.list_players.get(0);
 
 
         int w = 300; /// расписать оставшееся здоровье
