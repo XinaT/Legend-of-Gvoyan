@@ -8,6 +8,7 @@ import ru.compas.collision.Palka;
 import ru.compas.network.Client;
 import ru.compas.objects.Domik;
 import ru.compas.objects.Vzbuchka;
+import ru.compas.network.Server;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
 import ru.compas.things.Coin;
@@ -170,14 +171,14 @@ public class controller {
             //
         }
     }
+        static void MapMoves (ArrayList<MapLocation> maps, Pers player, int addX, int addY) {
+                for (int i = 0; i < maps.size(); i++) {
+                    JLabel map = maps.get(i);
+                    int MAP_X = map.getX();
+                    int MAP_Y = map.getY();
+                    map.setLocation(MAP_X + addX , MAP_Y + addY);
 
-    static void MapMoves(ArrayList<MapLocation> maps, Pers player, int addX, int addY) {
-        for (int i = 0; i < maps.size(); i++) {
-            JLabel map = maps.get(i);
-            int MAP_X = map.getX();
-            int MAP_Y = map.getY();
-            map.setLocation(MAP_X + addX, MAP_Y + addY);
-        }
+            }
 
         for (int a = 0; a < Combo_General.list_players.size(); a++) {
             if (!(Combo_General.list_players.get(a).unique_code).equals("I")) {
@@ -233,6 +234,8 @@ public class controller {
                 if (shouldMoveMaps) {
                     MapMoves(maps, player, addX, addY);
                 }
+                player.mapX = maps.get(0).getX();
+                player.mapY = maps.get(0).getY();
 
                 pickUpArtefacts(player, maps);
 
@@ -242,6 +245,18 @@ public class controller {
                         Client.send_to_server(s);
                     } catch (IOException IOException) {
                         IOException.printStackTrace();
+                    }
+                } else{
+                    try {
+                        int x = Combo_General.list_players.get(0).getX();
+                        int y = Combo_General.list_players.get(0).getY();
+
+                        Combo_General.list_players.get(0).XNotChange = x;
+                        Combo_General.list_players.get(0).YNotChange = y;
+
+                        Server.rassilka();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
                     }
                 }
 
@@ -282,6 +297,11 @@ public class controller {
     }
 
     public static void move_other_players(Pers playerik, int x, int y, int mapX, int mapY){
+
+        playerik.XNotChange = x;
+        playerik.YNotChange = y;
+
+
         System.out.println("MAP_OTH  " + mapX+  "  " + mapY);
         int IMapX = Combo_General.maps.get(0).getX();
         int IMapY = Combo_General.maps.get(0).getY();
@@ -294,7 +314,8 @@ public class controller {
         y = y - mapY_dob;
         System.out.println("XY  " + x + "  " + +y);
         playerik.setLocation(x, y);
+        playerik.mapX = mapX;
+        playerik.mapY = mapY;
+
     }
-
-
 }

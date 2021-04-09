@@ -13,6 +13,8 @@ import ru.compas.things.CounterController;
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 
@@ -27,8 +29,7 @@ public class Combo_General {
     static Backpack backpack;
     public static boolean R = false;
 
-
-    public static Pers player_make(ImageIcon icon, int x, int y, String name){
+    public static Pers player_make(ImageIcon icon, int x, int y, String name, int mapX, int mapY){
         Pers player = new Pers();
         player.setSize(70,70);
         player.setIcon(icon);
@@ -36,7 +37,21 @@ public class Combo_General {
         player.unique_code = name;
         pane.add(player);
         pane.setLayer(player, 5);
+        player.mapX = mapX;
+        player.mapY = mapY;
+
+        player.XNotChange = x;
+        player.YNotChange = y;
         return player;
+    }
+
+    public static String getIPOfComp() throws UnknownHostException {
+        String res = "";
+        String t = InetAddress.getLocalHost() + "";
+        int index = t.indexOf("/");
+//        index = index-1;
+        res = t.substring(index, t.length());
+        return res;
     }
 
 
