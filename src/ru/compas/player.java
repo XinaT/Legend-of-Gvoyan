@@ -15,6 +15,9 @@ public class player extends character {
     public String unique_code;
     public int mapX;
     public int mapY;
+    public int XNotChange;
+    public int YNotChange;
+    public int getMapXNotChange;
 
     boolean battleAction;
     boolean dialogue;

@@ -37,6 +37,9 @@ public class Combo_General {
         pane.setLayer(player, 3);
         player.mapX = mapX;
         player.mapY = mapY;
+
+        player.XNotChange = x;
+        player.YNotChange = y;
         return player;
     }
 

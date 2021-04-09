@@ -212,6 +212,12 @@ public class controller {
                     }
                 } else{
                     try {
+                        int x = Combo_General.list_players.get(0).getX();
+                        int y = Combo_General.list_players.get(0).getY();
+
+                        Combo_General.list_players.get(0).XNotChange = x;
+                        Combo_General.list_players.get(0).YNotChange = y;
+
                         Server.rassilka();
                     } catch (IOException e1) {
                         e1.printStackTrace();
@@ -239,6 +245,11 @@ public class controller {
     }
 
     public static void move_other_players(player playerik, int x, int y, int mapX, int mapY){
+
+        playerik.XNotChange = x;
+        playerik.YNotChange = y;
+
+
         System.out.println("MAP_OTH  " + mapX+  "  " + mapY);
         int IMapX = Combo_General.maps.get(0).getX();
         int IMapY = Combo_General.maps.get(0).getY();
@@ -251,8 +262,8 @@ public class controller {
         y = y - mapY_dob;
         System.out.println("XY  "+  x+ "  " + +y);
         playerik.setLocation(x, y);
-//        playerik.mapX = mapX;
-//        playerik.mapY = mapY;
+        playerik.mapX = mapX;
+        playerik.mapY = mapY;
 
     }
 }
