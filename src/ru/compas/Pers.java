@@ -16,6 +16,12 @@ public class Pers extends character {
     boolean battleAction;
     boolean dialogue;
 
+    public int mapX;
+    public int mapY;
+    public int XNotChange;
+    public int YNotChange;
+    public int getMapXNotChange;
+
 
     public Pers() {
         max_hp = 30;
