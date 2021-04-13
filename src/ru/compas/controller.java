@@ -140,15 +140,6 @@ public class controller {
                 for (int k = 0; k < object.karta.palki.size(); k++) {
                     Palka palka = object.karta.palki.get(k);
                     if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation, true)) {
-
-//                        if (object instanceof Domik) {
-//                            player.setVisible(false);
-//                            Vzbuchka draka = new Vzbuchka(player.getX(),player.getY());
-//                            Combo_General.pane.add(draka);
-//                            Combo_General.pane.setLayer(draka,1);
-//                            Main_GENERAL.frame.repaint();
-//                        }
-
                         if (object instanceof Enemy) {
                             object.setVisible(false);
                             player.setVisible(false);
@@ -168,7 +159,7 @@ public class controller {
                     }
                 }
             }
-            //
+
         }
     }
         static void MapMoves (ArrayList<MapLocation> maps, Pers player, int addX, int addY) {
@@ -281,7 +272,6 @@ public class controller {
                     Combo_General.backpack.update();
                     if(artefact instanceof Coin){
                         coins ++;
-//                        Backpack.updateArtefact(coins, Backpack.Coins);
                         break;
                     }
                     else if(artefact instanceof Sword){
@@ -317,6 +307,9 @@ public class controller {
         playerik.setLocation(x, y);
         playerik.mapX = mapX;
         playerik.mapY = mapY;
+        System.out.println("XY  "+  x+ "  " + +y);
+        playerik.setLocation(x, y);
+
 
     }
 }
