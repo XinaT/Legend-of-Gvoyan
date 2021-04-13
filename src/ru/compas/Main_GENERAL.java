@@ -14,7 +14,7 @@ public class Main_GENERAL {
     public static Pers player;
     static String ip_server = "192.168.0.141";
     static int server_port = 1800;
-        static JFrame frame;
+//    static JFrame frame;
 
         public static void main(String[] args) throws IOException {
             Combo_General.make_start(false);

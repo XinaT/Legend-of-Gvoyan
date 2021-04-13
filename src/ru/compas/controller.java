@@ -241,7 +241,8 @@ public class controller {
 
                 if (!Combo_General.isServer) {
                     try {
-                        String s = player.getX() + "*" + player.getY() + " " + maps.get(0).getX() + "@" + maps.get(0).getY();
+                        String s = player.getX() + "*" + player.getY() + " " + maps.get(0).getX() + "@" + maps.get(0).getY()
+                                + "#" + player.name_img;
                         Client.send_to_server(s);
                     } catch (IOException IOException) {
                         IOException.printStackTrace();

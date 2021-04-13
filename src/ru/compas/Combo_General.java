@@ -31,7 +31,14 @@ public class Combo_General {
     static Backpack backpack;
     public static boolean R = false;
 
-    public static Pers player_make(ImageIcon icon, int x, int y, String name, int mapX, int mapY){
+    public static Pers player_make(String name_img, int x, int y, String name, int mapX, int mapY){
+        ImageIcon icon = new ImageIcon(name_img);
+
+        if (icon.getIconHeight() == -1){
+            icon = new ImageIcon("Бомж.png");
+            name_img = "Бомж.png";
+        }
+
         Pers player = new Pers();
         player.setSize(70,70);
         player.setIcon(icon);
@@ -44,6 +51,7 @@ public class Combo_General {
 
         player.XNotChange = x;
         player.YNotChange = y;
+        player.name_img = name_img;
         return player;
     }
 
@@ -184,7 +192,7 @@ public class Combo_General {
         Combo_General.maps = maps;
 
         Combo_General.list_players = new ArrayList<>();
-        Pers player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 300, "I", -2000, -2000);
+        Pers player = Combo_General.player_make("pers.png", 300, 300, "I", -2000, -2000);
         Combo_General.list_players.add(player);
 
         Combo_General.create_backpack(frame);
@@ -195,6 +203,20 @@ public class Combo_General {
 
         EnemyController.createEnemies(map);
     }
+
+    public static void setIcon(String name_icon, Pers player){
+        ImageIcon icon = new ImageIcon(name_icon);
+
+        if (icon.getIconHeight() == -1){
+            icon = new ImageIcon("Бомж.png");
+            name_icon = "Бомж.png";
+        }
+        player.name_img = name_icon;
+        player.setIcon(icon);
+
+    }
+
+
     public static void create_backpack (JFrame frame) {
         backpack = new Backpack(frame.getWidth() / 2, frame.getHeight(), new ArrayList<>());
 
