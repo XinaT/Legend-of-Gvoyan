@@ -12,25 +12,19 @@ import java.util.ArrayList;
 
 public class Main_GENERAL {
     public static Pers player;
-    static String ip_server = "192.168.0.141";
     static JFrame frame;
     public static String ip_server = "";
     static int server_port = 1800;
     public static void main(String[] args) throws IOException {
 
-
-        frame = Combo_General.creatOkno();
-        Combo_General.pane = Combo_General.pane_made(frame);
-
-
-        MapLocation map = Combo_General.creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
-        ArrayList<MapLocation> maps = new ArrayList<>();
-        maps.add(map);
-        static JFrame frame;
-
-        public static void main(String[] args) throws IOException {
             Combo_General.make_start(false);
+            frame = Combo_General.creatOkno();
+            Combo_General.pane = Combo_General.pane_made(frame);
 
+
+            MapLocation map = Combo_General.creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
+            ArrayList<MapLocation> maps = new ArrayList<>();
+            maps.add(map);
 
             Thread thread = new Thread(new Runnable() {
                 @Override

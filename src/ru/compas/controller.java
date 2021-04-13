@@ -1,5 +1,7 @@
 package ru.compas;
 
+import ru.compas.Enemy.Enemy;
+import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionObject;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
@@ -269,7 +271,6 @@ public class controller {
                     Combo_General.backpack.update();
                     if(artefact instanceof Coin){
                         coins ++;
-//
                         break;
                     }
                     else if(artefact instanceof Sword){

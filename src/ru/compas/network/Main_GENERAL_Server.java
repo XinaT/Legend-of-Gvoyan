@@ -10,9 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main_GENERAL_Server {
-    static int port_of_server = 1800;
-    public static void main(String[] args) throws IOException {
-    Combo_General.make_start(true);
+
     public static int port_of_server = 1800;
     static JFrame frame;
     public static void main(String[] args) {
@@ -20,6 +18,7 @@ public class Main_GENERAL_Server {
         frame = Combo_General.creatOkno();
         Combo_General.pane = Combo_General.pane_made(frame);
         Combo_General.isServer = true;
+        Combo_General.make_start(true);
 
         ArrayList<MapLocation> maps = new ArrayList<>();
         MapLocation map = Combo_General.creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
@@ -27,7 +26,7 @@ public class Main_GENERAL_Server {
         Combo_General.maps = maps;
 
         Combo_General.list_players = new ArrayList<>();
-        player player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 300, "I", -2000, -2000);
+        Pers player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 300, "I", -2000, -2000);
         Combo_General.list_players.add(player);
 
         frame.setVisible(true);

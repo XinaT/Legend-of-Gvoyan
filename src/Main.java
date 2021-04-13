@@ -1,4 +1,4 @@
-import com.company.Main1;
+
 import ru.compas.Main_GENERAL;
 import ru.compas.network.Client;
 import ru.compas.network.Main_GENERAL_Server;
