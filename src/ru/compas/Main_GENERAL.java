@@ -8,16 +8,13 @@ import java.util.ArrayList;
 
 public class Main_GENERAL {
     static JFrame frame;
-    static String ip_server = "192.168.0.144";
+    public static String ip_server = "";
     static int server_port = 1800;
     public static void main(String[] args) throws IOException {
 
 
         frame = Combo_General.creatOkno();
         Combo_General.pane = Combo_General.pane_made(frame);
-
-
-
 
 
         MapLocation map = Combo_General.creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);

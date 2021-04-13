@@ -10,15 +10,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main_GENERAL_Server {
-    static int port_of_server = 1800;
+    public static int port_of_server = 1800;
     static JFrame frame;
-    public static void main(String[] args) throws IOException {
-
+    public static void main(String[] args) {
 
         frame = Combo_General.creatOkno();
         Combo_General.pane = Combo_General.pane_made(frame);
         Combo_General.isServer = true;
-
 
 
         ArrayList<MapLocation> maps = new ArrayList<>();
@@ -46,7 +44,7 @@ public class Main_GENERAL_Server {
             }
         });
 
-        thread.start();
+         thread.start();
 
     }
 }

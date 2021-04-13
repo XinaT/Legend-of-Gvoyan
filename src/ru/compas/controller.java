@@ -249,10 +249,12 @@ public class controller {
 
         x = x - mapX_dob;
         y = y - mapY_dob;
-        System.out.println("XY  "+  x+ "  " + +y);
-        playerik.setLocation(x, y);
+
         playerik.mapX = mapX;
         playerik.mapY = mapY;
+        System.out.println("XY  "+  x+ "  " + +y);
+        playerik.setLocation(x, y);
+
 
     }
 }
