@@ -17,27 +17,6 @@ public class Main_GENERAL_Server {
 
 
 
-//        frame = Combo_General.creatOkno();
-//        Combo_General.pane = Combo_General.pane_made(frame);
-//        Combo_General.isServer = true;
-
-
-
-//        ArrayList<MapLocation> maps = new ArrayList<>();
-//        MapLocation map = Combo_General.creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
-//        maps.add(map);
-//        Combo_General.maps = maps;
-
-
-//        Combo_General.list_players = new ArrayList<>();
-//        Pers player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 300, "I", -2000, -2000);
-//        Combo_General.list_players.add(player);
-
-//        frame.setVisible(true);
-//
-//        controller controller = new controller(frame, player, maps);
-
-
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {

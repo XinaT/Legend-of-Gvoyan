@@ -92,9 +92,6 @@ public class Server {
                 adress = Combo_General.list_players.get(a).unique_code;
             }
 
-//            dannieOfPlayer = adress + " " + Combo_General.list_players.get(a).getX() + "@" +
-//                    Combo_General.list_players.get(a).getY() + "_" + Combo_General.list_players.get(a).mapX + "*"
-//                    + Combo_General.list_players.get(a).mapY + "r";
 
 
             dannieOfPlayer = adress + " " + Combo_General.list_players.get(a).XNotChange + "@" +
