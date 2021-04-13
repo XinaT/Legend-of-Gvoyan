@@ -2,10 +2,11 @@ package ru.compas.Enemy;
 
 import ru.compas.Combo_General;
 import ru.compas.MapLocation;
+import ru.compas.Pers;
 import ru.compas.collision.CollisionObject;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
-import ru.compas.player;
+import ru.compas.Pers;
 import ru.compas.utils.Utils;
 
 import javax.swing.*;
@@ -37,7 +38,7 @@ public class EnemyController {
         timer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                player player = Combo_General.list_players.get(0);
+                Pers player = Combo_General.list_players.get(0);
                 double distanceBetween = Utils.distanceBetween(player, enemy, map, true);
                 if (distanceBetween < 300) {
                     System.out.println("Ахтунг");
