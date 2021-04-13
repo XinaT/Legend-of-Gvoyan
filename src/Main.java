@@ -12,11 +12,11 @@ import java.net.ServerSocket;
 
 public class Main {
     public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.setSize(500,300);
-        frame.setLocation(300,500);
-        frame.setLayout(null);
-        frame.setVisible(true);
+        JFrame frame1 = new JFrame();
+        frame1.setSize(500,300);
+        frame1.setLocation(300,500);
+        frame1.setLayout(null);
+        frame1.setVisible(true);
 
         JLabel server_name = new JLabel();
         server_name.setSize(150, 50);
@@ -25,7 +25,7 @@ public class Main {
         server_name.setFont(font);
         server_name.setText("ip-адрес сервера: ");
         server_name.setVisible(true);
-        frame.add(server_name);
+        frame1.add(server_name);
 
 
         JTextField ip = new JTextField();
@@ -33,8 +33,9 @@ public class Main {
         ip.setLocation(180, 50);
         ip.setFont(font);
 
-        frame.add(ip);
+        frame1.add(ip);
 
+        // 192.168.0.153
 
         JButton create_server = new JButton();
         create_server.setSize(100, 100);
@@ -45,9 +46,11 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Main_GENERAL_Server.main(args);
+                frame1.setVisible(false);
             }
+
         });
-        frame.add(create_server);
+        frame1.add(create_server);
 
         JButton connect = new JButton();
         connect.setSize(100,100);
@@ -63,12 +66,12 @@ public class Main {
                     Main_GENERAL.main(args);
                 } catch (IOException e1) {
                     e1.printStackTrace();
-
                 }
+                frame1.setVisible(false);
             }
         });
-        frame.add(connect);
-        frame.repaint();
+        frame1.add(connect);
+        frame1.repaint();
 
     }
 }
