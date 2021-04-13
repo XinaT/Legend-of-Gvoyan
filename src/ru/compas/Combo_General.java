@@ -7,6 +7,7 @@ import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
 import ru.compas.objects.Domik;
 import ru.compas.objects.DomikController;
+import ru.compas.objects.VolosatayaPalkaController;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
 import ru.compas.things.CounterController;
@@ -156,6 +157,8 @@ public class Combo_General {
         map.setLocation(x,y);
         frame.add(map);
 
+        VolosatayaPalkaController.createVolosatayaPalka(map);
+
         for (int i = 0; i < all.size(); i++) {
             Artefact artefact = all.get(i);
             map.add(artefact);
@@ -189,8 +192,6 @@ public class Combo_General {
         frame.setVisible(true);
 
         controller controller = new controller(frame, player, maps);
-
-
 
         EnemyController.createEnemies(map);
     }
