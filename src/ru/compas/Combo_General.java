@@ -1,5 +1,6 @@
 package ru.compas;
 
+import ru.compas.Enemy.EnemyController;
 import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
@@ -167,6 +168,29 @@ public class Combo_General {
         }
 
         return map;
+    }
+
+    public static void make_start(boolean isServerik){
+        JFrame frame = Combo_General.creatOkno();
+        Combo_General.pane = Combo_General.pane_made(frame);
+        Combo_General.isServer = isServerik;
+
+        ArrayList<MapLocation> maps = new ArrayList<>();
+        MapLocation map = Combo_General.creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
+        maps.add(map);
+        Combo_General.maps = maps;
+
+        Combo_General.list_players = new ArrayList<>();
+        Pers player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 300, "I", -2000, -2000);
+        Combo_General.list_players.add(player);
+
+//        Combo_General.create_backpack(frame);
+
+        frame.setVisible(true);
+
+        controller controller = new controller(frame, player, maps);
+
+//        EnemyController.createEnemies(map);
     }
     public static void create_backpack (JFrame frame) {
         backpack = new Backpack(frame.getWidth() / 2, frame.getHeight(), new ArrayList<>());
