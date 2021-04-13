@@ -6,7 +6,6 @@ import ru.compas.Pers;
 import ru.compas.collision.CollisionObject;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
-import ru.compas.Pers;
 import ru.compas.utils.Utils;
 
 import javax.swing.*;
