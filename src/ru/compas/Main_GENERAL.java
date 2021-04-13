@@ -2,15 +2,11 @@ package ru.compas;
 
 import ru.compas.Enemy.EnemyController;
 import ru.compas.network.Client;
+import ru.compas.objects.VolosatayaPalkaController;
 
 import javax.swing.*;
-import javax.imageio.ImageIO;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
