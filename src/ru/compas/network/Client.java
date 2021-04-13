@@ -1,8 +1,9 @@
 package ru.compas.network;
 
 import ru.compas.Combo_General;
+import ru.compas.Pers;
 import ru.compas.controller;
-import ru.compas.player;
+
 
 import javax.swing.*;
 import java.io.*;
@@ -42,7 +43,7 @@ public class Client {
     }
 
     public static void checkNewOldPlayer(String dannie) throws UnknownHostException {
-        ArrayList<player> listPlayerNew = new ArrayList<>();
+        ArrayList<Pers> listPlayerNew = new ArrayList<>();
         listPlayerNew.add(Combo_General.list_players.get(0));
         String IPOfI = Combo_General.getIPOfComp();
         boolean stop = false;
@@ -78,7 +79,7 @@ public class Client {
                     }
                 }
                 if (!stop) {
-                    player playerik = Combo_General.player_make(new ImageIcon("Древесный киборг.png"),
+                    Pers playerik = Combo_General.player_make(new ImageIcon("Древесный киборг.png"),
                             playerX, playerY, ip, mapX, mapY);
                     listPlayerNew.add(playerik);
 

@@ -6,10 +6,10 @@ import java.util.ArrayList;
 public class DomikController {
     public static ArrayList<Domik> createDomik() {
         ArrayList<Domik> domiki = new ArrayList<>();
-        Domik domiki1 = new Domik(1850, 2000);
+        Domik domiki1 = new Domik(450, 2488);
         domiki.add(domiki1);
 
-        Domik domiki2 = new Domik(1700, 2000);
+        Domik domiki2 = new Domik(1028, 2887);
         domiki.add(domiki2);
 
         Domik domiki3 = new Domik(1550, 2000);

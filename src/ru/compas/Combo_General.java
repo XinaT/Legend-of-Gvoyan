@@ -1,14 +1,16 @@
 package ru.compas;
 
-import ru.compas.Messager.Message;
+import ru.compas.Enemy.EnemyController;
 import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
 import ru.compas.objects.Domik;
 import ru.compas.objects.DomikController;
+import ru.compas.objects.VolosatayaPalkaController;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
+import ru.compas.things.CounterController;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -22,21 +24,26 @@ import java.util.ArrayList;
 public class Combo_General {
 
     public static JLayeredPane pane = null;
-    public static ArrayList<player> list_players = null;
+    public static ArrayList<Pers> list_players = null;
     public static ArrayList<MapLocation> maps = null;
     public static boolean isServer = false;
 
+    static Backpack backpack;
+    public static boolean R = false;
 
-    public static player player_make(ImageIcon icon, int x, int y, String name, int mapX, int mapY){
-        player player = new player();
+    public static Pers player_make(ImageIcon icon, int x, int y, String name, int mapX, int mapY){
+        Pers player = new Pers();
         player.setSize(70,70);
         player.setIcon(icon);
         player.setLocation(x, y);
         player.unique_code = name;
         pane.add(player);
-        pane.setLayer(player, 3);
+        pane.setLayer(player, 5);
         player.mapX = mapX;
         player.mapY = mapY;
+
+        player.XNotChange = x;
+        player.YNotChange = y;
         return player;
     }
 
@@ -49,29 +56,12 @@ public class Combo_General {
         return res;
     }
 
-    static boolean R;
+
     public static JFrame creatOkno() {
         JFrame frame = new JFrame();
         frame.setSize(1000, 1000);
         frame.setLayout(null);
-        frame.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
-                if (e.getKeyCode() == KeyEvent.VK_R) {
-                    Backpack backpack = new Backpack(frame.getWidth()/2, frame.getHeight(), new ArrayList<>());
-                    if(R){
-                        backpack.setVisible(false);
-                        R = false;
-                    }
-                    else{
-                    backpack.setVisible(true);
-                    R = true;
-                 }
-
-                }
-            }
-        });
+        CounterController.createArtefactCounter(frame);
         return frame;
     }
 
@@ -133,17 +123,11 @@ public class Combo_General {
         points.add(new Point(76,985));
         points.add(new Point(76,606));
 
-
-
-
         // чтоб палки совпадали с картой
         for (int i = 0; i < points.size(); i = i + 1) {
             Point p = points.get(i);
             p.y = p.y + 500;
         }
-
-
-
 
         ArrayList<Palka> palki = new ArrayList<>();
 
@@ -156,7 +140,6 @@ public class Combo_General {
 
         CollisionKarta karta = new CollisionKarta(palki);
         karta.setSize(3000,4000);
-
 
         ArrayList<Artefact> all = new ArrayList<>();
         ArrayList<Artefact> coins = ArtefactContloller.createCoins();
@@ -174,6 +157,8 @@ public class Combo_General {
         map.setLocation(x,y);
         frame.add(map);
 
+        VolosatayaPalkaController.createVolosatayaPalka(map);
+
         for (int i = 0; i < all.size(); i++) {
             Artefact artefact = all.get(i);
             map.add(artefact);
@@ -183,11 +168,45 @@ public class Combo_General {
         for (int i = 0; i < domiks.size(); i++) {
             Domik domik = domiks.get(i);
             map.add(domik);
-            map.collisionObjects.add(domik);
         }
 
         return map;
-
     }
 
+    public static void make_start(boolean isServerik){
+        JFrame frame = Combo_General.creatOkno();
+        Combo_General.pane = Combo_General.pane_made(frame);
+        Combo_General.isServer = isServerik;
+
+        ArrayList<MapLocation> maps = new ArrayList<>();
+        MapLocation map = Combo_General.creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
+        maps.add(map);
+        Combo_General.maps = maps;
+
+        Combo_General.list_players = new ArrayList<>();
+        Pers player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 300, "I", -2000, -2000);
+        Combo_General.list_players.add(player);
+
+        Combo_General.create_backpack(frame);
+
+        frame.setVisible(true);
+
+        controller controller = new controller(frame, player, maps);
+
+        EnemyController.createEnemies(map);
+    }
+    public static void create_backpack (JFrame frame) {
+        backpack = new Backpack(frame.getWidth() / 2, frame.getHeight(), new ArrayList<>());
+
+        frame.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if (e.getKeyCode() == KeyEvent.VK_R) {
+                    backpack.setVisible(!R);
+                    R = !R;
+                }
+            }
+        });
+        }
 }
