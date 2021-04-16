@@ -15,6 +15,8 @@ import ru.compas.things.CounterController;
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -159,6 +161,14 @@ public class Combo_General {
 
         VolosatayaPalkaController.createVolosatayaPalka(map);
 
+
+        map.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                System.out.println(e.getX() + ","+ e.getY());
+            }
+        });
         for (int i = 0; i < all.size(); i++) {
             Artefact artefact = all.get(i);
             map.add(artefact);
