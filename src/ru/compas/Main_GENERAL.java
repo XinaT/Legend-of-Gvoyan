@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class Main_GENERAL {
-    static JFrame frame;
+
     public static String ip_server = "";
     static int server_port = 1800;
 
