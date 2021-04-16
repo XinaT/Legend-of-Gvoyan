@@ -48,7 +48,7 @@ public class Client {
         String IPOfI = Combo_General.getIPOfComp();
         boolean stop = false;
 
-        String[] list_dannie = dannie.split("r");
+        String[] list_dannie = dannie.split("&");
 
         for (int i = 0; i < list_dannie.length; i++){
             int indexProbel = list_dannie[i].indexOf(' ');
@@ -101,7 +101,7 @@ public class Client {
             public void run() {
 
                 try {
-                     String textik = text + "r";
+                     String textik = text + "&";
                     System.out.println(textik);
                     bufferedWriter.write(textik + "\n");
                     bufferedWriter.flush();

@@ -147,7 +147,7 @@ public class controller {
                             Combo_General.pane.add(draka1);
                             motion = false;
                             Combo_General.pane.setLayer(draka1, 1);
-                            Main_GENERAL.frame.repaint();
+                            Combo_General.frame.repaint();
                         }
 
                         player.move("stop");

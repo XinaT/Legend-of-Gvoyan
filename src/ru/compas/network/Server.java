@@ -101,7 +101,7 @@ public class Server {
 
             dannieOfPlayer = adress + " " + Combo_General.list_players.get(a).XNotChange + "@" +
                     Combo_General.list_players.get(a).YNotChange + "_" + Combo_General.list_players.get(a).mapX + "*"
-                    + Combo_General.list_players.get(a).mapY + "#" +  Combo_General.list_players.get(a).name_img + "r";
+                    + Combo_General.list_players.get(a).mapY + "#" +  Combo_General.list_players.get(a).name_img + "&";
 
             string = string + dannieOfPlayer;
 
@@ -112,6 +112,8 @@ public class Server {
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket_list.get(i).getOutputStream()));
             bufferedWriter.write(string + "\n");
             bufferedWriter.flush();
+
+            System.out.println("ОТПРВЛЯЕМ     " + string);
 
         }
 

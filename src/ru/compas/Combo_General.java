@@ -13,6 +13,7 @@ import ru.compas.things.ArtefactContloller;
 import ru.compas.things.CounterController;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.net.InetAddress;
@@ -27,8 +28,9 @@ public class Combo_General {
     public static ArrayList<Pers> list_players = null;
     public static ArrayList<MapLocation> maps = null;
     public static boolean isServer = false;
-
+    public static JFrame frame;
     static Backpack backpack;
+    public static String imageOfI = "pers.png";
     public static boolean R = false;
 
     public static Pers player_make(String name_img, int x, int y, String name, int mapX, int mapY){
@@ -72,6 +74,45 @@ public class Combo_General {
         CounterController.createArtefactCounter(frame);
         return frame;
     }
+
+    public static JFrame FrameMake(int width, int height, int x, int y){
+        JFrame frame = new JFrame();
+        frame.setSize(width,height);
+        frame.setLocation(x,y);
+        frame.setLayout(null);
+        frame.setVisible(true);
+        return frame;
+    }
+
+    public static JLabel LabelMake(int x, int y, int width, int height, Font font, String text){
+        JLabel label = new JLabel();
+        label.setSize(width, height);
+        label.setLocation(x, y);
+        label.setFont(font);
+        label.setText(text);
+        label.setVisible(true);
+        label.setOpaque(true);
+        return label;
+    }
+
+    public static JTextField TextFieldMake(int x, int y, int width, int height, Font font){
+        JTextField textField = new JTextField();
+        textField.setSize(width, height);
+        textField.setLocation(x, y);
+        textField.setFont(font);
+        return textField;
+    }
+
+    public static JButton ButtonMake(int x, int y, int width, int height, Font font, String text){
+        JButton button = new JButton();
+        button.setSize(width, height);
+        button.setLocation(x, y);
+        button.setText(text);
+        button.setFont(font);
+        return button;
+    }
+
+
 
 
 
@@ -182,7 +223,7 @@ public class Combo_General {
     }
 
     public static void make_start(boolean isServerik){
-        JFrame frame = Combo_General.creatOkno();
+        frame = Combo_General.creatOkno();
         Combo_General.pane = Combo_General.pane_made(frame);
         Combo_General.isServer = isServerik;
 
@@ -192,7 +233,7 @@ public class Combo_General {
         Combo_General.maps = maps;
 
         Combo_General.list_players = new ArrayList<>();
-        Pers player = Combo_General.player_make("pers.png", 300, 300, "I", -2000, -2000);
+        Pers player = Combo_General.player_make(Combo_General.imageOfI, 300, 300, "I", -2000, -2000);
         Combo_General.list_players.add(player);
 
         Combo_General.create_backpack(frame);
