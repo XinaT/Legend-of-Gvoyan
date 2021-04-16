@@ -149,15 +149,15 @@ public class controller {
 //                            Main_GENERAL.frame.repaint();
 //                        }
 
-                        if (object instanceof Enemy) {
-                            object.setVisible(false);
-                            player.setVisible(false);
-                            Vzbuchka draka1 = new Vzbuchka(player.getX(), player.getY());
-                            Combo_General.pane.add(draka1);
-                            motion = false;
-                            Combo_General.pane.setLayer(draka1, 1);
-                            Main_GENERAL.frame.repaint();
-                        }
+//                        if (object instanceof Enemy) {
+//                            object.setVisible(false);
+//                            player.setVisible(false);
+//                            Vzbuchka draka1 = new Vzbuchka(player.getX(), player.getY());
+//                            Combo_General.pane.add(draka1);
+//                            motion = false;
+//                            Combo_General.pane.setLayer(draka1, 1);
+//                            Main_GENERAL.frame.repaint();
+//                        }
 
                         player.move("stop");
                         player.setLocation(x + addx, y + addy);

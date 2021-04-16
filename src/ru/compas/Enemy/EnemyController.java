@@ -15,19 +15,19 @@ import java.awt.event.ActionListener;
 
 public class EnemyController {
     public static void createEnemies(MapLocation map) {
-        Enemy enemy1 = new Enemy(1500, 2200,100,100);
+        Enemy enemy1 = new Enemy(1500, 2200, 100, 100);
         map.add(enemy1);
-        setEnemyMovement(enemy1, map);
+//        setEnemyMovement(enemy1, map);
         setEnemyVision(enemy1, map);
 
-        Enemy enemy2 = new Enemy(1700, 2200,100,100);
+        Enemy enemy2 = new Enemy(1700, 2200, 100, 100);
         map.add(enemy2);
-        setEnemyMovement(enemy2, map);
+//        setEnemyMovement(enemy2, map);
         setEnemyVision(enemy2, map);
 
-        Enemy enemy3 = new Enemy(1800, 2200,100,100);
+        Enemy enemy3 = new Enemy(1800, 2200, 100, 100);
         map.add(enemy3);
-        setEnemyMovement(enemy3, map);
+//        setEnemyMovement(enemy3, map);
         setEnemyVision(enemy3, map);
     }
 
@@ -40,18 +40,58 @@ public class EnemyController {
                 Pers player = Combo_General.list_players.get(0);
                 double distanceBetween = Utils.distanceBetween(player, enemy, map, true);
                 if (distanceBetween < 300) {
-                    System.out.println("Ахтунг");
+                    moveToPlayer(player, enemy, map);
                 }
             }
         });
         timer.start();
     }
 
+    static void moveToPlayer(Pers player, Enemy enemy, MapLocation map) {
+        Timer timer = new Timer(30, null);
+        timer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                double xe = enemy.getX();
+                double ye = enemy.getY();
+                double xp = player.getX();
+                double yp = player.getY();
 
+                xp = xp - map.getX();
+                yp = yp - map.getY();
+
+                double incline = ((xp - xe) / (yp - ye));
+
+                double v = 5;
+
+                double y;
+                y = v / Math.sqrt(incline * incline + 1);
+                double x;
+                x = y * incline;
+
+                if (xp > xe && yp > ye) {
+                    //ничего не надо делать
+                } else if (xp > xe && yp < ye) {
+                    x = -x;
+                    y = -y;
+                } else if (xp < xe && yp < ye) {
+                    y = -y;
+                    x = -x;
+                }
+
+
+                int rx = (int) (x + xe);
+                int ry = (int) (y + ye);
+
+                enemy.setLocation(rx, ry);
+            }
+        });
+        timer.start();
+    }
 
 
     static void setEnemyMovement(Enemy enemy, MapLocation map) {
-        Timer timer = new Timer(30,null);
+        Timer timer = new Timer(30, null);
         timer.addActionListener(new ActionListener() {
 
             int sign = 1;
@@ -80,7 +120,7 @@ public class EnemyController {
 
                 for (int i = 0; i < map.getKarta().palki.size(); i++) {
                     Palka palka = map.getKarta().palki.get(i);
-                    if (CollisionUtils.isPersAndPalkaIntersected(enemy, palka, map, false)){
+                    if (CollisionUtils.isPersAndPalkaIntersected(enemy, palka, map, false)) {
                         isUdarilsya = true;
                         break;
                     }
@@ -95,9 +135,9 @@ public class EnemyController {
         });
         timer.start();
 
-        Enemy enemy2 = new Enemy(1700, 2500,100,100);
+        Enemy enemy2 = new Enemy(1700, 2500, 100, 100);
         map.add(enemy2);
-        Enemy enemy3 = new Enemy(1800, 2500,100,100);
+        Enemy enemy3 = new Enemy(1800, 2500, 100, 100);
         map.add(enemy3);
     }
 }
