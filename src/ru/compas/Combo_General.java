@@ -5,6 +5,7 @@ import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
+import ru.compas.objects.CastleController;
 import ru.compas.objects.Domik;
 import ru.compas.objects.DomikController;
 import ru.compas.objects.VolosatayaPalkaController;
@@ -160,6 +161,7 @@ public class Combo_General {
         frame.add(map);
 
         VolosatayaPalkaController.createVolosatayaPalka(map);
+        CastleController.createCastle(map);
 
 
         map.addMouseListener(new MouseAdapter() {
