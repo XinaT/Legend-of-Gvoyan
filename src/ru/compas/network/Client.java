@@ -21,7 +21,6 @@ public class Client {
         bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -99,7 +98,7 @@ public class Client {
             public void run() {
 
                 try {
-                    String textik = text + "r";
+                     String textik = text + "r";
                     System.out.println(textik);
                     bufferedWriter.write(textik + "\n");
                     bufferedWriter.flush();

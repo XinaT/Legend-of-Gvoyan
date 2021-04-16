@@ -197,13 +197,13 @@ public class Combo_General {
         Pers player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 300, "I", -2000, -2000);
         Combo_General.list_players.add(player);
 
-//        Combo_General.create_backpack(frame);
+        Combo_General.create_backpack(frame);
 
         frame.setVisible(true);
 
         controller controller = new controller(frame, player, maps);
 
-//        EnemyController.createEnemies(map);
+        EnemyController.createEnemies(map);
     }
     public static void create_backpack (JFrame frame) {
         backpack = new Backpack(frame.getWidth() / 2, frame.getHeight(), new ArrayList<>());

@@ -21,7 +21,6 @@ public class Server {
             Socket socket = server.accept();
             socket_list.add(socket);
 
-
             Thread theard = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -60,10 +59,7 @@ public class Server {
                                     }
                                 }
                                 rassilka();
-
-
                             }
-
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -75,7 +71,6 @@ public class Server {
             theard.start();
 
         }
-
     }
 
     public static void rassilka() throws IOException {
@@ -92,9 +87,6 @@ public class Server {
                 adress = Combo_General.list_players.get(a).unique_code;
             }
 
-//            dannieOfPlayer = adress + " " + Combo_General.list_players.get(a).getX() + "@" +
-//                    Combo_General.list_players.get(a).getY() + "_" + Combo_General.list_players.get(a).mapX + "*"
-//                    + Combo_General.list_players.get(a).mapY + "r";
 
 
             dannieOfPlayer = adress + " " + Combo_General.list_players.get(a).XNotChange + "@" +
