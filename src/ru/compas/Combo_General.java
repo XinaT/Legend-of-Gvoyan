@@ -196,7 +196,7 @@ public class Combo_General {
         Combo_General.maps = maps;
 
         Combo_General.list_players = new ArrayList<>();
-        Pers player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 300, "I", -2000, -2000);
+        Pers player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 900, "I", -2000, -2000);
         Combo_General.list_players.add(player);
 
         Combo_General.create_backpack(frame);
