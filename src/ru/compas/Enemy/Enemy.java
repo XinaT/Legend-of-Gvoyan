@@ -5,6 +5,7 @@ import ru.compas.collision.CollisionObject;
 import javax.swing.*;
 
 public class Enemy extends CollisionObject {
+    public int life;
     public Enemy(int x, int y, int w, int h) {
         super(x, y, w, h);
         w = 100;

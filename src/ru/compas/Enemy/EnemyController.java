@@ -29,6 +29,10 @@ public class EnemyController {
         map.add(enemy3);
 //        setEnemyMovement(enemy3, map);
         setEnemyVision(enemy3, map);
+
+        enemy1.life=50;
+        enemy2.life=50;
+        enemy3.life=50;
     }
 
 
@@ -84,6 +88,7 @@ public class EnemyController {
                 int ry = (int) (y + ye);
 
                 enemy.setLocation(rx, ry);
+                enemy.updateCollision();
             }
         });
         timer.start();
