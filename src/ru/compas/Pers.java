@@ -6,6 +6,7 @@ public class Pers extends character {
     public int max_mana;
     public int mana;
     public String unique_code;
+    public String name_img;
     int strength;
     int intellect;
     int damage;

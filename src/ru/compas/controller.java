@@ -140,24 +140,15 @@ public class controller {
                 for (int k = 0; k < object.karta.palki.size(); k++) {
                     Palka palka = object.karta.palki.get(k);
                     if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation, true)) {
-
-//                        if (object instanceof Domik) {
-//                            player.setVisible(false);
-//                            Vzbuchka draka = new Vzbuchka(player.getX(),player.getY());
-//                            Combo_General.pane.add(draka);
-//                            Combo_General.pane.setLayer(draka,1);
-//                            Main_GENERAL.frame.repaint();
-//                        }
-
-//                        if (object instanceof Enemy) {
-//                            object.setVisible(false);
-//                            player.setVisible(false);
-//                            Vzbuchka draka1 = new Vzbuchka(player.getX(), player.getY());
-//                            Combo_General.pane.add(draka1);
-//                            motion = false;
-//                            Combo_General.pane.setLayer(draka1, 1);
-//                            Main_GENERAL.frame.repaint();
-//                        }
+                        if (object instanceof Enemy) {
+                            object.setVisible(false);
+                            player.setVisible(false);
+                            Vzbuchka draka1 = new Vzbuchka(player.getX(), player.getY());
+                            Combo_General.pane.add(draka1);
+                            motion = false;
+                            Combo_General.pane.setLayer(draka1, 1);
+                            Combo_General.frame.repaint();
+                        }
 
                         player.move("stop");
                         player.setLocation(x + addx, y + addy);
@@ -168,7 +159,7 @@ public class controller {
                     }
                 }
             }
-            //
+
         }
     }
         static void MapMoves (ArrayList<MapLocation> maps, Pers player, int addX, int addY) {
@@ -241,7 +232,8 @@ public class controller {
 
                 if (!Combo_General.isServer) {
                     try {
-                        String s = player.getX() + "*" + player.getY() + " " + maps.get(0).getX() + "@" + maps.get(0).getY();
+                        String s = player.getX() + "*" + player.getY() + " " + maps.get(0).getX() + "@" + maps.get(0).getY()
+                                + "#" + player.name_img;
                         Client.send_to_server(s);
                     } catch (IOException IOException) {
                         IOException.printStackTrace();
@@ -316,6 +308,9 @@ public class controller {
         playerik.setLocation(x, y);
         playerik.mapX = mapX;
         playerik.mapY = mapY;
+        System.out.println("XY  "+  x+ "  " + +y);
+        playerik.setLocation(x, y);
+
 
     }
 }

@@ -7,13 +7,17 @@ import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
 import ru.compas.objects.Domik;
 import ru.compas.objects.DomikController;
+import ru.compas.objects.VolosatayaPalkaController;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
 import ru.compas.things.CounterController;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -26,11 +30,19 @@ public class Combo_General {
     public static ArrayList<Pers> list_players = null;
     public static ArrayList<MapLocation> maps = null;
     public static boolean isServer = false;
-
+    public static JFrame frame;
     static Backpack backpack;
+    public static String imageOfI = "pers.png";
     public static boolean R = false;
 
-    public static Pers player_make(ImageIcon icon, int x, int y, String name, int mapX, int mapY){
+    public static Pers player_make(String name_img, int x, int y, String name, int mapX, int mapY){
+        ImageIcon icon = new ImageIcon(name_img);
+
+        if (icon.getIconHeight() == -1){
+            icon = new ImageIcon("Бомж.png");
+            name_img = "Бомж.png";
+        }
+
         Pers player = new Pers();
         player.setSize(70,70);
         player.setIcon(icon);
@@ -43,6 +55,7 @@ public class Combo_General {
 
         player.XNotChange = x;
         player.YNotChange = y;
+        player.name_img = name_img;
         return player;
     }
 
@@ -63,6 +76,45 @@ public class Combo_General {
         CounterController.createArtefactCounter(frame);
         return frame;
     }
+
+    public static JFrame FrameMake(int width, int height, int x, int y){
+        JFrame frame = new JFrame();
+        frame.setSize(width,height);
+        frame.setLocation(x,y);
+        frame.setLayout(null);
+        frame.setVisible(true);
+        return frame;
+    }
+
+    public static JLabel LabelMake(int x, int y, int width, int height, Font font, String text){
+        JLabel label = new JLabel();
+        label.setSize(width, height);
+        label.setLocation(x, y);
+        label.setFont(font);
+        label.setText(text);
+        label.setVisible(true);
+        label.setOpaque(true);
+        return label;
+    }
+
+    public static JTextField TextFieldMake(int x, int y, int width, int height, Font font){
+        JTextField textField = new JTextField();
+        textField.setSize(width, height);
+        textField.setLocation(x, y);
+        textField.setFont(font);
+        return textField;
+    }
+
+    public static JButton ButtonMake(int x, int y, int width, int height, Font font, String text){
+        JButton button = new JButton();
+        button.setSize(width, height);
+        button.setLocation(x, y);
+        button.setText(text);
+        button.setFont(font);
+        return button;
+    }
+
+
 
 
 
@@ -156,6 +208,16 @@ public class Combo_General {
         map.setLocation(x,y);
         frame.add(map);
 
+        VolosatayaPalkaController.createVolosatayaPalka(map);
+
+
+        map.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                System.out.println(e.getX() + ","+ e.getY());
+            }
+        });
         for (int i = 0; i < all.size(); i++) {
             Artefact artefact = all.get(i);
             map.add(artefact);
@@ -171,7 +233,7 @@ public class Combo_General {
     }
 
     public static void make_start(boolean isServerik){
-        JFrame frame = Combo_General.creatOkno();
+        frame = Combo_General.creatOkno();
         Combo_General.pane = Combo_General.pane_made(frame);
         Combo_General.isServer = isServerik;
 
@@ -181,17 +243,31 @@ public class Combo_General {
         Combo_General.maps = maps;
 
         Combo_General.list_players = new ArrayList<>();
-        Pers player = Combo_General.player_make(new ImageIcon("pers.png"), 300, 300, "I", -2000, -2000);
+        Pers player = Combo_General.player_make(Combo_General.imageOfI, 300, 300, "I", -2000, -2000);
         Combo_General.list_players.add(player);
 
-//        Combo_General.create_backpack(frame);
+        Combo_General.create_backpack(frame);
 
         frame.setVisible(true);
 
         controller controller = new controller(frame, player, maps);
 
-        EnemyController.createEnemies(map);
+//        EnemyController.createEnemies(map);
     }
+
+    public static void setIcon(String name_icon, Pers player){
+        ImageIcon icon = new ImageIcon(name_icon);
+
+        if (icon.getIconHeight() == -1){
+            icon = new ImageIcon("Бомж.png");
+            name_icon = "Бомж.png";
+        }
+        player.name_img = name_icon;
+        player.setIcon(icon);
+
+    }
+
+
     public static void create_backpack (JFrame frame) {
         backpack = new Backpack(frame.getWidth() / 2, frame.getHeight(), new ArrayList<>());
 
