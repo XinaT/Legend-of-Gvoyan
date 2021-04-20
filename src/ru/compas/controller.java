@@ -147,7 +147,7 @@ public class controller {
                             Combo_General.pane.add(draka1);
                             motion = false;
                             Combo_General.pane.setLayer(draka1, 1);
-                            Main_GENERAL.frame.repaint();
+                            Combo_General.frame.repaint();
                         }
 
                         player.move("stop");
@@ -232,7 +232,8 @@ public class controller {
 
                 if (!Combo_General.isServer) {
                     try {
-                        String s = player.getX() + "*" + player.getY() + " " + maps.get(0).getX() + "@" + maps.get(0).getY();
+                        String s = player.getX() + "*" + player.getY() + " " + maps.get(0).getX() + "@" + maps.get(0).getY()
+                                + "#" + player.name_img;
                         Client.send_to_server(s);
                     } catch (IOException IOException) {
                         IOException.printStackTrace();
@@ -271,6 +272,7 @@ public class controller {
                     Combo_General.backpack.update();
                     if(artefact instanceof Coin){
                         coins ++;
+//                        Backpack.updateArtefact(coins, Backpack.Coins);
                         break;
                     }
                     else if(artefact instanceof Sword){

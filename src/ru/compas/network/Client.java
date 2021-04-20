@@ -48,19 +48,21 @@ public class Client {
         String IPOfI = Combo_General.getIPOfComp();
         boolean stop = false;
 
-        String[] list_dannie = dannie.split("r");
+        String[] list_dannie = dannie.split("&");
 
         for (int i = 0; i < list_dannie.length; i++){
             int indexProbel = list_dannie[i].indexOf(' ');
             int indexSobaka = list_dannie[i].indexOf('@');
             int indexNizPodch = list_dannie[i].indexOf('_');
             int indexZvezda = list_dannie[i].indexOf('*');
+            int indexResh = list_dannie[i].indexOf('#');
 
             String ip = list_dannie[i].substring(0, indexProbel);
             String playerX_str = list_dannie[i].substring(indexProbel+1, indexSobaka);
             String playerY_str = list_dannie[i].substring(indexSobaka+1, indexNizPodch);
             String mapX_str = list_dannie[i].substring(indexNizPodch+1, indexZvezda);
-            String mapY_str = list_dannie[i].substring(indexZvezda+1);
+            String mapY_str = list_dannie[i].substring(indexZvezda+1, indexResh);
+            String name_img = list_dannie[i].substring(indexResh+1);
 
             int playerX = Integer.valueOf(playerX_str);
             int playerY = Integer.valueOf(playerY_str);
@@ -79,7 +81,8 @@ public class Client {
                     }
                 }
                 if (!stop) {
-                    Pers playerik = Combo_General.player_make(new ImageIcon("Древесный киборг.png"),
+
+                    Pers playerik = Combo_General.player_make(name_img,
                             playerX, playerY, ip, mapX, mapY);
                     listPlayerNew.add(playerik);
 
@@ -98,7 +101,7 @@ public class Client {
             public void run() {
 
                 try {
-                     String textik = text + "r";
+                     String textik = text + "&";
                     System.out.println(textik);
                     bufferedWriter.write(textik + "\n");
                     bufferedWriter.flush();
