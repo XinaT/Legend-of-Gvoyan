@@ -272,6 +272,7 @@ public class controller {
                     Combo_General.backpack.update();
                     if(artefact instanceof Coin){
                         coins ++;
+//                        Backpack.updateArtefact(coins, Backpack.Coins);
                         break;
                     }
                     else if(artefact instanceof Sword){
