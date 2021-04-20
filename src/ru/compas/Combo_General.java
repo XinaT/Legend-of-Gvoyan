@@ -5,6 +5,7 @@ import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
+import ru.compas.objects.CastleController;
 import ru.compas.objects.Domik;
 import ru.compas.objects.DomikController;
 import ru.compas.objects.VolosatayaPalkaController;
@@ -209,6 +210,7 @@ public class Combo_General {
         frame.add(map);
 
         VolosatayaPalkaController.createVolosatayaPalka(map);
+        CastleController.createCastle(map);
 
 
         map.addMouseListener(new MouseAdapter() {
@@ -243,7 +245,7 @@ public class Combo_General {
         Combo_General.maps = maps;
 
         Combo_General.list_players = new ArrayList<>();
-        Pers player = Combo_General.player_make(Combo_General.imageOfI, 300, 300, "I", -2000, -2000);
+        Pers player = Combo_General.player_make(Combo_General.imageOfI, 300, 900, "I", -2000, -2000);
         Combo_General.list_players.add(player);
 
         Combo_General.create_backpack(frame);
