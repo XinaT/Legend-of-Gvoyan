@@ -1,6 +1,7 @@
 package ru.compas.utils;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Utils {
 
@@ -24,6 +25,14 @@ public class Utils {
 
         dis = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
         return dis;
+    }
+
+    public static void removeFromMap(JLabel object, JLabel map) {
+        Rectangle rectangle = object.getVisibleRect();
+        map.remove(object);
+        rectangle.x = object.getX();
+        rectangle.y = object.getY();
+        map.repaint(rectangle);
     }
 
 }
