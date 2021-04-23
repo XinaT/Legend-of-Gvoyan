@@ -7,6 +7,26 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class ArtefactContloller extends JLabel {
+    public static ArrayList<Artefact> createShovels() {
+
+        ArrayList<Artefact> shovels = new ArrayList<>();
+
+        Shovel shovel1 = new Shovel(2400, 2300);
+        shovels.add(shovel1);
+
+        return shovels;
+    }
+
+    public static ArrayList<Artefact> createCompasses() {
+
+        ArrayList<Artefact> compasses = new ArrayList<>();
+
+        Compass compass1 = new Compass(2300, 2300);
+        compasses.add(compass1);
+
+        return compasses;
+    }
+
     public static ArrayList<Artefact> createBows() {
 
         ArrayList<Artefact> bows = new ArrayList<>();
@@ -34,50 +54,24 @@ public class ArtefactContloller extends JLabel {
     public static ArrayList<Artefact> createCoins() {
     ArrayList<Artefact> coins = new ArrayList<>();
 
-    Coin coin1 = new Coin(2000, 2850);
+    Coin coin1 = new Coin(934, 2857);
         coins.add(coin1);
 
-    Coin coin2 = new Coin(2000, 3000);
+    Coin coin2 = new Coin(549, 2346);
         coins.add(coin2);
 
-    Coin coin3 = new Coin(600, 1500);
+    Coin coin3 = new Coin(1526, 2861);
         coins.add(coin3);
 
-    Coin coin4 = new Coin(2500, 3000);
+    Coin coin4 = new Coin(2434, 2962);
         coins.add(coin4);
 
-    Coin coin5 = new Coin(2000, 2000);
+    Coin coin5 = new Coin(621, 1451);
         coins.add(coin5);
 
-    Coin coin6 = new Coin(250, 2000);
+    Coin coin6 = new Coin(1700, 1783);
         coins.add(coin6);
 
-    Coin coin7 = new Coin(10, 10);
-        coins.add(coin7);
-
-    Coin coin8 = new Coin(10, 11);
-        coins.add(coin8);
-
-    Coin coin9 = new Coin(10, 12);
-        coins.add(coin9);
-
-    Coin coin10 = new Coin(10, 13);
-        coins.add(coin10);
-
-    Coin coin11 = new Coin(10, 14);
-        coins.add(coin11);
-
-    Coin coin12 = new Coin(10, 15);
-        coins.add(coin12);
-
-    Coin coin13 = new Coin(10, 16);
-        coins.add(coin13);
-
-    Coin coin14 = new Coin(10, 17);
-        coins.add(coin14);
-
-    Coin coin15 = new Coin(10, 18);
-        coins.add(coin15);
 
         return coins;
 }

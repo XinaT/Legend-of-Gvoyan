@@ -14,8 +14,10 @@ import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
 import ru.compas.things.Coin;
 import ru.compas.things.*;
+import ru.compas.utils.Utils;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -295,7 +297,7 @@ public class controller {
             for (int j = 0; j < map.artefacts.size(); j++) {
                 Artefact artefact = map.artefacts.get(j);
                 if (ArtefactContloller.isIntersected(player, artefact, map)) {
-                    map.remove(artefact);
+                    Utils.removeFromMap(artefact, map);
                     map.artefacts.remove(artefact);
                     Backpack.artefacts.add(artefact);
                     Combo_General.backpack.update();
