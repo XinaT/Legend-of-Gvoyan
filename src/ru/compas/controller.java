@@ -138,7 +138,6 @@ public class controller {
         boolean notIntersected = true;
         for (int j = 0; j < maps.size(); j++) {
             MapLocation mapLocation = maps.get(j);
-            //
             for (int i = 0; i < mapLocation.getCollisionObjects().size(); i++) {
                 CollisionObject object = mapLocation.getCollisionObjects().get(i);
                 for (int k = 0; k < object.karta.palki.size(); k++) {
@@ -148,7 +147,11 @@ public class controller {
                             object.setVisible(false);
                             mapLocation.getCollisionObjects().remove(object);
                             player.setVisible(false);
-                            Vzbuchka draka1 = new Vzbuchka(player.getX(), player.getY());
+
+                            Vzbuchka draka1 = new Vzbuchka(player.getX(), player.getY(),
+                                    ((Enemy) object).life, ((Enemy) object).strong, player.hp, player.strong);
+
+                            draka1.vzbuchka_controller();
                             vzbuchka_list.add(draka1);
                             Combo_General.pane.add(draka1);
                             motion = false;
@@ -168,6 +171,7 @@ public class controller {
                         timer.stop();
                         break;
                     }
+                }
 
                     if (notIntersected){
                         player.setVisible(true);
@@ -177,10 +181,12 @@ public class controller {
                             Combo_General.pane.remove(vz);
                             Enemy enemy = new Enemy(vz.getX(), vz.getY(), 100, 100);
                             enemy.life = vz.life_enemy;
+                            player.hp = vz.life_pers;
                         }
+                        vzbuchka_list.clear();
                     }
 
-                }
+
             }
 
         }

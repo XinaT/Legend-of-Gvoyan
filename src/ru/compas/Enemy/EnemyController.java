@@ -30,9 +30,6 @@ public class EnemyController {
 //        setEnemyMovement(enemy3, map);
         setEnemyVision(enemy3, map);
 
-        enemy1.life=50;
-        enemy2.life=50;
-        enemy3.life=50;
     }
 
 

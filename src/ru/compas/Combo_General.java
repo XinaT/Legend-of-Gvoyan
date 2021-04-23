@@ -56,6 +56,10 @@ public class Combo_General {
         player.XNotChange = x;
         player.YNotChange = y;
         player.name_img = name_img;
+
+        player.hp = 100;
+        player.strong = 5;
+
         return player;
     }
 
@@ -73,7 +77,6 @@ public class Combo_General {
         JFrame frame = new JFrame();
         frame.setSize(1000, 1000);
         frame.setLayout(null);
-        CounterController.createArtefactCounter(frame);
         return frame;
     }
 
@@ -252,7 +255,10 @@ public class Combo_General {
 
         controller controller = new controller(frame, player, maps);
 
+        CounterController.createArtefactCounter(pane);
+
         EnemyController.createEnemies(map);
+        frame.repaint();
     }
 
     public static void setIcon(String name_icon, Pers player){

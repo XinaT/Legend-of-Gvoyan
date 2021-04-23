@@ -6,6 +6,7 @@ import javax.swing.*;
 
 public class Enemy extends CollisionObject {
     public int life;
+    public int strong;
     public Enemy(int x, int y, int w, int h) {
         super(x, y, w, h);
         w = 100;
@@ -14,5 +15,7 @@ public class Enemy extends CollisionObject {
         setLocation(x,y);
         setOpaque(false);
         setIcon(new ImageIcon("Древесный киборг.png"));
+        life = 50;
+        strong=1;
     }
 }
