@@ -10,7 +10,14 @@ public class CollisionObject extends JLabel {
     public CollisionObject(int x, int y, int w, int h) {
 
         setSize(w, h);
+        setLocation(x, y);
+        updateCollision();
+    }
+
+    public void updateCollision(){
         ArrayList<Point> points = new ArrayList<>();
+        int x = getX();
+        int y = getY();
 
         points.add(new Point(x, y));
         points.add(new Point(getWidth() + x, y));
@@ -28,7 +35,5 @@ public class CollisionObject extends JLabel {
             palki.add(palka);
         }
         karta = new CollisionKarta(palki);
-
-        setLocation(x, y);
     }
 }

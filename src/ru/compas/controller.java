@@ -2,6 +2,7 @@ package ru.compas;
 
 import ru.compas.Enemy.Enemy;
 import ru.compas.backpack.Backpack;
+import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.CollisionObject;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
@@ -45,6 +46,8 @@ public class controller {
     static int coins = 0;
     static int swords = 0;
     static int bows = 0;
+
+    static ArrayList<Vzbuchka> vzbuchka_list = new ArrayList<>();
 
 
     public controller(JFrame frame, Pers player, ArrayList<MapLocation> maps) {
@@ -134,23 +137,34 @@ public class controller {
     static void checkCollision(ArrayList<MapLocation> maps, Pers player, int addx, int addy, Timer timer) {
         int x = player.getX();
         int y = player.getY();
+        boolean notIntersected = true;
         for (int j = 0; j < maps.size(); j++) {
             MapLocation mapLocation = maps.get(j);
-            //
             for (int i = 0; i < mapLocation.getCollisionObjects().size(); i++) {
                 CollisionObject object = mapLocation.getCollisionObjects().get(i);
                 for (int k = 0; k < object.karta.palki.size(); k++) {
                     Palka palka = object.karta.palki.get(k);
                     if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation, true)) {
-//                        if (object instanceof Enemy) {
-//                            object.setVisible(false);
-//                            player.setVisible(false);
-//                            Vzbuchka draka1 = new Vzbuchka(player.getX(), player.getY());
-//                            Combo_General.pane.add(draka1);
-//                            motion = false;
-//                            Combo_General.pane.setLayer(draka1, 1);
-//                            Combo_General.frame.repaint();
-//                        }
+                        if (object instanceof Enemy) {
+                            object.setVisible(false);
+                            mapLocation.getCollisionObjects().remove(object);
+                            player.setVisible(false);
+
+                            Vzbuchka draka1 = new Vzbuchka(player.getX(), player.getY(),
+                                    ((Enemy) object).life, ((Enemy) object).strong, player.hp, player.strong);
+
+                            draka1.vzbuchka_controller();
+                            vzbuchka_list.add(draka1);
+                            Combo_General.pane.add(draka1);
+                            motion = false;
+                            Combo_General.pane.setLayer(draka1, 1);
+                            Combo_General.frame.repaint();
+                            notIntersected = false;
+                        } else {
+                            System.out.println("tuck");
+
+
+                        }
 
                         player.move("stop");
                         player.setLocation(x + addx, y + addy);
@@ -160,6 +174,21 @@ public class controller {
                         break;
                     }
                 }
+
+                    if (notIntersected){
+                        player.setVisible(true);
+                        motion = true;
+                        for (int a = 0; a < vzbuchka_list.size(); a++){
+                            Vzbuchka vz = vzbuchka_list.get(a);
+                            Combo_General.pane.remove(vz);
+                            Enemy enemy = new Enemy(vz.getX(), vz.getY(), 100, 100);
+                            enemy.life = vz.life_enemy;
+                            player.hp = vz.life_pers;
+                        }
+                        vzbuchka_list.clear();
+                    }
+
+
             }
 
         }

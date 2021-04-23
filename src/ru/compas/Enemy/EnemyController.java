@@ -114,6 +114,7 @@ public class EnemyController {
                 int ry = (int) (y + ye);
 
                 enemy.setLocation(rx, ry);
+                enemy.updateCollision();
             }
         });
         timer.start();
