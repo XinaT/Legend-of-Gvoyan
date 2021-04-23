@@ -7,6 +7,26 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class ArtefactContloller extends JLabel {
+    public static ArrayList<Artefact> createShovels() {
+
+        ArrayList<Artefact> shovels = new ArrayList<>();
+
+        Shovel shovel1 = new Shovel(2400, 2300);
+        shovels.add(shovel1);
+
+        return shovels;
+    }
+
+    public static ArrayList<Artefact> createCompasses() {
+
+        ArrayList<Artefact> compasses = new ArrayList<>();
+
+        Compass compass1 = new Compass(2300, 2300);
+        compasses.add(compass1);
+
+        return compasses;
+    }
+
     public static ArrayList<Artefact> createBows() {
 
         ArrayList<Artefact> bows = new ArrayList<>();
