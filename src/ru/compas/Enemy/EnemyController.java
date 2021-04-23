@@ -9,6 +9,7 @@ import ru.compas.collision.Palka;
 import ru.compas.utils.Utils;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,21 +19,45 @@ public class EnemyController {
         Enemy enemy1 = new Enemy(1500, 2200, 100, 100);
         map.add(enemy1);
 //        setEnemyMovement(enemy1, map);
-        setEnemyVision(enemy1, map);
+        setPassiveMode(enemy1, map);
 
         Enemy enemy2 = new Enemy(1700, 2200, 100, 100);
         map.add(enemy2);
 //        setEnemyMovement(enemy2, map);
-        setEnemyVision(enemy2, map);
+        setPassiveMode(enemy2, map);
 
         Enemy enemy3 = new Enemy(1800, 2200, 100, 100);
         map.add(enemy3);
 //        setEnemyMovement(enemy3, map);
-        setEnemyVision(enemy3, map);
+        setPassiveMode(enemy3, map);
     }
 
 
-    static void setEnemyVision(Enemy enemy, MapLocation map) {
+    static void setPassiveMode(Enemy enemy, MapLocation map) {
+        Timer timer = new Timer(1000, null);
+        timer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Pers player = Combo_General.list_players.get(0);
+                double distanceBetween = Utils.distanceBetween(player, enemy, map, true);
+                if (distanceBetween < 300) {
+                    setReadyMode(player, enemy, map);
+                    timer.stop();
+                }
+            }
+        });
+        timer.start();
+    }
+
+    static void setReadyMode(Pers player, Enemy enemy, MapLocation map) {
+        JLabel label = new JLabel();
+        label.setSize(50, 50);
+        label.setLocation(enemy.getX() + 20,  enemy.getY() - 25);
+        label.setOpaque(false);
+        label.setIcon(new ImageIcon("angry.png"));
+        map.add(label);
+        label.repaint();
+
         Timer timer = new Timer(3000, null);
         timer.addActionListener(new ActionListener() {
             @Override
@@ -40,14 +65,19 @@ public class EnemyController {
                 Pers player = Combo_General.list_players.get(0);
                 double distanceBetween = Utils.distanceBetween(player, enemy, map, true);
                 if (distanceBetween < 300) {
-                    moveToPlayer(player, enemy, map);
+                    setAggressiveMode(player, enemy, map);
+                } else {
+                    setPassiveMode(enemy, map);
                 }
+                timer.stop();
+                Utils.removeFromMap(label, map);
             }
         });
         timer.start();
+
     }
 
-    static void moveToPlayer(Pers player, Enemy enemy, MapLocation map) {
+    static void setAggressiveMode(Pers player, Enemy enemy, MapLocation map) {
         Timer timer = new Timer(30, null);
         timer.addActionListener(new ActionListener() {
             @Override

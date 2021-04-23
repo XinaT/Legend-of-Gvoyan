@@ -13,8 +13,10 @@ import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
 import ru.compas.things.Coin;
 import ru.compas.things.*;
+import ru.compas.utils.Utils;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -140,22 +142,22 @@ public class controller {
                 for (int k = 0; k < object.karta.palki.size(); k++) {
                     Palka palka = object.karta.palki.get(k);
                     if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation, true)) {
-                        if (object instanceof Enemy) {
-                            object.setVisible(false);
-                            player.setVisible(false);
-                            Vzbuchka draka1 = new Vzbuchka(player.getX(), player.getY());
-                            Combo_General.pane.add(draka1);
-                            motion = false;
-                            Combo_General.pane.setLayer(draka1, 1);
-                            Combo_General.frame.repaint();
-                        }
-
-                        player.move("stop");
-                        player.setLocation(x + addx, y + addy);
-                        shouldMoveMaps = false;
-                        blockNow = true;
-                        timer.stop();
-                        break;
+//                        if (object instanceof Enemy) {
+//                            object.setVisible(false);
+//                            player.setVisible(false);
+//                            Vzbuchka draka1 = new Vzbuchka(player.getX(), player.getY());
+//                            Combo_General.pane.add(draka1);
+//                            motion = false;
+//                            Combo_General.pane.setLayer(draka1, 1);
+//                            Combo_General.frame.repaint();
+//                        }
+//
+//                        player.move("stop");
+//                        player.setLocation(x + addx, y + addy);
+//                        shouldMoveMaps = false;
+//                        blockNow = true;
+//                        timer.stop();
+//                        break;
                     }
                 }
             }
@@ -266,7 +268,7 @@ public class controller {
             for (int j = 0; j < map.artefacts.size(); j++) {
                 Artefact artefact = map.artefacts.get(j);
                 if (ArtefactContloller.isIntersected(player, artefact, map)) {
-                    map.remove(artefact);
+                    Utils.removeFromMap(artefact, map);
                     map.artefacts.remove(artefact);
                     Backpack.artefacts.add(artefact);
                     Combo_General.backpack.update();

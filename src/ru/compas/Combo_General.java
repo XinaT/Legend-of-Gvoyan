@@ -254,7 +254,7 @@ public class Combo_General {
 
         controller controller = new controller(frame, player, maps);
 
-//        EnemyController.createEnemies(map);
+        EnemyController.createEnemies(map);
     }
 
     public static void setIcon(String name_icon, Pers player){
