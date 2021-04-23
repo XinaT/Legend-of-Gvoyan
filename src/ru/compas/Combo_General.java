@@ -1,6 +1,5 @@
 package ru.compas;
 
-import ru.compas.Enemy.EnemyController;
 import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
@@ -24,7 +23,6 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 
-
 public class Combo_General {
 
     public static JLayeredPane pane = null;
@@ -32,20 +30,20 @@ public class Combo_General {
     public static ArrayList<MapLocation> maps = null;
     public static boolean isServer = false;
     public static JFrame frame;
-    static Backpack backpack;
     public static String imageOfI = "pers.png";
     public static boolean R = false;
+    static Backpack backpack;
 
-    public static Pers player_make(String name_img, int x, int y, String name, int mapX, int mapY){
+    public static Pers player_make(String name_img, int x, int y, String name, int mapX, int mapY) {
         ImageIcon icon = new ImageIcon(name_img);
 
-        if (icon.getIconHeight() == -1){
+        if (icon.getIconHeight() == -1) {
             icon = new ImageIcon("Бомж.png");
             name_img = "Бомж.png";
         }
 
         Pers player = new Pers();
-        player.setSize(70,70);
+        player.setSize(70, 70);
         player.setIcon(icon);
         player.setLocation(x, y);
         player.unique_code = name;
@@ -78,16 +76,16 @@ public class Combo_General {
         return frame;
     }
 
-    public static JFrame FrameMake(int width, int height, int x, int y){
+    public static JFrame FrameMake(int width, int height, int x, int y) {
         JFrame frame = new JFrame();
-        frame.setSize(width,height);
-        frame.setLocation(x,y);
+        frame.setSize(width, height);
+        frame.setLocation(x, y);
         frame.setLayout(null);
         frame.setVisible(true);
         return frame;
     }
 
-    public static JLabel LabelMake(int x, int y, int width, int height, Font font, String text){
+    public static JLabel LabelMake(int x, int y, int width, int height, Font font, String text) {
         JLabel label = new JLabel();
         label.setSize(width, height);
         label.setLocation(x, y);
@@ -98,7 +96,7 @@ public class Combo_General {
         return label;
     }
 
-    public static JTextField TextFieldMake(int x, int y, int width, int height, Font font){
+    public static JTextField TextFieldMake(int x, int y, int width, int height, Font font) {
         JTextField textField = new JTextField();
         textField.setSize(width, height);
         textField.setLocation(x, y);
@@ -106,7 +104,7 @@ public class Combo_General {
         return textField;
     }
 
-    public static JButton ButtonMake(int x, int y, int width, int height, Font font, String text){
+    public static JButton ButtonMake(int x, int y, int width, int height, Font font, String text) {
         JButton button = new JButton();
         button.setSize(width, height);
         button.setLocation(x, y);
@@ -116,10 +114,7 @@ public class Combo_General {
     }
 
 
-
-
-
-        public static JLayeredPane pane_made(JFrame frame){
+    public static JLayeredPane pane_made(JFrame frame) {
         JLayeredPane pane = new JLayeredPane();
         pane.setSize(frame.getWidth(), frame.getHeight());
         pane.setLocation(0, 0);
@@ -127,53 +122,53 @@ public class Combo_General {
         return pane;
     }
 
-    public static MapLocation creatMap(int x,int y, String icon, JFrame frame){
+    public static MapLocation creatMap(int x, int y, String icon, JFrame frame) {
         ArrayList<Point> points = new ArrayList<>();
-        points.add(new Point(549,0));
+        points.add(new Point(549, 0));
 
-        points.add(new Point(549,125));
-        points.add(new Point(622,125));
-        points.add(new Point(622,503));
-        points.add(new Point(440,503));
-        points.add(new Point(440,605));
-        points.add(new Point(404,605));
-        points.add(new Point(404,917));
-        points.add(new Point(659,917));
-        points.add(new Point(659,1054));
-        points.add(new Point(769,1054));
-        points.add(new Point(769,1261));
-        points.add(new Point(1683,1261));
-        points.add(new Point(1683,1123));
-        points.add(new Point(2119,1123));
-        points.add(new Point(2119,1467));
-        points.add(new Point(2484,1467));
-        points.add(new Point(2484,1535));
-        points.add(new Point(2556,1535));
-        points.add(new Point(2556,1948));
-        points.add(new Point(2483,1948));
-        points.add(new Point(2483,2498));
-        points.add(new Point(2013,2498));
-        points.add(new Point(2013,2429));
-        points.add(new Point(1609,2429));
-        points.add(new Point(1609,2396));
-        points.add(new Point(1208,2396));
-        points.add(new Point(1208,2533));
-        points.add(new Point(988,2533));
-        points.add(new Point(988,2395));
-        points.add(new Point(768,2395));
-        points.add(new Point(768,2189));
-        points.add(new Point(441,2189));
-        points.add(new Point(441,1984));
-        points.add(new Point(513,1984));
-        points.add(new Point(513,1742));
-        points.add(new Point(443,1742));
-        points.add(new Point(443,1536));
-        points.add(new Point(549,1536));
-        points.add(new Point(549,1124));
-        points.add(new Point(221,1124));
-        points.add(new Point(221,985));
-        points.add(new Point(76,985));
-        points.add(new Point(76,606));
+        points.add(new Point(549, 125));
+        points.add(new Point(622, 125));
+        points.add(new Point(622, 503));
+        points.add(new Point(440, 503));
+        points.add(new Point(440, 605));
+        points.add(new Point(404, 605));
+        points.add(new Point(404, 917));
+        points.add(new Point(659, 917));
+        points.add(new Point(659, 1054));
+        points.add(new Point(769, 1054));
+        points.add(new Point(769, 1261));
+        points.add(new Point(1683, 1261));
+        points.add(new Point(1683, 1123));
+        points.add(new Point(2119, 1123));
+        points.add(new Point(2119, 1467));
+        points.add(new Point(2484, 1467));
+        points.add(new Point(2484, 1535));
+        points.add(new Point(2556, 1535));
+        points.add(new Point(2556, 1948));
+        points.add(new Point(2483, 1948));
+        points.add(new Point(2483, 2498));
+        points.add(new Point(2013, 2498));
+        points.add(new Point(2013, 2429));
+        points.add(new Point(1609, 2429));
+        points.add(new Point(1609, 2396));
+        points.add(new Point(1208, 2396));
+        points.add(new Point(1208, 2533));
+        points.add(new Point(988, 2533));
+        points.add(new Point(988, 2395));
+        points.add(new Point(768, 2395));
+        points.add(new Point(768, 2189));
+        points.add(new Point(441, 2189));
+        points.add(new Point(441, 1984));
+        points.add(new Point(513, 1984));
+        points.add(new Point(513, 1742));
+        points.add(new Point(443, 1742));
+        points.add(new Point(443, 1536));
+        points.add(new Point(549, 1536));
+        points.add(new Point(549, 1124));
+        points.add(new Point(221, 1124));
+        points.add(new Point(221, 985));
+        points.add(new Point(76, 985));
+        points.add(new Point(76, 606));
 
         // чтоб палки совпадали с картой
         for (int i = 0; i < points.size(); i = i + 1) {
@@ -191,7 +186,7 @@ public class Combo_General {
         }
 
         CollisionKarta karta = new CollisionKarta(palki);
-        karta.setSize(3000,4000);
+        karta.setSize(3000, 4000);
 
         ArrayList<Artefact> all = new ArrayList<>();
         ArrayList<Artefact> coins = ArtefactContloller.createCoins();
@@ -210,8 +205,23 @@ public class Combo_General {
         map.setSize(3000, 4000);
         map.setIcon(new ImageIcon(icon));
         map.setOpaque(true);
-        map.setLocation(x,y);
+        map.setLocation(x, y);
         frame.add(map);
+
+        JLabel vorota = new JLabel();
+        vorota.setSize(200, 192);
+        vorota.setVisible(true);
+        vorota.setIcon(new ImageIcon("vorota.png"));
+        vorota.setLocation(565, 1573);
+        map.add(vorota);
+
+
+        JLabel plintus = new JLabel();
+        plintus.setSize(200, 192);
+        plintus.setVisible(true);
+        plintus.setIcon(new ImageIcon("plintus.png"));
+        plintus.setLocation(1946,1429);
+        map.add(plintus);
 
         VolosatayaPalkaController.createVolosatayaPalka(map);
         CastleController.createCastle(map);
@@ -221,7 +231,7 @@ public class Combo_General {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                System.out.println(e.getX() + ","+ e.getY());
+                System.out.println(e.getX() + "," + e.getY());
             }
         });
         for (int i = 0; i < all.size(); i++) {
@@ -238,13 +248,13 @@ public class Combo_General {
         return map;
     }
 
-    public static void make_start(boolean isServerik){
+    public static void make_start(boolean isServerik) {
         frame = Combo_General.creatOkno();
         Combo_General.pane = Combo_General.pane_made(frame);
         Combo_General.isServer = isServerik;
 
         ArrayList<MapLocation> maps = new ArrayList<>();
-        MapLocation map = Combo_General.creatMap(-2000,-2000,("Правая нижняя часть карты 2.png"),frame);
+        MapLocation map = Combo_General.creatMap(-2000, -2000, ("Правая нижняя часть карты 2.png"), frame);
         maps.add(map);
         Combo_General.maps = maps;
 
@@ -261,10 +271,10 @@ public class Combo_General {
         EnemyController.createEnemies(map);
     }
 
-    public static void setIcon(String name_icon, Pers player){
+    public static void setIcon(String name_icon, Pers player) {
         ImageIcon icon = new ImageIcon(name_icon);
 
-        if (icon.getIconHeight() == -1){
+        if (icon.getIconHeight() == -1) {
             icon = new ImageIcon("Бомж.png");
             name_icon = "Бомж.png";
         }
@@ -274,7 +284,7 @@ public class Combo_General {
     }
 
 
-    public static void create_backpack (JFrame frame) {
+    public static void create_backpack(JFrame frame) {
         backpack = new Backpack(frame.getWidth() / 2, frame.getHeight(), new ArrayList<>());
 
         frame.addKeyListener(new KeyAdapter() {
@@ -287,5 +297,5 @@ public class Combo_General {
                 }
             }
         });
-        }
+    }
 }
