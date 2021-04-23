@@ -151,13 +151,13 @@ public class controller {
 //                            Combo_General.pane.setLayer(draka1, 1);
 //                            Combo_General.frame.repaint();
 //                        }
-//
-//                        player.move("stop");
-//                        player.setLocation(x + addx, y + addy);
-//                        shouldMoveMaps = false;
-//                        blockNow = true;
-//                        timer.stop();
-//                        break;
+
+                        player.move("stop");
+                        player.setLocation(x + addx, y + addy);
+                        shouldMoveMaps = false;
+                        blockNow = true;
+                        timer.stop();
+                        break;
                     }
                 }
             }
