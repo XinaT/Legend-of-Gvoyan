@@ -258,7 +258,7 @@ public class Combo_General {
         Combo_General.isServer = isServerik;
 
         ArrayList<MapLocation> maps = new ArrayList<>();
-        MapLocation map = Combo_General.creatMap(-2000, -2000, ("Правая нижняя часть карты 2.png"), frame);
+        MapLocation map = Combo_General.creatMap(-750, -1900, ("Правая нижняя часть карты 2.png"), frame);
         maps.add(map);
         Combo_General.maps = maps;
 
