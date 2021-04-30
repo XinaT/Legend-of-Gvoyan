@@ -1,6 +1,7 @@
 package ru.compas;
 
 import ru.compas.Enemy.Enemy;
+import ru.compas.Enemy.EnemyController;
 import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.CollisionObject;
@@ -147,11 +148,20 @@ public class controller {
                     if (CollisionUtils.isPersAndPalkaIntersected(player, palka, mapLocation, true)) {
                         if (object instanceof Enemy) {
                             object.setVisible(false);
+
+                            if (((Enemy) object).agressive_timer != null) {
+                                ((Enemy) object).agressive_timer.stop();
+                            }
+
+                            if (((Enemy) object).voskl_znak !=null){
+                                mapLocation.remove(((Enemy) object).voskl_znak);
+                            }
+
                             mapLocation.getCollisionObjects().remove(object);
                             player.setVisible(false);
 
                             Vzbuchka draka1 = new Vzbuchka(player.getX(), player.getY(),
-                                    ((Enemy) object).life, ((Enemy) object).strong, player.hp, player.strong);
+                                    ((Enemy) object).life, ((Enemy) object).strong, player.hp, player.strong, ((Enemy) object));
 
                             draka1.vzbuchka_controller();
                             vzbuchka_list.add(draka1);
@@ -180,10 +190,36 @@ public class controller {
                         motion = true;
                         for (int a = 0; a < vzbuchka_list.size(); a++){
                             Vzbuchka vz = vzbuchka_list.get(a);
+                            vz.end_vzbuchka();
                             Combo_General.pane.remove(vz);
-                            Enemy enemy = new Enemy(vz.getX(), vz.getY(), 100, 100);
-                            enemy.life = vz.life_enemy;
-                            player.hp = vz.life_pers;
+                            if (vz.enemy.life > 0) {
+
+                                Thread thread = new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        vz.enemy.setVisible(true);
+//                            vz.enemy.agressive_timer.start();
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        EnemyController.setPassiveMode(vz.enemy, mapLocation);
+                                        mapLocation.getCollisionObjects().add(vz.enemy);
+                                    }
+                                });
+
+                                thread.start();
+
+                            }else{
+                                mapLocation.getCollisionObjects().remove(vz.enemy);
+                                if (vz.enemy.voskl_znak != null){
+                                    mapLocation.remove(vz.enemy.voskl_znak);
+                                }
+                            }
+
+
+                            CounterController.set_life_indikator();
                         }
                         vzbuchka_list.clear();
                     }
