@@ -25,8 +25,8 @@ public class Main {
 
         // 192.168.0.153
 
-        JButton create_server = Combo_General.ButtonMake(110, 150, 100, 100, font,
-                "<html><center>"+ "Create" + "<br>" + "server"+ "</center></html>");
+        JButton create_server = Combo_General.ButtonMake(50, 150, 150, 100, font,
+                "<html><center>"+ "Создать" + "<br>" + "сервер"+ "</center></html>");
 
         create_server.addActionListener(new ActionListener() {
             @Override
@@ -39,8 +39,8 @@ public class Main {
 
         frame1.add(create_server);
 
-        JButton connect = Combo_General.ButtonMake(310, 150, 100, 100, font,
-                "<html><center>"+ "Connect" + "<br>" + "server" + "</center></html>");
+        JButton connect = Combo_General.ButtonMake(300, 150, 150, 100, font,
+                "<html><center>"+ "Подключиться" + "<br>" + "к серверу" + "</center></html>");
 
         connect.addActionListener(new ActionListener() {
             @Override
@@ -159,6 +159,10 @@ public class Main {
 
             }
         });
+
+
+
+
 
 
 

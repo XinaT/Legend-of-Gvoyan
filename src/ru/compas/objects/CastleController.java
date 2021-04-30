@@ -7,7 +7,8 @@ public class CastleController {
     }
 
     public static void createCastle(MapLocation map) {
-
+        Castle castle = new Castle(1752,1800);
+        map.add(castle);
     }
 
 }
