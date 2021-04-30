@@ -15,10 +15,9 @@ import ru.compas.things.CounterController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -77,6 +76,7 @@ public class Combo_General {
         JFrame frame = new JFrame();
         frame.setSize(1000, 1000);
         frame.setLayout(null);
+
         return frame;
     }
 
@@ -275,6 +275,16 @@ public class Combo_General {
         CounterController.createArtefactCounter(pane);
 
         EnemyController.createEnemies(map);
+
+        Timer timer = new Timer(100, null);
+        timer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                requestOSXFullscreen(frame);
+                timer.stop();
+            }
+        });
+        timer.start();
         frame.repaint();
     }
 
@@ -288,6 +298,22 @@ public class Combo_General {
         player.name_img = name_icon;
         player.setIcon(icon);
 
+    }
+
+
+    public static void requestOSXFullscreen(Window window) {
+        try {
+            Class appClass = Class.forName("com.apple.eawt.Application");
+            Class params[] = new Class[]{};
+
+            Method getApplication = appClass.getMethod("getApplication", params);
+            Object application = ((Method) getApplication).invoke(appClass);
+            Method requestToggleFulLScreen = application.getClass().getMethod("requestToggleFullScreen", Window.class);
+
+            requestToggleFulLScreen.invoke(application, window);
+        } catch (ClassNotFoundException | NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            ex.printStackTrace();
+        }
     }
 
 
