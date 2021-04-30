@@ -317,7 +317,6 @@ public class Combo_General {
     }
 
 
-    public static void create_backpack (JFrame frame) {
     public static void create_backpack(JFrame frame) {
         backpack = new Backpack(frame.getWidth() / 2, frame.getHeight(), new ArrayList<>());
 
