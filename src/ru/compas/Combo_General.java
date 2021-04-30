@@ -227,6 +227,13 @@ public class Combo_General {
         plintus.setLocation(1946,1429);
         map.add(plintus);
 
+        JLabel larek = new JLabel();
+        larek.setSize(500, 404);
+        larek.setVisible(true);
+        larek.setIcon(new ImageIcon("Larek.png"));
+        larek.setLocation(1066,1847);
+        map.add(larek);
+
         VolosatayaPalkaController.createVolosatayaPalka(map);
         CastleController.createCastle(map);
 
