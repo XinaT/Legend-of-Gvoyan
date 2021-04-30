@@ -10,6 +10,8 @@ public class CounterController {
     public static int c = 0;
     public static int s = 0;
     public static  int b = 0;
+    public static JLabel amount_pers_life;
+
     public static void createArtefactCounter(JLayeredPane pane) {
 
         JLabel coin = new JLabel();
@@ -49,12 +51,16 @@ public class CounterController {
         amountb.setText("Bows "+ b);
         pane.add(amountb);
 
-        JLabel amount_pers_life = new JLabel();
+        amount_pers_life = new JLabel();
         amount_pers_life.setSize(80,40);
         amount_pers_life.setLocation(900, 90);
         amount_pers_life.setText("Жизнь:  "+ Combo_General.list_players.get(0).hp);
         pane.add(amount_pers_life);
 
 
+    }
+
+    public static void set_life_indikator(){
+        amount_pers_life.setText("Жизнь:  "+ Combo_General.list_players.get(0).hp);
     }
 }

@@ -1,6 +1,8 @@
 package ru.compas.objects;
 
 import ru.compas.Combo_General;
+import ru.compas.Enemy.Enemy;
+import ru.compas.things.CounterController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +18,9 @@ public class Vzbuchka extends JLabel {
     public Timer timer;
     public JLabel indikator_player;
     public  JLabel indikator_enemy;
+    public Enemy enemy;
 
-    public Vzbuchka(int x, int y, int Life_enemy, int Strong_enemy, int Life_pers, int Strong_pers) {
+    public Vzbuchka(int x, int y, int Life_enemy, int Strong_enemy, int Life_pers, int Strong_pers, Enemy enemik) {
         setLocation(x, y);
         setSize(100, 100);
         setOpaque(false);
@@ -28,6 +31,7 @@ public class Vzbuchka extends JLabel {
         life_pers = Life_pers;
         strong_enemy = Strong_enemy;
         strong_pers  = Strong_pers;
+        enemy = enemik;
 
         JLabel indik_player = Combo_General.LabelMake(x, y-15,  life_pers, 10, new Font("Arial", 0, 15), "");
         indik_player.setBackground(Color.red);
@@ -53,6 +57,7 @@ public class Vzbuchka extends JLabel {
 
                 indikator_player.setSize(life_pers, indikator_player.getHeight());
                 indikator_enemy.setSize(life_enemy, indikator_enemy.getHeight());
+                CounterController.set_life_indikator();
 
                 if (life_enemy<=0){
                     System.out.println("ПОБЕДА");
@@ -77,6 +82,7 @@ public class Vzbuchka extends JLabel {
         Combo_General.pane.remove(indikator_player);
         Combo_General.list_players.get(0).setVisible(true);
         Combo_General.list_players.get(0).hp = life_pers;
+        enemy.life = life_enemy;
         Combo_General.pane.repaint();
     }
 }

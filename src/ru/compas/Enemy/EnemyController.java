@@ -33,7 +33,10 @@ public class EnemyController {
     }
 
 
-    static void setPassiveMode(Enemy enemy, MapLocation map) {
+    public static void setPassiveMode(Enemy enemy, MapLocation map) {
+        if (enemy.voskl_znak!=null) {
+            map.remove(enemy.voskl_znak);
+        }
         Timer timer = new Timer(1000, null);
         timer.addActionListener(new ActionListener() {
             @Override
@@ -57,6 +60,8 @@ public class EnemyController {
         label.setIcon(new ImageIcon("angry.png"));
         map.add(label);
         label.repaint();
+        enemy.voskl_znak = label;
+
 
         Timer timer = new Timer(3000, null);
         timer.addActionListener(new ActionListener() {
@@ -78,42 +83,73 @@ public class EnemyController {
     }
 
     static void setAggressiveMode(Pers player, Enemy enemy, MapLocation map) {
+        if (enemy.voskl_znak!=null) {
+            map.remove(enemy.voskl_znak);
+        }
         Timer timer = new Timer(30, null);
+        enemy.agressive_timer = timer;
         timer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                double xe = enemy.getX();
-                double ye = enemy.getY();
-                double xp = player.getX();
-                double yp = player.getY();
+//                double xe = enemy.getX();
+//                double ye = enemy.getY();
+//                double xp = player.getX();
+//                double yp = player.getY();
+//
+//                xp = xp - map.getX();
+//                yp = yp - map.getY();
+//
+//                double incline = ((xp - xe) / (yp - ye));
+//
+//                double v = 5;
+//
+//                double y;
+//                y = v / Math.sqrt(incline * incline + 1);
+//                double x;
+//                x = y * incline;
+//
+//                if (xp > xe && yp > ye) {
+//                    //ничего не надо делать
+//                } else if (xp > xe && yp < ye) {
+//                    x = -x;
+//                    y = -y;
+//                } else if (xp < xe && yp < ye) {
+//                    y = -y;
+//                    x = -x;
+//                }
+//
+//
+//                int rx = (int) (x + xe);
+//                int ry = (int) (y + ye);
+//
+//                enemy.setLocation(rx, ry);
+//                enemy.updateCollision();
+                int Xenemy = enemy.getX();
+                int Yenemy = enemy.getY();
+                int Xplayer = player.getX() - map.getX();
+                int Yplayer = player.getY() - map.getY();
 
-                xp = xp - map.getX();
-                yp = yp - map.getY();
+                int XenemyRes = 0;
+                int YenemyRes = 0;
+                int shag = 3;
 
-                double incline = ((xp - xe) / (yp - ye));
-
-                double v = 5;
-
-                double y;
-                y = v / Math.sqrt(incline * incline + 1);
-                double x;
-                x = y * incline;
-
-                if (xp > xe && yp > ye) {
-                    //ничего не надо делать
-                } else if (xp > xe && yp < ye) {
-                    x = -x;
-                    y = -y;
-                } else if (xp < xe && yp < ye) {
-                    y = -y;
-                    x = -x;
+                if (Xenemy > Xplayer){
+                    XenemyRes = Xenemy  - shag;
+                } else if(Xenemy < Xplayer){
+                    XenemyRes = Xenemy + shag;
+                } else{
+                    XenemyRes = Xenemy;
                 }
 
+                if (Yenemy > Yplayer){
+                    YenemyRes = Yenemy - shag;
+                } else if(Yenemy < Yplayer){
+                    YenemyRes = Yenemy + shag;
+                } else{
+                    YenemyRes = Yenemy;
+                }
 
-                int rx = (int) (x + xe);
-                int ry = (int) (y + ye);
-
-                enemy.setLocation(rx, ry);
+                enemy.setLocation(XenemyRes, YenemyRes);
                 enemy.updateCollision();
             }
         });
