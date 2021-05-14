@@ -284,6 +284,8 @@ public class Combo_General {
                 timer.stop();
             }
         });
+
+
         timer.start();
         frame.repaint();
     }
@@ -311,6 +313,7 @@ public class Combo_General {
             Method requestToggleFulLScreen = application.getClass().getMethod("requestToggleFullScreen", Window.class);
 
             requestToggleFulLScreen.invoke(application, window);
+
         } catch (ClassNotFoundException | NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
             ex.printStackTrace();
         }
