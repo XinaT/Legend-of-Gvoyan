@@ -14,7 +14,6 @@ public class MapLocation extends JLabel {
     ArrayList<Artefact> artefacts;
 
 
-
     public MapLocation(CollisionKarta karta, ArrayList<Artefact> artefacts) {
         this.karta = karta;
         this.artefacts = artefacts;
