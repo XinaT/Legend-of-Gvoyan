@@ -52,7 +52,7 @@ public class controller {
 
     public controller(JFrame frame, Pers player, ArrayList<MapLocation> maps) {
 
-        RIGHT_BORDER = frame.getWidth() - 250;
+        RIGHT_BORDER = frame.getWidth() - 250 - player.getWidth();
         BOTTOM_BORDER = frame.getHeight() - 250;
 
         Timer right = timer(maps, player, "right");
@@ -64,6 +64,9 @@ public class controller {
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
+
+                RIGHT_BORDER = frame.getWidth() - 250 - player.getWidth();
+                BOTTOM_BORDER = frame.getHeight() - 250;
 
                 if ((e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W)) {
                     if (!blockUp) {

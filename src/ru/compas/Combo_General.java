@@ -120,7 +120,7 @@ public class Combo_General {
 
     public static JLayeredPane pane_made(JFrame frame) {
         JLayeredPane pane = new JLayeredPane();
-        pane.setSize(frame.getWidth(), frame.getHeight());
+        pane.setSize(5000, 5000);
         pane.setLocation(0, 0);
         frame.add(pane);
         return pane;
@@ -254,6 +254,7 @@ public class Combo_General {
 
     public static void make_start(boolean isServerik) {
         frame = Combo_General.creatOkno();
+        System.out.println(frame.getWidth() + frame.getHeight() + "");
         Combo_General.pane = Combo_General.pane_made(frame);
         Combo_General.isServer = isServerik;
 
