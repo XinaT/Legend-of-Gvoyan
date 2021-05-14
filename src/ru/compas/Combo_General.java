@@ -5,10 +5,7 @@ import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
-import ru.compas.objects.CastleController;
-import ru.compas.objects.Domik;
-import ru.compas.objects.DomikController;
-import ru.compas.objects.VolosatayaPalkaController;
+import ru.compas.objects.*;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
 import ru.compas.things.CounterController;
@@ -35,6 +32,9 @@ public class Combo_General {
     static Backpack backpack;
     public static String imageOfI = "pers.png";
     public static boolean R = false;
+    public static MapLocation map ;
+
+
 
     public static Pers player_make(String name_img, int x, int y, String name, int mapX, int mapY){
         ImageIcon icon = new ImageIcon(name_img);
@@ -202,7 +202,7 @@ public class Combo_General {
         all.addAll(swords);
         all.addAll(bows);
 
-        MapLocation map = new MapLocation(karta, all);
+        map = new MapLocation(karta, all);
         map.setSize(3000, 4000);
         map.setIcon(new ImageIcon(icon));
         map.setOpaque(true);

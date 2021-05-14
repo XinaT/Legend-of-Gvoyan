@@ -6,6 +6,8 @@ import ru.compas.collision.CollisionObject;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.network.Client;
+import ru.compas.objects.Castle;
+import ru.compas.objects.CastleController;
 import ru.compas.objects.Domik;
 import ru.compas.objects.Vzbuchka;
 import ru.compas.network.Server;
@@ -13,12 +15,10 @@ import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
 import ru.compas.things.Coin;
 import ru.compas.things.*;
+import ru.compas.utils.Utils;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -55,6 +55,10 @@ public class controller {
         Timer down = timer(maps, player, "toward");
         Timer up = timer(maps, player, "forward");
 
+        JFrame casframe = new JFrame();
+        casframe.setSize(1000,1000);
+        casframe.setLayout(null);
+
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -79,6 +83,7 @@ public class controller {
                 }
             }
 
+
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
@@ -92,7 +97,9 @@ public class controller {
                 } else if ((e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D)) {
                     right.stop();
                 }
-
+                else if (e.getKeyCode() == KeyEvent.VK_E) {
+                    check_distance(player, CastleController.label, Combo_General.map, casframe);
+                }
             }
         });
 
@@ -277,22 +284,31 @@ public class controller {
                     }
                     else if(artefact instanceof Sword){
                         swords++;
-
                     }
                     else if(artefact instanceof Bow){
                         bows++;
-
                     }
                 }
             }
         }
     }
+    public static void check_distance(Pers player, JLabel label, MapLocation map, JFrame frame) {
+        double d = Utils.distanceBetween(player, label, map, true);
+        if (d < 200) {
+            Combo_General.frame.setVisible(false);
+            openLocation(frame);
+            frame.add(player);
+        }
+    }
 
-    public static void move_other_players(Pers playerik, int x, int y, int mapX, int mapY){
+    public static void openLocation(JFrame frame) {
+         frame.setVisible(true);
+    }
+
+    public static void move_other_players(Pers playerik, int x, int y, int mapX, int mapY) {
 
         playerik.XNotChange = x;
         playerik.YNotChange = y;
-
 
         System.out.println("MAP_OTH  " + mapX+  "  " + mapY);
         int IMapX = Combo_General.maps.get(0).getX();
@@ -310,7 +326,5 @@ public class controller {
         playerik.mapY = mapY;
         System.out.println("XY  "+  x+ "  " + +y);
         playerik.setLocation(x, y);
-
-
     }
 }

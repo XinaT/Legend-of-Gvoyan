@@ -4,9 +4,8 @@ import javax.swing.*;
 
 public class Utils {
 
-
     // если shouldTransformCoordinates true, то label2 находится на coordinateSystem
-    // это значит, что нужно преобразовать координаты label1 к системе coordinateSysytem (map)
+    // это значит, что нужно преобразовать координаты label1 к системе coordinateSystem (map)
     public static double distanceBetween(JLabel label1, JLabel label2, JLabel coordinateSystem, boolean shouldTransformCoordinates) {
         int x1, x2, y1, y2;
 
