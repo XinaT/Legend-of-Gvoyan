@@ -143,6 +143,13 @@ public class Combo_General {
         points.add(new Point(769, 1261));
         points.add(new Point(1683, 1261));
         points.add(new Point(1683, 1123));
+
+
+        points.add(new Point(1965, 1123));
+        points.add(new Point(1961, 928));
+        points.add(new Point(2075, 928));
+        points.add(new Point(2075, 1123));
+
         points.add(new Point(2119, 1123));
         points.add(new Point(2119, 1467));
         points.add(new Point(2484, 1467));
@@ -224,7 +231,7 @@ public class Combo_General {
         plintus.setSize(200, 192);
         plintus.setVisible(true);
         plintus.setIcon(new ImageIcon("plintus.png"));
-        plintus.setLocation(1946,1429);
+        plintus.setLocation(1946, 1429);
         map.add(plintus);
 
         VolosatayaPalkaController.createVolosatayaPalka(map);
