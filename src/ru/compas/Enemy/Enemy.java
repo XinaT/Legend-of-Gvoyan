@@ -10,7 +10,7 @@ public class Enemy extends CollisionObject {
     public int strong;
     public Timer agressive_timer = null;
     public JLabel voskl_znak = null;
-    Timer timer_passive  = null;
+    Timer timer  = null;
     public Enemy(int x, int y, int w, int h) {
         super(x, y, w, h);
         w = 100;
