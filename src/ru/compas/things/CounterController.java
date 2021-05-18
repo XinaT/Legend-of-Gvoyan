@@ -12,6 +12,10 @@ public class CounterController {
     public static  int b = 0;
     public static JLabel amount_pers_life;
 
+    public static JLabel amountc;
+    public static JLabel amountb;
+    public static JLabel amounts;
+
     public static void createArtefactCounter(JLayeredPane pane) {
 
         JLabel coin = new JLabel();
@@ -21,7 +25,7 @@ public class CounterController {
         pane.add(coin);
 
 
-        JLabel amountc = new JLabel();
+        amountc = new JLabel();
         amountc.setSize(60,40);
         amountc.setLocation(940, 0);
         amountc.setText("Coins " + c);
@@ -33,7 +37,7 @@ public class CounterController {
         sword.setIcon(new ImageIcon("sword.png"));
         pane.add(sword);
 
-        JLabel amounts = new JLabel();
+        amounts = new JLabel();
         amounts.setSize(60,40);
         amounts.setLocation(930, 30);
         amounts.setText("Swords " + s);
@@ -45,7 +49,7 @@ public class CounterController {
         bow.setIcon(new ImageIcon("bow1.png"));
         pane.add(bow);
 
-        JLabel amountb = new JLabel();
+        amountb = new JLabel();
         amountb.setSize(60,40);
         amountb.setLocation(940, 60);
         amountb.setText("Bows "+ b);
@@ -62,5 +66,13 @@ public class CounterController {
 
     public static void set_life_indikator(){
         amount_pers_life.setText("Жизнь:  "+ Combo_General.list_players.get(0).hp);
+    }
+
+    public static void kostil_counter_update(){
+        amountb.setText("Bows "+ b);
+        amounts.setText("Swords " + s);
+        amountc.setText("Coins " + c);
+        Combo_General.frame.repaint();
+        Combo_General.pane.repaint();
     }
 }

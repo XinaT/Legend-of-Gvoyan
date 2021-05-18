@@ -353,15 +353,17 @@ public class controller {
                     Combo_General.backpack.update();
                     if(artefact instanceof Coin){
                         coins ++;
-//                        Backpack.updateArtefact(coins, Backpack.Coins);
-                        break;
+                        CounterController.c++;
                     }
                     else if(artefact instanceof Sword){
                         swords++;
+                        CounterController.s++;
                     }
                     else if(artefact instanceof Bow){
                         bows++;
+                        CounterController.b++;
                     }
+                    CounterController.kostil_counter_update();
                 }
             }
         }
