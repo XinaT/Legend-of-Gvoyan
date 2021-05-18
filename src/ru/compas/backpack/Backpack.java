@@ -37,14 +37,14 @@ public class Backpack extends JFrame {
         avatar.setSize(100, 100);
         avatar.setLocation(20, 20);
         avatar.setOpaque(true);
-        avatar.setIcon(new ImageIcon("icon-van.jpg"));
+        avatar.setIcon(new ImageIcon("bag.jpg"));
 
         add(avatar);
 
         Pers player = Combo_General.list_players.get(0);
 
 
-        int w = 300; /// расписать оставшееся здоровье
+        int w = 100; /// расписать оставшееся здоровье
         int x = (int) ((float) w / player.max_hp * player.hp);
 
         JLabel health = new JLabel();

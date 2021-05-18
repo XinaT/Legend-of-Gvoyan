@@ -43,8 +43,12 @@ public class EnemyController {
             map.remove(enemy.voskl_znak);
         }
 
-        if (enemy.timer_passive == null) {
+        if (enemy.timer != null) {
+            enemy.timer.stop();
+            enemy.timer = null;
+        }
             Timer timer = new Timer(1000, null);
+            enemy.timer = timer;
             timer.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
@@ -53,15 +57,14 @@ public class EnemyController {
                     if (distanceBetween < 300) {
                         setReadyMode(player, enemy, map);
                         timer.stop();
-                        enemy.timer_passive = null;
                     }
                 }
             });
             timer.start();
-            enemy.timer_passive = timer;
+
         }
 
-    }
+
 
     static void setReadyMode(Pers player, Enemy enemy, MapLocation map) {
         System.out.println("setReadyMode " + enemy.id);
@@ -76,8 +79,14 @@ public class EnemyController {
         enemy.voskl_znak = label;
         enemy.setIcon(new ImageIcon("angry.png"));
 
+        if (enemy.timer != null) {
+            enemy.timer.stop();
+            enemy.timer = null;
+        }
+
 
         Timer timer = new Timer(3000, null);
+        enemy.timer = timer;
         timer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -103,11 +112,51 @@ public class EnemyController {
         if (enemy.voskl_znak!=null) {
             map.remove(enemy.voskl_znak);
         }
+
+        if (enemy.timer != null) {
+            enemy.timer.stop();
+            enemy.timer = null;
+        }
         Timer timer = new Timer(30, null);
-        enemy.agressive_timer = timer;
+        enemy.timer = timer;
         timer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+//                double xe = enemy.getX();
+//                double ye = enemy.getY();
+//                double xp = player.getX();
+//                double yp = player.getY();
+//
+//                xp = xp - map.getX();
+//                yp = yp - map.getY();
+//
+//                double incline = ((xp - xe) / (yp - ye));
+//
+//                double v = 5;
+//
+//                double y;
+//                y = v / Math.sqrt(incline * incline + 1);
+//                double x;
+//                x = y * incline;
+//
+//                if (xp > xe && yp > ye) {
+//                    //ничего не надо делать
+//                } else if (xp > xe && yp < ye) {
+//                    x = -x;
+//                    y = -y;
+//                } else if (xp < xe && yp < ye) {
+//                    y = -y;
+//                    x = -x;
+//                }
+//
+//
+//                int rx = (int) (x + xe);
+//                int ry = (int) (y + ye);
+//
+//                enemy.setLocation(rx, ry);
+//                enemy.updateCollision();
+
+
                 double xe = enemy.getX();
                 double ye = enemy.getY();
                 double xp = player.getX();
@@ -116,31 +165,34 @@ public class EnemyController {
                 xp = xp - map.getX();
                 yp = yp - map.getY();
 
-                double incline = ((xp - xe) / (yp - ye));
+                double shag = 3;
 
-                double v = 5;
+               double a = yp-ye;
+               double b = xp-xe;
+               double c = Math.sqrt(a*a + b*b);
 
-                double y;
-                y = v / Math.sqrt(incline * incline + 1);
-                double x;
-                x = y * incline;
+               double sin = b/c;
+               double cos = a/c;
 
-                if (xp > xe && yp > ye) {
-                    //ничего не надо делать
-                } else if (xp > xe && yp < ye) {
-                    x = -x;
-                    y = -y;
-                } else if (xp < xe && yp < ye) {
-                    y = -y;
-                    x = -x;
+                int rx = (int) (xe + shag*sin);
+                int ry = (int) (ye + shag*cos);
+
+                if (rx == 0 && ry ==0){
+                    rx = (int) xe;
+                    ry = (int) ye;
                 }
-
-
-                int rx = (int) (x + xe);
-                int ry = (int) (y + ye);
 
                 enemy.setLocation(rx, ry);
                 enemy.updateCollision();
+
+
+
+
+
+
+
+
+
 
 
 //                int Xenemy = enemy.getX();
