@@ -6,6 +6,7 @@ import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
 import ru.compas.objects.*;
+import ru.compas.questGivers.Steve;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
 import ru.compas.things.CounterController;
@@ -218,6 +219,9 @@ public class Combo_General {
         map.setOpaque(true);
         map.setLocation(x, y);
         frame.add(map);
+
+        Steve Steve = new Steve();
+        map.add(Steve);
 
         JLabel vorota = new JLabel();
         vorota.setSize(200, 192);
