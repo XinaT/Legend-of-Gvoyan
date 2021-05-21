@@ -50,6 +50,12 @@ public class ArtefactContloller extends JLabel {
 
         return swords;
     }
+    public static ArrayList<BuriedArtefact> buriedArtefacts() {
+        ArrayList<BuriedArtefact> klad = new ArrayList<>();
+        BuriedArtefact hlam = new BuriedArtefact(2000,2600);
+        klad.add(hlam);
+        return klad;
+    }
 
     public static ArrayList<Artefact> createCoins() {
     ArrayList<Artefact> coins = new ArrayList<>();
