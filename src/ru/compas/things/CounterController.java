@@ -9,7 +9,9 @@ import java.awt.*;
 public class CounterController {
     public static int c = 0;
     public static int s = 0;
-    public static  int b = 0;
+    public static int b = 0;
+    public static int k = 0;
+
     public static JLabel amount_pers_life;
 
     public static JLabel amountc;

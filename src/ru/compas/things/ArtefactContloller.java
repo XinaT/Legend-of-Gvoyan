@@ -44,11 +44,17 @@ public class ArtefactContloller extends JLabel {
     }
     public static ArrayList<Artefact> createSwords() {
         ArrayList<Artefact> swords = new ArrayList<>();
-
         Sword sword1 = new Sword(2000, 2300);
         swords.add(sword1);
 
         return swords;
+    }
+    public static ArrayList<Artefact> createKeys() {
+        ArrayList<Artefact> keys = new ArrayList<>();
+        Key key = new Key(2334, 2862);
+        keys.add(key);
+
+        return keys;
     }
 
     public static ArrayList<Artefact> createCoins() {

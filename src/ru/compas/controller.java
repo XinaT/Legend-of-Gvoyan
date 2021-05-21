@@ -50,6 +50,7 @@ public class controller {
     static int coins = 0;
     static int swords = 0;
     static int bows = 0;
+    static int keys = 0;
 
     static ArrayList<Vzbuchka> vzbuchka_list = new ArrayList<>();
 
@@ -65,8 +66,25 @@ public class controller {
         Timer up = timer(maps, player, "forward");
 
         JFrame casframe = new JFrame();
+        JButton button = new JButton();
+        button.setSize(300,100);
+        button.setLocation(10,800);
+        button.setText("   Назад");
+        Font font = new Font("Comic Sans MS", Font.ITALIC, 18);
+        button.setFont(font);
         casframe.setSize(1000,1000);
         casframe.setLayout(null);
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                Combo_General.pane.add(player);
+                Combo_General.frame.setVisible(true);
+                casframe.setVisible(false);
+            }
+        });
+        casframe.add(button);
+        casframe.repaint();
 
         frame.addKeyListener(new KeyAdapter() {
             @Override
@@ -363,6 +381,10 @@ public class controller {
                         bows++;
                         CounterController.b++;
                     }
+                    else if(artefact instanceof Key){
+                        keys++;
+                        CounterController.k++;
+                    }
                     CounterController.kostil_counter_update();
                 }
             }
@@ -370,15 +392,21 @@ public class controller {
     }
     public static void check_distance(Pers player, JLabel label, MapLocation map, JFrame frame) {
         double d = Utils.distanceBetween(player, label, map, true);
-        if (d < 200) {
-            Combo_General.frame.setVisible(false);
-            openLocation(frame);
-            frame.add(player);
+        if (CounterController.k > 0) {
+            if (d < 200) {
+                Combo_General.pane.remove(player);
+                Combo_General.frame.setVisible(false);
+                openLocation(frame);
+                frame.add(player);
+                player.setLocation(400, 800);
+                frame.repaint();
+            }
         }
     }
 
     public static void openLocation(JFrame frame) {
          frame.setVisible(true);
+         frame.repaint();
     }
 
     public static void move_other_players(Pers playerik, int x, int y, int mapX, int mapY) {

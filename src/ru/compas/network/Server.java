@@ -113,7 +113,7 @@ public class Server {
             bufferedWriter.write(string + "\n");
             bufferedWriter.flush();
 
-            System.out.println("ОТПРВЛЯЕМ     " + string);
+            System.out.println("ОТПРАВЛЯЕМ     " + string);
 
         }
 

@@ -206,12 +206,14 @@ public class Combo_General {
         ArrayList<Artefact> bows = ArtefactContloller.createBows();
         ArrayList<Artefact> shovels = ArtefactContloller.createShovels();
         ArrayList<Artefact> compasses = ArtefactContloller.createCompasses();
+        ArrayList<Artefact> keys = ArtefactContloller.createKeys();
 
         all.addAll(coins);
         all.addAll(swords);
         all.addAll(bows);
         all.addAll(shovels);
         all.addAll(compasses);
+        all.addAll(keys);
 
         map = new MapLocation(karta, all);
         map.setSize(3000, 4000);
