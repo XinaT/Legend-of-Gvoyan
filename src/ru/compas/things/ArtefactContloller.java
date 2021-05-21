@@ -49,12 +49,20 @@ public class ArtefactContloller extends JLabel {
 
         return swords;
     }
+
     public static ArrayList<Artefact> createKeys() {
         ArrayList<Artefact> keys = new ArrayList<>();
         Key key = new Key(2334, 2862);
         keys.add(key);
 
         return keys;
+
+    public static ArrayList<BuriedArtefact> buriedArtefacts() {
+        ArrayList<BuriedArtefact> klad = new ArrayList<>();
+        BuriedArtefact hlam = new BuriedArtefact(2000,2600);
+        klad.add(hlam);
+        return klad;
+
     }
 
     public static ArrayList<Artefact> createCoins() {

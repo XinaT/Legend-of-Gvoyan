@@ -6,7 +6,6 @@ import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
 import ru.compas.objects.*;
-import ru.compas.questGivers.Steve;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
 import ru.compas.things.CounterController;
@@ -30,10 +29,9 @@ public class Combo_General {
     public static JFrame frame;
     public static String imageOfI = "pers.png";
     public static boolean R = false;
+    public static MapLocation map;
+//    public static ArrayList<BuriedArtefact> buriedArtefacts = new ArrayList<>();
     static Backpack backpack;
-    public static MapLocation map ;
-
-
 
     public static Pers player_make(String name_img, int x, int y, String name, int mapX, int mapY) {
         ImageIcon icon = new ImageIcon(name_img);
@@ -222,19 +220,15 @@ public class Combo_General {
         map.setLocation(x, y);
         frame.add(map);
 
-        Steve Steve = new Steve();
-        map.add(Steve);
+//
+//        Steve Steve = new Steve();
+//        map.add(Steve);
 
-        JLabel vorota = new JLabel();
-        vorota.setSize(200, 192);
-        vorota.setVisible(true);
-        vorota.setIcon(new ImageIcon("vorota.png"));
-        vorota.setLocation(565, 1573);
-        map.add(vorota);
-
+        Gate gate = new Gate(545, 1573);
+        map.add(gate);
 
         JLabel plintus = new JLabel();
-        plintus.setSize(200, 192);
+        plintus.setSize(230, 200);
         plintus.setVisible(true);
         plintus.setIcon(new ImageIcon("plintus.png"));
         plintus.setLocation(1946, 1429);
@@ -244,7 +238,7 @@ public class Combo_General {
         larek.setSize(500, 404);
         larek.setVisible(true);
         larek.setIcon(new ImageIcon("Larek.png"));
-        larek.setLocation(1066,1847);
+        larek.setLocation(1066, 1847);
         map.add(larek);
 
         VolosatayaPalkaController.createVolosatayaPalka(map);
@@ -268,6 +262,12 @@ public class Combo_General {
             Domik domik = domiks.get(i);
             map.add(domik);
         }
+
+
+//        for (int i = 0; i < buriedArtefacts.size(); i++) {
+//            BuriedArtefact artefact = buriedArtefacts.get(i);
+//            map.add(artefact);
+//        }
 
         return map;
     }
