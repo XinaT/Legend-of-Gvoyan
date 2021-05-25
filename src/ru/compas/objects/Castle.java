@@ -13,6 +13,7 @@ public class Castle extends CollisionObject {
         super(x,y, 700, 750);
         setLocation(x, y);
         setOpaque(false);
+
         setIcon(new ImageIcon("Castle2.png"));
         ArrayList<Point> points = new ArrayList<>();
         points.add(new Point(x+20,y+25));
@@ -21,8 +22,12 @@ public class Castle extends CollisionObject {
         points.add(new Point(x+290,y+110));
         points.add(new Point(x+290,y+20));
         points.add(new Point(x+440,y+20));
-        points.add(new Point(x+getWidth(),y+25));
-        points.add(new Point(x+getWidth(),y-20+getHeight()));
+        points.add(new Point(x+getWidth() - 1,y+25));
+        points.add(new Point(x+getWidth() - 1   ,y-20+getHeight()));
+        points.add(new Point((int) (x+getWidth() * 0.75),y-20+getHeight()));//1
+        points.add(new Point((int) (x+getWidth() * 0.75), (int) (y-20+getHeight() * 0.4)));//2
+        points.add(new Point((int) (x+getWidth() * 0.25), (int) (y-20+getHeight() * 0.4)));//3
+        points.add(new Point((int) (x+getWidth()* 0.25),y-20+getHeight()));//4
         points.add(new Point(x+20, y-20+getHeight()));
         points.add(new Point(x+20,y+25));
 
@@ -36,6 +41,8 @@ public class Castle extends CollisionObject {
         }
 
         karta = new CollisionKarta(palki);
+        karta.setSize(getWidth(), getHeight());
+        add(karta);
 
     }
 
