@@ -9,7 +9,7 @@ public class VolosatayaPalkaController {
 
     public static void createVolosatayaPalka(MapLocation map) {
 
-        VolosatayaPalka volosatayaPalka = new VolosatayaPalka(803, 2713, 130, 130);
+        VolosatayaPalka volosatayaPalka = new VolosatayaPalka(1903, 2813, 130, 130);
         map.add(volosatayaPalka);
 
         VolosatayaPalka volosatayaPalka2 = new VolosatayaPalka(574, 2270, 130, 130);
