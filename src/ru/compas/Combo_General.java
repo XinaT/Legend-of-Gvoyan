@@ -5,6 +5,7 @@ import ru.compas.backpack.Backpack;
 import ru.compas.collision.CollisionKarta;
 import ru.compas.collision.Palka;
 import ru.compas.collision.Point;
+import ru.compas.network.Disconnect;
 import ru.compas.objects.*;
 import ru.compas.questGivers.Steve;
 import ru.compas.things.Artefact;
@@ -31,7 +32,9 @@ public class Combo_General {
     public static String imageOfI = "pers.png";
     public static boolean R = false;
     static Backpack backpack;
+    static Disconnect disconnectik;
     public static MapLocation map ;
+    public static boolean isConnected = true;
 
 
 
@@ -306,6 +309,7 @@ public class Combo_General {
 
 
         timer.start();
+
         frame.repaint();
     }
 
@@ -342,6 +346,8 @@ public class Combo_General {
     public static void create_backpack(JFrame frame) {
         backpack = new Backpack(frame.getWidth() / 2, frame.getHeight(), new ArrayList<>());
 
+        disconnectik = new Disconnect(300, 300, 300, 300);
+
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -349,6 +355,9 @@ public class Combo_General {
                 if (e.getKeyCode() == KeyEvent.VK_R) {
                     backpack.setVisible(!R);
                     R = !R;
+                } else if (e.getKeyCode() == KeyEvent.VK_O){
+                    disconnectik.setVisible(true);
+
                 }
             }
         });

@@ -24,11 +24,22 @@ public class Client {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
+                while (Combo_General.isConnected) {
                     try {
                         String string = bufferedReader.readLine();
-                        if (string!=null) {
-                            checkNewOldPlayer(string);
+                        if (string!=null && Combo_General.isConnected) {
+                            if (string.equals("DISC")){
+                                Combo_General.isConnected = false;
+
+                                while (Combo_General.list_players.size() > 1){
+                                    Combo_General.pane.remove(Combo_General.list_players.get(1));
+                                    Combo_General.list_players.remove(1);
+                                }
+                                Combo_General.pane.repaint();
+
+                            }else {
+                                checkNewOldPlayer(string);
+                            }
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -88,6 +99,22 @@ public class Client {
 
                 }
             }
+        }
+        for (int i = 0; i < Combo_General.list_players.size(); i++){
+            boolean yes = false;
+            String u_c = Combo_General.list_players.get(i).unique_code;
+            for (int b = 0; b < listPlayerNew.size(); b++){
+                if (u_c.equals(listPlayerNew.get(b).unique_code)){
+                    yes = true;
+                }
+            }
+
+            if (!yes){
+                Combo_General.pane.remove(Combo_General.list_players.get(i));
+            }
+
+
+
         }
         Combo_General.list_players = listPlayerNew;
     }
