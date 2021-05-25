@@ -21,8 +21,6 @@ import java.util.ArrayList;
 
 public class Backpack extends JFrame {
     public static JLabel Coins = new JLabel();
-    public static JLabel Swords = new JLabel();
-    public static JLabel Bows = new JLabel();
 
     public static ArrayList<Artefact> artefacts = new ArrayList<>();
     public static ArrayList<JLabel> artefactslabel = new ArrayList<>();

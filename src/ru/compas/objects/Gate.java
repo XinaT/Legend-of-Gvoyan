@@ -8,20 +8,19 @@ import ru.compas.collision.Point;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class Larek extends CollisionObject {
-    public Larek(int x, int y) {
-        super(x, y, 500, 404);
+public class Gate extends CollisionObject {
+    public Gate (int x,int y){
+        super(x,y, 230, 200);
         setLocation(x, y);
+        setSize(230,200);
+        setVisible(true);
         setOpaque(false);
-        setIcon(new ImageIcon("Larek.png"));
+        setIcon(new ImageIcon("vorota.png"));
 
         ArrayList<Point> points = new ArrayList<>();
-        points.add(new Point(0,0));
-        points.add(new Point(0,500));
-        points.add(new Point(500,404));
-        points.add(new Point(404,500));
-        points.add(new Point(500,404));
-        points.add(new Point(0,0));
+        points.add(new Point(550,1774));
+        points.add(new Point(773,1771));
+
 
 
 
@@ -34,5 +33,6 @@ public class Larek extends CollisionObject {
         }
 
         karta = new CollisionKarta(palki);
+
     }
 }
