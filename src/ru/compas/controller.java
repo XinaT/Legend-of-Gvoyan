@@ -8,10 +8,7 @@ import ru.compas.collision.CollisionObject;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.network.Client;
-import ru.compas.objects.Castle;
-import ru.compas.objects.CastleController;
-import ru.compas.objects.Domik;
-import ru.compas.objects.Vzbuchka;
+import ru.compas.objects.*;
 import ru.compas.network.Server;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
@@ -185,7 +182,7 @@ public class controller {
                                 ((Enemy) object).agressive_timer.stop();
                             }
 
-                            if (((Enemy) object).voskl_znak !=null){
+                            if (((Enemy) object).voskl_znak != null) {
                                 mapLocation.remove(((Enemy) object).voskl_znak);
                             }
 
@@ -202,7 +199,10 @@ public class controller {
                             Combo_General.pane.setLayer(draka1, 1);
                             Combo_General.frame.repaint();
                             notIntersected = false;
-                        } else {
+                        } else if(object instanceof Gate){
+                            System.out.println("GATE");
+
+                        }else {
                             System.out.println("tuck");
 
 
@@ -384,6 +384,8 @@ public class controller {
                     else if(artefact instanceof Key){
                         keys++;
                         CounterController.k++;
+//                        for (int f = 0; f < )
+
                     }
                     CounterController.kostil_counter_update();
                 }
