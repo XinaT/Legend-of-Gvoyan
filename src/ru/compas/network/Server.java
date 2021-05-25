@@ -34,41 +34,57 @@ public class Server {
                             String string = bufferedReader.readLine();
 
                             if (string != null) {
-                                System.out.println(socket.getInetAddress() + "  " + string);
-                                int index_zvezda = string.indexOf('*');
-                                int index_probel = string.indexOf(' ');
-                                int index_sobaka = string.indexOf('@');
-                                int index_resh = string.indexOf('#');
 
+                                if (string.equals("Disconnect&")) {
+                                    System.out.println("D");
 
-                                String x_str = string.substring(0, index_zvezda);
-                                String y_str = string.substring(index_zvezda + 1, index_probel);
-
-                                String mapX_str = string.substring(index_probel + 1, index_sobaka);
-                                String mapY_str = string.substring(index_sobaka + 1, index_resh);
-
-                                String name_img = string.substring(index_resh+1, string.length()-1);
-
-
-                                int x = Integer.valueOf(x_str);
-                                int y = Integer.valueOf(y_str);
-                                int mapX = Integer.valueOf(mapX_str);
-                                int mapY = Integer.valueOf(mapY_str);
-
-
-
-
-                                for (int i = 0; i < Combo_General.list_players.size(); i++) {
-                                    if ((socket.getInetAddress() + "").equals(Combo_General.list_players.get(i).unique_code)) {
-
-                                        if(!Combo_General.list_players.get(i).name_img.equals(name_img)){
-                                            Combo_General.setIcon(name_img, Combo_General.list_players.get(i));
+                                    for (int i = 0; i < Combo_General.list_players.size(); i++) {
+                                        if ((socket.getInetAddress() + "").equals(Combo_General.list_players.get(i).unique_code)) {
+                                            Combo_General.pane.remove(Combo_General.list_players.get(i));
+                                            Combo_General.list_players.remove(i);
+                                            i = Combo_General.list_players.size();
+                                            Combo_General.pane.repaint();
+                                            rassilka();
                                         }
-
-                                        controller.move_other_players(Combo_General.list_players.get(i), x, y, mapX, mapY);
                                     }
+
+                                } else {
+                                    System.out.println(socket.getInetAddress() + "  " + string);
+                                    int index_zvezda = string.indexOf('*');
+                                    int index_probel = string.indexOf(' ');
+                                    int index_sobaka = string.indexOf('@');
+                                    int index_resh = string.indexOf('#');
+
+
+                                    String x_str = string.substring(0, index_zvezda);
+                                    String y_str = string.substring(index_zvezda + 1, index_probel);
+
+                                    String mapX_str = string.substring(index_probel + 1, index_sobaka);
+                                    String mapY_str = string.substring(index_sobaka + 1, index_resh);
+
+                                    String name_img = string.substring(index_resh + 1, string.length() - 1);
+
+
+                                    int x = Integer.valueOf(x_str);
+                                    int y = Integer.valueOf(y_str);
+                                    int mapX = Integer.valueOf(mapX_str);
+                                    int mapY = Integer.valueOf(mapY_str);
+
+
+                                    for (int i = 0; i < Combo_General.list_players.size(); i++) {
+                                        if ((socket.getInetAddress() + "").equals(Combo_General.list_players.get(i).unique_code)) {
+
+                                            if (!Combo_General.list_players.get(i).name_img.equals(name_img)) {
+                                                Combo_General.setIcon(name_img, Combo_General.list_players.get(i));
+                                            }
+
+                                            controller.move_other_players(Combo_General.list_players.get(i), x, y, mapX, mapY);
+                                        }
+                                    }
+
                                 }
-                                rassilka();
+
+
                             }
 
                         } catch (IOException e) {
@@ -117,5 +133,18 @@ public class Server {
 
         }
 
+
+    }
+
+    public static void rassilka_disconnect() throws IOException {
+        for (int i = 0; i < socket_list.size(); i++) {
+
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket_list.get(i).getOutputStream()));
+            bufferedWriter.write("DISC" + "\n");
+            bufferedWriter.flush();
+
+            System.out.println("ОТПРВЛЯЕМ disc");
+
+        }
     }
 }

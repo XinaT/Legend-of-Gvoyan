@@ -56,6 +56,7 @@ public class ArtefactContloller extends JLabel {
         keys.add(key);
 
         return keys;
+    }
 
     public static ArrayList<BuriedArtefact> buriedArtefacts() {
         ArrayList<BuriedArtefact> klad = new ArrayList<>();
