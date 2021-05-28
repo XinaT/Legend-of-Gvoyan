@@ -45,8 +45,12 @@ public class Server {
                                             i = Combo_General.list_players.size();
                                             Combo_General.pane.repaint();
                                             rassilka();
+
                                         }
                                     }
+                                    socket_list.remove(socket);
+                                    socket.close();
+                                    break;
 
                                 } else {
                                     System.out.println(socket.getInetAddress() + "  " + string);

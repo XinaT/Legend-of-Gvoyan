@@ -8,10 +8,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 public class Main {
+    public static boolean block = false;
     public static void main(String[] args) {
 
         JFrame frame1 = Combo_General.FrameMake(500, 500, 300, 500);
@@ -45,14 +49,52 @@ public class Main {
         connect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
+
+
                     Main_GENERAL.ip_server = ip.getText() + "";
                     System.out.println(Main_GENERAL.ip_server + "");
-                    Main_GENERAL.main(args);
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                frame1.setVisible(false);
+                    block = false;
+
+
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+
+
+                        try {
+                            Socket socket = new Socket(Main_GENERAL.ip_server, Main_GENERAL.server_port);
+                            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+                            bufferedWriter.write("Disconnect&" + "\n");
+                            bufferedWriter.flush();
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            socket.close();
+
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                            block = true;
+                        }
+
+                        if (!block){
+                            try {
+                                frame1.setVisible(false);
+                                Main_GENERAL.main(args);
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                        }else{
+                            ip.setText("НЕВЕРНЫЙ АДРЕС");
+                        }
+
+                    }
+                });
+                thread.start();
+
+
             }
         });
         frame1.add(connect);
