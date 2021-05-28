@@ -199,20 +199,39 @@ public class controller {
                             Combo_General.pane.setLayer(draka1, 1);
                             Combo_General.frame.repaint();
                             notIntersected = false;
+
+                            player.move("stop");
+                            player.setLocation(x + addx, y + addy);
+                            shouldMoveMaps = false;
+                            blockNow = true;
+                            timer.stop();
                         } else if(object instanceof Gate){
                             System.out.println("GATE");
+                            if (keys == 0){
+                                player.move("stop");
+                                player.setLocation(x + addx, y + addy);
+                                shouldMoveMaps = false;
+                                blockNow = true;
+                                timer.stop();
+                            }
 
                         }else {
                             System.out.println("tuck");
 
+                            player.move("stop");
+                            player.setLocation(x + addx, y + addy);
+                            shouldMoveMaps = false;
+                            blockNow = true;
+                            timer.stop();
+
 
                         }
 
-                        player.move("stop");
-                        player.setLocation(x + addx, y + addy);
-                        shouldMoveMaps = false;
-                        blockNow = true;
-                        timer.stop();
+//                        player.move("stop");
+//                        player.setLocation(x + addx, y + addy);
+//                        shouldMoveMaps = false;
+//                        blockNow = true;
+//                        timer.stop();
                         break;
                     }
                 }
@@ -369,11 +388,12 @@ public class controller {
                     map.artefacts.remove(artefact);
                     Backpack.artefacts.add(artefact);
                     Combo_General.backpack.update();
-                    if(artefact instanceof Coin){
-                        coins ++;
-                        CounterController.c++;
-                    }
-                    else if(artefact instanceof Sword){
+//                    if(artefact instanceof Coin){
+//                        coins ++;
+//                        CounterController.c++;
+//                    }
+
+                   if(artefact instanceof Sword){
                         swords++;
                         CounterController.s++;
                     }

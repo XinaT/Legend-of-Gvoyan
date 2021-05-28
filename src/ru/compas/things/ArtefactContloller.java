@@ -70,21 +70,27 @@ public class ArtefactContloller extends JLabel {
     ArrayList<Artefact> coins = new ArrayList<>();
 
     Coin coin1 = new Coin(934, 2857);
+    coin1.setVisible(false);
         coins.add(coin1);
 
     Coin coin2 = new Coin(549, 2346);
+        coin2.setVisible(false);
         coins.add(coin2);
 
     Coin coin3 = new Coin(1526, 2861);
+        coin3.setVisible(false);
         coins.add(coin3);
 
     Coin coin4 = new Coin(2434, 2962);
+        coin4.setVisible(false);
         coins.add(coin4);
 
     Coin coin5 = new Coin(621, 1451);
+        coin5.setVisible(false);
         coins.add(coin5);
 
     Coin coin6 = new Coin(1700, 1783);
+        coin6.setVisible(false);
         coins.add(coin6);
 
 
