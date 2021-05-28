@@ -30,7 +30,7 @@ public class ArtefactContloller extends JLabel {
     public static ArrayList<Artefact> createBows() {
 
         ArrayList<Artefact> bows = new ArrayList<>();
-        Bow bow1 = new Bow(2200, 2100);
+        Bow bow1 = new Bow(2400, 2800);
         Bow bow2 = new Bow(2270, 2300);
         Bow bow3 = new Bow(1500, 2100);
         Bow bow4 = new Bow(2200, 2100);
@@ -44,7 +44,7 @@ public class ArtefactContloller extends JLabel {
     }
     public static ArrayList<Artefact> createSwords() {
         ArrayList<Artefact> swords = new ArrayList<>();
-        Sword sword1 = new Sword(2000, 2300);
+        Sword sword1 = new Sword(2300, 2700);
         swords.add(sword1);
 
         return swords;
