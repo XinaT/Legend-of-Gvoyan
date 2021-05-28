@@ -54,10 +54,16 @@ public class VolosatayaPalkaController {
         VolosatayaPalka volosatayaPalka15 = new VolosatayaPalka(1507, 2629, 130, 130);
         map.add(volosatayaPalka15);
 
-        VolosatayaPalka volosatayaPalka16 = new VolosatayaPalka(1539,2372, 130, 130);
-        map.add(volosatayaPalka16);
+//        VolosatayaPalka volosatayaPalka16 = new VolosatayaPalka(1539,2372, 130, 130);
+//        map.add(volosatayaPalka16);
+//
+//        VolosatayaPalka  volosatayaPalka17 = new VolosatayaPalka(1662,2372, 130, 130);
+//        map.add(volosatayaPalka17);
 
-        VolosatayaPalka  volosatayaPalka17 = new VolosatayaPalka(1662,2372, 130, 130);
-        map.add(volosatayaPalka17);
+        VolosatayaPalka  volosatayaPalka18 = new VolosatayaPalka(1868,2511, 130, 130);
+        map.add(volosatayaPalka18);
+
+        VolosatayaPalka  volosatayaPalka19 = new VolosatayaPalka(2224,2511, 130, 130);
+        map.add(volosatayaPalka19);
     }
 }
