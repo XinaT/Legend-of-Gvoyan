@@ -29,6 +29,7 @@ public class Gate extends CollisionObject {
             Point a = points.get(i);
             Point b = points.get(i + 1);
             Palka palka = new Palka(a, b);
+            palka.type = "gate";
             palki.add(palka);
         }
 

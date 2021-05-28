@@ -8,10 +8,7 @@ import ru.compas.collision.CollisionObject;
 import ru.compas.collision.CollisionUtils;
 import ru.compas.collision.Palka;
 import ru.compas.network.Client;
-import ru.compas.objects.Castle;
-import ru.compas.objects.CastleController;
-import ru.compas.objects.Domik;
-import ru.compas.objects.Vzbuchka;
+import ru.compas.objects.*;
 import ru.compas.network.Server;
 import ru.compas.things.Artefact;
 import ru.compas.things.ArtefactContloller;
@@ -185,7 +182,7 @@ public class controller {
                                 ((Enemy) object).agressive_timer.stop();
                             }
 
-                            if (((Enemy) object).voskl_znak !=null){
+                            if (((Enemy) object).voskl_znak != null) {
                                 mapLocation.remove(((Enemy) object).voskl_znak);
                             }
 
@@ -202,17 +199,39 @@ public class controller {
                             Combo_General.pane.setLayer(draka1, 1);
                             Combo_General.frame.repaint();
                             notIntersected = false;
-                        } else {
+
+                            player.move("stop");
+                            player.setLocation(x + addx, y + addy);
+                            shouldMoveMaps = false;
+                            blockNow = true;
+                            timer.stop();
+                        } else if(object instanceof Gate){
+                            System.out.println("GATE");
+                            if (keys == 0){
+                                player.move("stop");
+                                player.setLocation(x + addx, y + addy);
+                                shouldMoveMaps = false;
+                                blockNow = true;
+                                timer.stop();
+                            }
+
+                        }else {
                             System.out.println("tuck");
+
+                            player.move("stop");
+                            player.setLocation(x + addx, y + addy);
+                            shouldMoveMaps = false;
+                            blockNow = true;
+                            timer.stop();
 
 
                         }
 
-                        player.move("stop");
-                        player.setLocation(x + addx, y + addy);
-                        shouldMoveMaps = false;
-                        blockNow = true;
-                        timer.stop();
+//                        player.move("stop");
+//                        player.setLocation(x + addx, y + addy);
+//                        shouldMoveMaps = false;
+//                        blockNow = true;
+//                        timer.stop();
                         break;
                     }
                 }
@@ -369,11 +388,12 @@ public class controller {
                     map.artefacts.remove(artefact);
                     Backpack.artefacts.add(artefact);
                     Combo_General.backpack.update();
-                    if(artefact instanceof Coin){
-                        coins ++;
-                        CounterController.c++;
-                    }
-                    else if(artefact instanceof Sword){
+//                    if(artefact instanceof Coin){
+//                        coins ++;
+//                        CounterController.c++;
+//                    }
+
+                   if(artefact instanceof Sword){
                         swords++;
                         CounterController.s++;
                     }
@@ -384,6 +404,8 @@ public class controller {
                     else if(artefact instanceof Key){
                         keys++;
                         CounterController.k++;
+//                        for (int f = 0; f < )
+
                     }
                     CounterController.kostil_counter_update();
                 }

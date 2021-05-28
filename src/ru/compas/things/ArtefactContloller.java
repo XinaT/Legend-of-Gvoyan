@@ -30,7 +30,7 @@ public class ArtefactContloller extends JLabel {
     public static ArrayList<Artefact> createBows() {
 
         ArrayList<Artefact> bows = new ArrayList<>();
-        Bow bow1 = new Bow(2200, 2100);
+        Bow bow1 = new Bow(2400, 2800);
         Bow bow2 = new Bow(2270, 2300);
         Bow bow3 = new Bow(1500, 2100);
         Bow bow4 = new Bow(2200, 2100);
@@ -44,7 +44,7 @@ public class ArtefactContloller extends JLabel {
     }
     public static ArrayList<Artefact> createSwords() {
         ArrayList<Artefact> swords = new ArrayList<>();
-        Sword sword1 = new Sword(2000, 2300);
+        Sword sword1 = new Sword(2300, 2700);
         swords.add(sword1);
 
         return swords;
@@ -70,21 +70,27 @@ public class ArtefactContloller extends JLabel {
     ArrayList<Artefact> coins = new ArrayList<>();
 
     Coin coin1 = new Coin(934, 2857);
+    coin1.setVisible(false);
         coins.add(coin1);
 
     Coin coin2 = new Coin(549, 2346);
+        coin2.setVisible(false);
         coins.add(coin2);
 
     Coin coin3 = new Coin(1526, 2861);
+        coin3.setVisible(false);
         coins.add(coin3);
 
     Coin coin4 = new Coin(2434, 2962);
+        coin4.setVisible(false);
         coins.add(coin4);
 
     Coin coin5 = new Coin(621, 1451);
+        coin5.setVisible(false);
         coins.add(coin5);
 
     Coin coin6 = new Coin(1700, 1783);
+        coin6.setVisible(false);
         coins.add(coin6);
 
 

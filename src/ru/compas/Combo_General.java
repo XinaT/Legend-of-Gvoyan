@@ -33,6 +33,7 @@ public class Combo_General {
     static Backpack backpack;
     static Disconnect disconnectik;
     public static MapLocation map ;
+    public static ArrayList<Artefact> coins;
     public static boolean isConnected = true;
 
 
@@ -203,7 +204,7 @@ public class Combo_General {
         karta.setSize(3000, 4000);
 
         ArrayList<Artefact> all = new ArrayList<>();
-        ArrayList<Artefact> coins = ArtefactContloller.createCoins();
+        coins = ArtefactContloller.createCoins();
         ArrayList<Artefact> swords = ArtefactContloller.createSwords();
         ArrayList<Artefact> bows = ArtefactContloller.createBows();
         ArrayList<Artefact> shovels = ArtefactContloller.createShovels();
@@ -361,6 +362,8 @@ public class Combo_General {
                 } else if (e.getKeyCode() == KeyEvent.VK_O){
                     disconnectik.setVisible(true);
 
+                } else if(e.getKeyCode() == KeyEvent.VK_K){
+                    kopat_moneti();
                 }
             }
         });
@@ -371,8 +374,28 @@ public class Combo_General {
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
-                
+
             }
         });
+    }
+
+    public static void kopat_moneti(){
+        int x = Combo_General.list_players.get(0).getX() - map.getX();
+        int y = Combo_General.list_players.get(0).getY() - map.getY();
+        System.out.println(x + " " + y + "IGROK");
+
+        for (int i = 0; i < Combo_General.coins.size(); i++){
+            int x_m = Combo_General.coins.get(i).getX();
+            int y_m = Combo_General.coins.get(i).getY();
+            System.out.println(x_m + "  " + y_m + "  MONETA " + i);
+            if (x - x_m > -50 && x - x_m < 50){
+                if (y - y_m > -50 && y - y_m < 50){
+                    System.out.println("URAAAAA");
+                    controller.coins ++;
+                    CounterController.c++;
+                    CounterController.kostil_counter_update();
+                }
+            }
+        }
     }
 }

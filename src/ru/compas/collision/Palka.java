@@ -6,6 +6,7 @@ public class Palka {
     Point b;
     boolean isVertical;
     boolean isHorizontal;
+    public  String type = null;
 
     public Palka(Point a, Point b) {
         this.a = a;
