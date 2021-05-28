@@ -8,7 +8,7 @@ import java.io.IOException;
 public class Main_GENERAL {
 
     public static String ip_server = "";
-    static int server_port = 1800;
+    public static int server_port = 1800;
 
     public static void main(String[] args) throws IOException {
 
