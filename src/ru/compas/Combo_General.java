@@ -394,6 +394,9 @@ Timer timer = new Timer(100, null);
                     controller.coins ++;
                     CounterController.c++;
                     CounterController.kostil_counter_update();
+                    Combo_General.coins.remove(i);
+                    break;
+
                 }
             }
         }
