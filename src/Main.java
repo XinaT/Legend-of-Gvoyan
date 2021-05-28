@@ -63,15 +63,21 @@ public class Main {
 
         JButton avatar_img = Combo_General.ButtonMake(200, 350, 100, 100, font, "");
 //        avatar_img.setBackground(Color.white);
+        avatar_img.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
         avatar_img.setIcon(new ImageIcon(Combo_General.imageOfI));
 
         frame1.add(avatar_img);
 
-        JButton avatar_change = Combo_General.ButtonMake(350, 350, 100, 100, font,
-                "<html><center>"+ "Сменить" + "<br>" + "аватар"+ "</center></html>");
-        frame1.add(avatar_change);
+//        JButton avatar_change = Combo_General.ButtonMake(350, 350, 100, 100, font,
+//                "<html><center>"+ "Сменить" + "<br>" + "аватар"+ "</center></html>");
+//        frame1.add(avatar_change);
 
-        avatar_change.addActionListener(new ActionListener() {
+        avatar_img.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 

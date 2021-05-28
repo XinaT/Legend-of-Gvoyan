@@ -302,7 +302,7 @@ public class Combo_General {
 
         EnemyController.createEnemies(map);
 
-        Timer timer = new Timer(100, null);
+Timer timer = new Timer(100, null);
         timer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
