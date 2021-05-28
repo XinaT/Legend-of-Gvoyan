@@ -25,7 +25,7 @@ public class Server {
                 @Override
                 public void run() {
                     System.out.println("CONNECT");
-                    Pers playerik = Combo_General.player_make("Древесный киборг.png", 350, 300,
+                    Pers playerik = Combo_General.player_make("Древесный киборг.png", 350, 800,
                             socket.getInetAddress() + "", -2000, -2000);
                     Combo_General.list_players.add(playerik);
                     while (true) {
