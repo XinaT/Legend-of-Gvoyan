@@ -368,6 +368,16 @@ public class Combo_General {
             }
         });
     }
+    public static void create_quests(JFrame frame) {
+        JFrame frame1 = new JFrame();
+        frame1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+
+            }
+        });
+    }
 
     public static void kopat_moneti(){
         int x = Combo_General.list_players.get(0).getX() - map.getX();
