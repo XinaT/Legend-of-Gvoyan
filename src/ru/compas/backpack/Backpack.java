@@ -91,12 +91,12 @@ public class Backpack extends JFrame {
             }
         });
 
-        Coins.setSize(80, 80);
-        Coins.setLocation(20, 150);
-        Coins.setIcon(new ImageIcon("coin.png"));
-        //Coins.setFont();
-        Coins.setVisible(true);
-        add(Coins);
+//        Coins.setSize(80, 80);
+//        Coins.setLocation(20, 150);
+//        Coins.setIcon(new ImageIcon("coin.png"));
+//        //Coins.setFont();
+//        Coins.setVisible(true);
+//        add(Coins);
 
 
         int y = 300;
